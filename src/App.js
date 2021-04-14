@@ -13,11 +13,11 @@ function App() {
               </div>
               <div className="mt-10">
                 <div>
-                  <a href="#" className="inline-flex space-x-4">
-                    <span className="rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-primary tracking-wide uppercase">
-                      Coming soon!
-                    </span>
-                    {/* <span className="inline-flex items-center text-sm font-medium text-primary space-x-1">
+                  {/* <a href="#" className="inline-flex space-x-4"> */}
+                  <span className="rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-primary tracking-wide uppercase">
+                    Coming soon!
+                  </span>
+                  {/* <span className="inline-flex items-center text-sm font-medium text-primary space-x-1">
                       <span>Just shipped version 0.1.0</span>
                       <svg
                         className="h-5 w-5"
@@ -33,7 +33,7 @@ function App() {
                         />
                       </svg>
                     </span> */}
-                  </a>
+                  {/* </a> */}
                 </div>
                 <div className="mt-6 sm:max-w-xl">
                   <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">Skynet Hackathon</h1>
