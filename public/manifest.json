@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Skynet Hackathon",
+  "name": "Built to explore - a dream of the future",
   "icons": [
     { "src": "icons/icon-48x48.png", "sizes": "48x48", "type": "image/png" },
     { "src": "icons/icon-72x72.png", "sizes": "72x72", "type": "image/png" },
