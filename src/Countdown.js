@@ -26,7 +26,7 @@ const dateLabels = ["days", "hours", "minutes", "seconds"];
 
 function Segment({ active, color }) {
   // eslint-disable-next-line
-  const colors = useMemo(() => randomColor({ count: 4, luminosity: "dark" }), [color]);
+  const colors = useMemo(() => randomColor({ count: 4, hue: "#00FFF" }), [color]);
 
   return (
     <div className="grid grid-cols-2 grid-rows-2">
@@ -43,7 +43,7 @@ function Segment({ active, color }) {
 
 function Digit({ value }) {
   // eslint-disable-next-line
-  const colors = useMemo(() => randomColor({ count: 15, luminosity: "dark" }), [value]);
+  const colors = useMemo(() => randomColor({ count: 15, hue: "#00FFF" }), [value]);
   const segments = zipWith(characters[value], colors, (active, color) => {
     return { active, color };
   });
