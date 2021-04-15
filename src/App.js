@@ -1,4 +1,5 @@
 import { ReactComponent as Logo } from "./svg/LogoBlackText.svg";
+import { ReactComponent as LogoSymbol } from "./svg/LogoSymbol.svg";
 import Countdown from "./Countdown";
 
 function App() {
@@ -225,7 +226,12 @@ function App() {
                   .
                 </p>
               </div>
-              <div className="mt-12 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
+
+              <div className="mt-12 lg:mt-0 flex justify-center">
+                <LogoSymbol className="fill-current text-palette-200" />
+              </div>
+
+              {/* <div className="mt-12 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
                 <div className="col-span-1 flex justify-center py-8 px-8 bg-palette-100">
                   <img
                     className="max-h-12"
@@ -268,7 +274,7 @@ function App() {
                     alt="Workcation"
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -322,7 +328,7 @@ function App() {
                   </h2>
                   <p className="mt-6 mx-auto max-w-2xl text-lg">
                     We’ll have daily prizes, and will be showing all the applications builders have made for you to
-                    explore in at our Explore Phase kickoff event. Sign up to be reminded.
+                    explore in at our Explore Phase kickoff event.
                   </p>
                 </div>
                 <form action="#" className="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
