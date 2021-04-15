@@ -61,6 +61,10 @@ function Digit({ value }) {
 export default function CountdownAlt() {
   const [time, setTime] = useState(null);
 
+  function pad(num, size) {
+    return ("000000000" + num).substr(-size);
+  }
+
   useInterval(() => {
     let delta = Math.abs(dateTargetUnix - Date.now()) / 1000;
 
@@ -92,7 +96,7 @@ export default function CountdownAlt() {
           className="flex flex-col bg-palette-100 border-palette-200 border rounded p-4 flex-shrink-0 items-center"
         >
           <div className="flex space-x-4 font-mono font-semibold text-5xl text-palette-400 sm:text-7xl">
-            {value}
+            {pad(value, 2)}
             {/* <Digit value={Math.floor(value / 10)} />
             <Digit value={value % 10} /> */}
           </div>
