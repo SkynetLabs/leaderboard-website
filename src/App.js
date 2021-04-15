@@ -349,8 +349,31 @@ function App() {
 
       {/* Footer section */}
       <footer className="mt-24 bg-palette-600 sm:mt-12">
-        <div className="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-          <p className="mt-8 text-center text-base text-palette-300">© 2021 Skynet Labs, Inc. All rights reserved.</p>
+        <div className="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8 space-y-2">
+          <p className="text-center text-palette-300">2021 Skynet Labs, Inc.</p>
+
+          <p className="text-center text-palette-300 text-sm">
+            Fork me on a{" "}
+            <a
+              className="text-green-500 hover:underline"
+              href="https://github.com/SkynetLabs/leaderboard-website"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </p>
+
+          {process.env.REACT_APP_GIT_SHA && (
+            <p className="text-center text-palette-400 text-xs">
+              <a
+                href={`https://github.com/SkynetLabs/leaderboard-website/commit/${process.env.REACT_APP_GIT_SHA}`}
+                className="hover:underline font-mono"
+              >
+                {process.env.REACT_APP_GIT_SHA}
+              </a>
+            </p>
+          )}
         </div>
       </footer>
     </div>
