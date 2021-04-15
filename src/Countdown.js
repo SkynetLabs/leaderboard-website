@@ -4,8 +4,10 @@ import { zipWith } from "lodash";
 import dayjs from "dayjs";
 import { useInterval } from "react-use";
 import relativeTime from "dayjs/plugin/relativeTime";
+import utc from "dayjs/plugin/utc";
 
 dayjs.extend(relativeTime);
+dayjs.extend(utc);
 
 const characters = {
   0: [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1],
@@ -20,7 +22,7 @@ const characters = {
   9: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1],
   ":": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
 };
-const dateTarget = dayjs(1619798400000);
+const dateTarget = dayjs(1619798400000).utc(); // 30 april 16:00 UTC
 const dateFormat = "DD:HH:mm:ss";
 const dateLabels = ["days", "hours", "minutes", "seconds"];
 
@@ -61,7 +63,7 @@ export default function Countdown() {
   const [time, setTime] = useState(null);
 
   useInterval(() => {
-    setTime(dateTarget.subtract(dayjs()).format(dateFormat));
+    setTime(dateTarget.subtract(dayjs().utc()).format(dateFormat));
   }, 1000);
 
   if (!time) return null;

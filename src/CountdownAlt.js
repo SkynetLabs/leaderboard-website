@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useInterval } from "react-use";
 
 const dateTargetUnix = 1619798400000;
