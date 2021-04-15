@@ -1,6 +1,7 @@
 import { ReactComponent as Logo } from "./svg/LogoBlackText.svg";
 import { ReactComponent as LogoSymbol } from "./svg/LogoSymbol.svg";
 import Countdown from "./Countdown";
+import SubscribeForm from "./SubscribeForm";
 
 function App() {
   return (
@@ -29,27 +30,9 @@ function App() {
                     <span className="font-extrabold text-palette-600">April 30, 2021.</span>
                   </p>
                 </div>
-                <form action="#" className="mt-12 sm:max-w-lg sm:w-full sm:flex">
-                  <div className="min-w-0 flex-1">
-                    <label htmlFor="hero_email" className="sr-only">
-                      Email address
-                    </label>
-                    <input
-                      id="hero_email"
-                      type="email"
-                      className="block w-full border border-palette-200 rounded-md px-5 py-3 text-base text-palette-600 placeholder-palette-300 shadow-sm focus:border-rose-500 focus:ring-rose-500"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="mt-4 sm:mt-0 sm:ml-3">
-                    <button
-                      type="submit"
-                      className="block w-full rounded-md border border-transparent px-5 py-3 bg-primary text-base font-semibold text-palette-600 shadow hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:px-10 transition-colors duration-200"
-                    >
-                      Notify me
-                    </button>
-                  </div>
-                </form>
+
+                <SubscribeForm />
+
                 <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
                   <h4 className="text-xl text-palette-600 font-semibold tracking-tight sm:text-2xl text-center sm:text-left lg:text-center">
                     Countdown to Explore Phase
@@ -331,27 +314,10 @@ function App() {
                     explore in at our Explore Phase kickoff event.
                   </p>
                 </div>
-                <form action="#" className="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
-                  <div className="min-w-0 flex-1">
-                    <label htmlFor="cta_email" className="sr-only">
-                      Email address
-                    </label>
-                    <input
-                      id="cta_email"
-                      type="email"
-                      className="block w-full border border-transparent rounded-md px-5 py-3 text-base text-palette-600 placeholder-palette-300 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="mt-4 sm:mt-0 sm:ml-3">
-                    <button
-                      type="submit"
-                      className="block w-full rounded-md border border-transparent px-5 py-3 bg-palette-600 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-rose-500 sm:px-10"
-                    >
-                      Notify me
-                    </button>
-                  </div>
-                </form>
+
+                <div className="flex justify-center">
+                  <SubscribeForm buttonColor="dark" />
+                </div>
               </div>
             </div>
           </div>

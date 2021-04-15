@@ -30,9 +30,9 @@ function Segment({ active, color }) {
 
   return (
     <div className="grid grid-cols-2 grid-rows-2">
-      {colors.map((color) => (
+      {colors.map((color, index) => (
         <div
-          key={color}
+          key={index}
           style={{ backgroundColor: active ? color : "transparent" }}
           className="h-2px w-2px sm:h-4px sm:w-4px md:h-6px md:w-6px"
         />
