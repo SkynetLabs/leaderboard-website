@@ -51,9 +51,8 @@ function App() {
                 </form>
                 <div className="mt-12 flex flex-col space-y-8">
                   <h4 className="text-xl text-palette-600 font-semibold tracking-tight sm:text-2xl text-center sm:text-left lg:text-center">
-                    Countdown to finish
+                    Countdown to Explore Phase
                   </h4>
-
                   <Countdown />
                 </div>
               </div>
