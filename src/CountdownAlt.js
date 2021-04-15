@@ -1,0 +1,110 @@
+import { useState, useMemo } from "react";
+import randomColor from "randomcolor";
+import { zipWith } from "lodash";
+// import dayjs from "dayjs";
+import { useInterval } from "react-use";
+// import relativeTime from "dayjs/plugin/relativeTime";
+
+// dayjs.extend(relativeTime);
+
+const characters = {
+  0: [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1],
+  1: [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+  2: [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+  3: [1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+  4: [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1],
+  5: [1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+  6: [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+  7: [1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+  8: [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+  9: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1],
+  ":": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+};
+const dateTargetUnix = 1619798400000;
+// const dateTarget = dayjs(dateTargetUnix);
+// const dateFormat = "DD:HH:mm:ss";
+const dateLabels = ["days", "hours", "minutes", "seconds"];
+
+function Segment({ active, color }) {
+  // eslint-disable-next-line
+  const colors = useMemo(() => randomColor({ count: 4, hue: "#0000ff" }), [color]);
+
+  return (
+    <div className="grid grid-cols-2 grid-rows-2">
+      {colors.map((color, index) => (
+        <div
+          key={index}
+          style={{ backgroundColor: active ? color : "transparent" }}
+          className="h-2px w-2px sm:h-4px sm:w-4px md:h-6px md:w-6px"
+        />
+      ))}
+    </div>
+  );
+}
+
+function Digit({ value }) {
+  // eslint-disable-next-line
+  const colors = useMemo(() => randomColor({ count: 15, hue: "#0000ff" }), [value]);
+  const segments = zipWith(characters[value], colors, (active, color) => {
+    return { active, color };
+  });
+
+  return (
+    <div className="grid grid-cols-3 grid-rows-5 flex-shrink-0">
+      {segments.map((segment, index) => (
+        <Segment key={index} {...segment} />
+      ))}
+    </div>
+  );
+}
+
+export default function CountdownAlt() {
+  const [time, setTime] = useState(null);
+
+  function pad(num, size) {
+    return ("000000000" + num).substr(-size);
+  }
+
+  useInterval(() => {
+    let delta = Math.abs(dateTargetUnix - Date.now()) / 1000;
+
+    // calculate (and subtract) whole days
+    var days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+
+    // calculate (and subtract) whole hours
+    var hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+
+    // calculate (and subtract) whole minutes
+    var minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+
+    // what's left is seconds
+    var seconds = Math.floor(delta % 60); // in theory the modulus is not required
+
+    setTime(`${days}:${hours}:${minutes}:${seconds}`);
+  }, 1000);
+
+  if (!time) return null;
+
+  return (
+    <div className="flex space-x-4">
+      {time.split(":").map((value, index) => (
+        <div
+          key={index}
+          className="flex flex-col bg-palette-100 border-palette-200 border rounded p-4 flex-shrink-0 items-center"
+        >
+          <div className="flex space-x-4 font-mono font-semibold text-5xl text-palette-400 sm:text-7xl">
+            {pad(value, 2)}
+            {/* <Digit value={Math.floor(value / 10)} />
+            <Digit value={value % 10} /> */}
+          </div>
+          <div className="mt-4 text-center text-palette-300 uppercase tracking-widest text-xs sm:text-sm md:text-base">
+            {dateLabels[index]}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}

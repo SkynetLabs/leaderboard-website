@@ -1,6 +1,7 @@
 import { ReactComponent as Logo } from "./svg/LogoBlackText.svg";
 import { ReactComponent as LogoSymbol } from "./svg/LogoSymbol.svg";
-import Countdown from "./Countdown";
+// import Countdown from "./Countdown";
+import CountdownAlt from "./CountdownAlt";
 import SubscribeForm from "./SubscribeForm";
 
 function App() {
@@ -22,12 +23,16 @@ function App() {
                 </div>
                 <div className="mt-6 sm:max-w-xl">
                   <h1 className="text-4xl font-extrabold text-palette-600 tracking-tight sm:text-5xl">
-                    Built to Explore, A&nbsp;Dream of the Future
+                    Built to Explore&nbsp;- A&nbsp;Dream of the Future
                   </h1>
                   <p className="mt-6 text-xl text-palette-400">
-                    Join with other builders, creators and dreamers in Skynet’s latest hackathon - no prior tech
-                    experience required. The build phase is underway, and we’ll be starting our next phase on{" "}
-                    <span className="font-extrabold text-palette-600">April 30, 2021.</span>
+                    Join builders, creators and dreamers in Skynet’s latest hackathon - no prior tech experience
+                    required. The Build phase is currently underway.
+                  </p>
+                  <p className="mt-6 text-l text-palette-400">
+                    The Explore phase begins on <span className="font-extrabold text-palette-600">April 30, 2021</span>{" "}
+                    and is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To
+                    be notified for the Explore phase, sign up below:
                   </p>
                 </div>
 
@@ -37,7 +42,7 @@ function App() {
                   <h4 className="text-xl text-palette-600 font-semibold tracking-tight sm:text-2xl text-center sm:text-left lg:text-center">
                     Countdown to Explore Phase
                   </h4>
-                  <Countdown />
+                  <CountdownAlt />
                 </div>
               </div>
             </div>
