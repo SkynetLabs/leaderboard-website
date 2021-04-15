@@ -158,7 +158,16 @@ function App() {
                   </span>
                 </h3>
                 <p className="text-lg text-palette-400 font-content">
-                  The build phase is taking place on Gitcoin, sign up and start hacking today.
+                  The build phase is taking place on Gitcoin,{" "}
+                  <a
+                    href="https://gitcoin.co/hackathon/built-to-explore/onboard"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary-light transition-colors duration-200"
+                  >
+                    sign up
+                  </a>{" "}
+                  and start hacking today.
                 </p>
 
                 <h3 className="text-2xl text-palette-600 font-semibold tracking-tight sm:text-3xl">
@@ -205,6 +214,19 @@ function App() {
                     className="text-primary hover:text-primary-light"
                   >
                     siasky.net
+                  </a>
+                  .
+                </p>
+
+                <p className="mt-6 max-w-3xl text-lg leading-7 text-palette-400 font-content">
+                  Learn more about the Built to Explore hackathon in our{" "}
+                  <a
+                    href="https://blog.sia.tech/built-to-explore-the-skynet-spring-2021-hackathon-a0cff382bb0c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary-light transition-colors duration-200"
+                  >
+                    accouncement
                   </a>
                   .
                 </p>
