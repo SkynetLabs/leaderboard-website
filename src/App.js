@@ -49,7 +49,7 @@ function App() {
                     </button>
                   </div>
                 </form>
-                <div className="mt-12 flex flex-col space-y-8">
+                <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
                   <h4 className="text-xl text-palette-600 font-semibold tracking-tight sm:text-2xl text-center sm:text-left lg:text-center">
                     Countdown to Explore Phase
                   </h4>
