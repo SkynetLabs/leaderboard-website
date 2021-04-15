@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from "./svg/Logo.svg";
+import { ReactComponent as Logo } from "./svg/LogoBlackText.svg";
 import Countdown from "./Countdown";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
           <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
             <div>
               <div>
-                <Logo className="h-16 w-auto" />
+                <Logo className="h-12 w-auto" />
               </div>
               <div className="mt-10">
                 <div>
@@ -165,8 +165,13 @@ function App() {
             </div>
             <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
               <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-                <h3 className="text-2xl text-palette-600 font-semibold tracking-tight sm:text-3xl">
-                  Build Phase (Ongoing, &gt;$20k Prizes)
+                <h3 className="text-2xl text-palette-600 font-semibold tracking-tight sm:text-3xl flex justify-between space-x-4">
+                  <span>Build Phase (&gt;$20k Prizes)</span>
+                  <span className="flex items-center flex-shrink-0">
+                    <span className="rounded bg-rose-50 px-2.5 py-1 text-xs font-semibold text-primary tracking-wide uppercase">
+                      in progress
+                    </span>
+                  </span>
                 </h3>
                 <p className="text-lg text-palette-400 font-content">
                   The build phase is taking place on Gitcoin, sign up and start hacking today.
