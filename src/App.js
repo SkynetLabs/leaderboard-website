@@ -115,14 +115,17 @@ function App() {
                 {/* Testimonial card*/}
                 <div className="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
                   <img
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover blur-lg"
                     src="/SkynetArt.png"
                     alt="Skynet Graphic"
                   />
                   <div className="absolute inset-0 bg-rose-500" style={{ mixBlendMode: "multiply" }} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary opacity-90" />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-white opacity-50"
+                    style={{ mixBlendMode: "multiply" }}
+                  />
                   <div className="relative px-8">
-                    <blockquote className="mt-8" style={{ textShadow: "0px 0px 16px #000" }}>
+                    <blockquote className="mt-8" style={{ textShadow: "0px 0px 14px #000" }}>
                       <div className="relative text-lg font-medium text-white md:flex-grow">
                         <svg
                           className="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-rose-400"
