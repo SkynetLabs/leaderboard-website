@@ -15,7 +15,7 @@ export default function useSubscribe() {
 
     setState(initialState);
 
-    const url = [mailer, `EMAIL=${email}`].join("&");
+    const url = [mailer, `EMAIL=${email}`, `group[31022][1]=1`].join("&");
 
     jsonp(url, { param: "c" }, (error, data) => {
       const success = !error && data.result === "success";
