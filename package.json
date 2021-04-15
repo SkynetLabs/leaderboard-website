@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fontsource/sora": "^4.2.2",
+    "@fontsource/source-code-pro": "^4.2.3",
     "@fontsource/source-sans-pro": "^4.2.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

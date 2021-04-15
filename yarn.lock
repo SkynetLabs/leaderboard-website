@@ -1634,6 +1634,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/sora/-/sora-4.2.2.tgz#a7f41431016fb8c35d09d084b7fce88ebb062373"
   integrity sha512-dA5CwKX671YRf+qple+G6pXULxF1Hv7lmsXnJOWUipP0xN20JMxsOhHwlK5fwVFTC7/+x6NhD1G0qyHOoROC/Q==
 
+"@fontsource/source-code-pro@^4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/source-code-pro/-/source-code-pro-4.2.3.tgz#70ef1c7ff88b607dd377187837b36b4b18431091"
+  integrity sha512-w1J/vLAnihvLl8pBtsoZnTgCj3O7BSE4Vt4uPlAUdZ+XlNn37bIw8pTdR6bVFljjxDd3ejfZq+T+5/jYs8tlXg==
+
 "@fontsource/source-sans-pro@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@fontsource/source-sans-pro/-/source-sans-pro-4.2.2.tgz#db231e349ed4b3594ccdd9163b2cbf3bfb94b040"

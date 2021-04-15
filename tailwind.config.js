@@ -27,6 +27,7 @@ module.exports = {
       fontFamily: {
         sans: ["Sora", ...defaultTheme.fontFamily.sans],
         content: ["Source\\ Sans\\ Pro", ...defaultTheme.fontFamily.sans],
+        mono: ["Source\\ Code\\ Pro", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         rose,
