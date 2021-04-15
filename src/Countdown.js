@@ -20,7 +20,7 @@ const characters = {
   9: [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1],
   ":": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
 };
-const dateTarget = dayjs("2021-04-30");
+const dateTarget = dayjs(1619798400000);
 const dateFormat = "DD:HH:mm:ss";
 const dateLabels = ["days", "hours", "minutes", "seconds"];
 
