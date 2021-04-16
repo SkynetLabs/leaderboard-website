@@ -1,3 +1,3 @@
 # Skynet Leaderboard
 
-Deployed to [https://sknt.hns.siasky.net](https://sknt.hns.siasky.net)
+Deployed to [https://build-explore-dream.hns.siasky.net](https://build-explore-dream.hns.siasky.net)

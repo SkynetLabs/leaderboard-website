@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInterval } from "react-use";
 
-const dateTargetUnix = 1619798400000;
+const dateTargetUnix = 1619798400000; // April 30th, 2021
 const dateLabels = ["days", "hours", "minutes", "seconds"];
 
-export default function CountdownAlt() {
+export default function Countdown() {
   const [time, setTime] = useState(null);
 
   function pad(num, size) {
     return ("000000000" + num).substr(-size);
   }
 
-  useInterval(() => {
+  const tick = () => {
     let delta = Math.abs(dateTargetUnix - Date.now()) / 1000;
 
     // calculate (and subtract) whole days
@@ -30,7 +30,10 @@ export default function CountdownAlt() {
     var seconds = Math.floor(delta % 60); // in theory the modulus is not required
 
     setTime(`${days}:${hours}:${minutes}:${seconds}`);
-  }, 1000);
+  };
+
+  useEffect(tick, []); // run on init
+  useInterval(tick, 1000); // run every second
 
   if (!time) return null;
 
