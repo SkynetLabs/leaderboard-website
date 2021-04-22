@@ -1,19 +1,19 @@
-import HeroSection from "./components/HeroSection";
-import DescriptionSection from "./components/DescriptionSection";
-import SkynetSection from "./components/SkynetSection";
-import SubscribeSection from "./components/SubscribeSection";
-import FooterSection from "./components/FooterSection";
+import React from "react";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import LeaderboardPage from "./pages/LeaderboardPage";
 
 export default function App() {
   return (
-    <>
-      <main>
-        <HeroSection />
-        <DescriptionSection />
-        <SkynetSection />
-        <SubscribeSection />
-      </main>
-      <FooterSection />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        <Route path="/leaderboard">
+          <LeaderboardPage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
