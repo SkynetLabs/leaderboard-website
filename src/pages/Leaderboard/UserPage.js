@@ -17,6 +17,7 @@ export default function UserPage({ setTitle }) {
       <ul className="divide-y divide-gray-200">
         {records.map((record) => (
           <li key={record.rank}>
+            {/* <a href="#" className="block hover:bg-gray-50"></a> */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 py-4 sm:px-6">
               <div>
                 <div className="flex items-center text-sm text-palette-600 font-semibold">
@@ -37,6 +38,7 @@ export default function UserPage({ setTitle }) {
                 <div className="text-sm text-palette-400">Last 24 hours: {record.newContentLast24H}</div>
               </div>
             </div>
+            {/* </a> */}
           </li>
         ))}
       </ul>
