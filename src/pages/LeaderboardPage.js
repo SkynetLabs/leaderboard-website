@@ -2,16 +2,16 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Switch, NavLink, Route } from "react-router-dom";
-import { FolderIcon, HomeIcon, MenuIcon, UsersIcon, XIcon } from "@heroicons/react/outline";
+import { CubeTransparentIcon, CollectionIcon, MenuIcon, UserGroupIcon, XIcon } from "@heroicons/react/outline";
 import { ReactComponent as Logo } from "../svg/LogoWhiteText.svg";
 import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
 
 const navigation = [
-  { name: "Skapp ranking", to: "/leaderboard", icon: HomeIcon },
-  { name: "Content ranking", to: "/leaderboard/content", icon: FolderIcon },
-  { name: "User ranking", to: "/leaderboard/user", icon: UsersIcon },
+  { name: "Skapp ranking", to: "/leaderboard", icon: CubeTransparentIcon },
+  { name: "Content ranking", to: "/leaderboard/content", icon: CollectionIcon },
+  { name: "User ranking", to: "/leaderboard/user", icon: UserGroupIcon },
 ];
 
 export default function LeaderboardPage({ ...props }) {
@@ -24,7 +24,7 @@ export default function LeaderboardPage({ ...props }) {
         <Dialog
           as="div"
           static
-          className="fixed inset-0 flex z-40 md:hidden"
+          className="fixed inset-0 flex z-40 lg:hidden"
           open={sidebarOpen}
           onClose={setSidebarOpen}
         >
@@ -96,7 +96,7 @@ export default function LeaderboardPage({ ...props }) {
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
-      <div className="hidden bg-palette-600 md:flex md:flex-shrink-0">
+      <div className="hidden bg-palette-600 lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-64">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-col h-0 flex-1">
@@ -123,7 +123,7 @@ export default function LeaderboardPage({ ...props }) {
         </div>
       </div>
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
+        <div className="lg:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
           <button
             className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
             onClick={() => setSidebarOpen(true)}
