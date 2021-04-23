@@ -1,7 +1,8 @@
 import { useSWRInfinite } from "swr";
+import ky from "ky";
 
 const api = process.env.REACT_APP_API_URL || "https://siasky.dev/leaderboard";
-const pageSize = 5;
+export const pageSize = 20;
 const createQueryString = (attributes) => {
   return attributes.reduce((acc, [key, value = null]) => {
     if (value === null) return acc;
@@ -9,7 +10,8 @@ const createQueryString = (attributes) => {
   }, "");
 };
 
-const getKey = (endpoint, { search, sortBy, sortDir }) => (pageIndex, previousPageData) => {
+const fetcher = (url, transform = (data) => data) => ky(url).json().then(transform);
+const getKey = (endpoint, { search, searchKey, sortBy, sortDir }) => (pageIndex, previousPageData) => {
   if (previousPageData && !previousPageData.length) return null; // reached the end
 
   const queryString = createQueryString([
@@ -17,12 +19,12 @@ const getKey = (endpoint, { search, sortBy, sortDir }) => (pageIndex, previousPa
     ["limit", pageSize],
     ["sortBy", sortBy],
     ["sortDir", sortDir],
-    ["search", search],
+    [searchKey, search],
   ]);
 
   return `${api}/${endpoint}?${queryString}`;
 };
 
-export default function useLeaderboardApi(endpoint, { search, sortBy, sortDir }) {
-  return useSWRInfinite(getKey(endpoint, { search, sortBy, sortDir }));
+export default function useLeaderboardApi(endpoint, { transform, search, searchKey, sortBy, sortDir }) {
+  return useSWRInfinite(getKey(endpoint, { search, searchKey, sortBy, sortDir }), (url) => fetcher(url, transform));
 }
