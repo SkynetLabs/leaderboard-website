@@ -8,8 +8,8 @@ import RecordList from "./components/RecordList";
 // const skynetClient = new SkynetClient();
 
 const endpoint = "content";
-const searchLabel = "Search by skylink";
-const searchKey = "skylink";
+const searchLabel = "Search by identifier";
+const searchKey = "identifier";
 const sortConfig = [
   { name: "Interactions (total)", field: "total" },
   { name: "Interactions (24 hours)", field: "last24H" },
@@ -18,9 +18,8 @@ const sortByDefault = "total";
 const sortDirDefault = "desc";
 // const transform = async (data) => {
 //   console.log(data);
-//   const urls = await Promise.allSettled(data.map(({ skylink }) => skylink));
+//   const urls = await Promise.allSettled(data.map(({ identifier }) => identifier));
 //   console.log(urls);
-
 //   return data.map((record, index) => ({ ...record, url: urls[index] }));
 // };
 const render = (record) => {
@@ -35,7 +34,7 @@ const render = (record) => {
               {record.rank <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
-            <div className="text-sm text-primary truncate">{record.skylink}</div>
+            <div className="text-sm text-primary truncate">{record.identifier}</div>
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
             <p>
