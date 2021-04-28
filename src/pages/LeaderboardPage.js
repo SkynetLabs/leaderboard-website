@@ -99,7 +99,7 @@ export default function LeaderboardPage({ ...props }) {
                     to="/"
                     className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
                   >
-                    <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Go back
+                    <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Homepage
                   </Link>
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default function LeaderboardPage({ ...props }) {
                   to="/"
                   className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
                 >
-                  <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Go back
+                  <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Homepage
                 </Link>
               </div>
             </div>
