@@ -30,9 +30,9 @@ function App() {
                     required. The Build phase is currently underway.
                   </p>
                   <p className="mt-6 text-l text-palette-400">
-                    The Explore phase begins on <span className="font-extrabold text-palette-600">April 30, 2021</span>{" "}
-                    and is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To
-                    be notified for the Explore phase, sign up below:
+                    The Explore phase begins on <span className="font-extrabold text-palette-600">May 7, 2021</span> and
+                    is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To be
+                    notified for the Explore phase, sign up below:
                   </p>
                 </div>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useInterval } from "react-use";
 
-const dateTargetUnix = 1619798400000;
+const dateTargetUnix = 1620406855000;
 const dateLabels = ["days", "hours", "minutes", "seconds"];
 
 export default function CountdownAlt() {
