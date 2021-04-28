@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from "../svg/LogoWhiteText.svg";
 import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
+import MySkyButton from "../components/MySkyButton";
 
 const navigation = [
   { name: "Skapp ranking", to: "/leaderboard", icon: CubeTransparentIcon },
@@ -116,6 +117,7 @@ export default function LeaderboardPage({ ...props }) {
                     {item.name}
                   </NavLink>
                 ))}
+                <MySkyButton />
               </nav>
             </div>
           </div>
