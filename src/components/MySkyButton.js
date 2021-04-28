@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useCallback } from "react";
 // import { Button, Icon, Loader } from 'semantic-ui-react';
 // import { useStoreState, useStoreActions, useStore } from 'easy-peasy';
 import { SkynetContext } from "../state/SkynetContext";
@@ -17,7 +17,7 @@ const MySkyButton = () => {
 
   console.log(userID);
 
-  const handleLoginSuccess = async () => {
+  const handleLoginSuccess = useCallback(async () => {
     setLoggedIn(true);
     mySky.userID().then((userID) => {
       setUserID(userID);
@@ -26,7 +26,7 @@ const MySkyButton = () => {
         setProfile(result);
       });
     });
-  };
+  }, [setLoggedIn, setUserID, setProfile, userProfile, mySky]);
 
   useEffect(() => {
     // if we have MySky loaded
