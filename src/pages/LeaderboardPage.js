@@ -1,8 +1,16 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Switch, NavLink, Route } from "react-router-dom";
-import { CubeTransparentIcon, CollectionIcon, MenuIcon, UserGroupIcon, XIcon } from "@heroicons/react/outline";
+import {
+  CubeTransparentIcon,
+  CollectionIcon,
+  MenuIcon,
+  UserGroupIcon,
+  XIcon,
+  ArrowCircleLeftIcon,
+} from "@heroicons/react/outline";
 import { ReactComponent as Logo } from "../svg/LogoWhiteText.svg";
+import Link from "../components/Link";
 import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
@@ -86,6 +94,14 @@ export default function LeaderboardPage({ ...props }) {
                     </NavLink>
                   ))}
                 </nav>
+                <div className="mt-5 px-2 space-y-1">
+                  <Link
+                    to="/"
+                    className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
+                  >
+                    <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Go back
+                  </Link>
+                </div>
               </div>
             </div>
           </Transition.Child>
@@ -119,6 +135,14 @@ export default function LeaderboardPage({ ...props }) {
                 ))}
                 <MySkyButton />
               </nav>
+              <div className="flex-shrink-0 flex border-t border-palette-500 p-4">
+                <Link
+                  to="/"
+                  className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
+                >
+                  <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Go back
+                </Link>
+              </div>
             </div>
           </div>
         </div>

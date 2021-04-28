@@ -1,12 +1,12 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
-import { SkynetClient } from "skynet-js";
+// import { SkynetClient } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
 
-const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
+// const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
 const endpoint = "skapps";
 const searchLabel = "Search by skapp name";
