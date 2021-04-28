@@ -44,13 +44,13 @@ const MySkyButton = () => {
   }, [mySky, handleLoginSuccess]);
 
   useEffect(() => {
-    if (profile) {
+    if (profile && mySky?.connector?.client) {
       const skylink = profile.avatar;
       mySky.connector.client.getSkylinkUrl(skylink).then((avatarUrl) => {
         setAvatar(avatarUrl + "/300");
       });
     }
-  }, [profile, mySky.connector.client]);
+  }, [profile, mySky?.connector?.client]);
 
   const onLogin = () => {
     setLoading(true);
