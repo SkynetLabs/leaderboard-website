@@ -17,6 +17,17 @@ const MySkyButton = () => {
 
   console.log(userID);
 
+  const handleLoginSuccess = async () => {
+    setLoggedIn(true);
+    mySky.userID().then((userID) => {
+      setUserID(userID);
+      userProfile.getProfile(userID).then((result) => {
+        console.log("profile", result);
+        setProfile(result);
+      });
+    });
+  };
+
   useEffect(() => {
     // if we have MySky loaded
     setLoading(true);
@@ -56,17 +67,6 @@ const MySkyButton = () => {
   const onLogout = () => {
     mySky.logout();
     setLoggedIn(false);
-  };
-
-  const handleLoginSuccess = async () => {
-    setLoggedIn(true);
-    mySky.userID().then((userID) => {
-      setUserID(userID);
-      userProfile.getProfile(userID).then((result) => {
-        console.log("profile", result);
-        setProfile(result);
-      });
-    });
   };
 
   return (
