@@ -16,7 +16,7 @@ const client = new SkynetClient(portal);
 
 // For now, we won't use any DACs -- uncomment to create
 // const contentRecord = new ContentRecordDAC();
-const contentRecord = null;
+// const contentRecord = null;
 const userProfile = new UserProfileDAC();
 
 const dataDomain = window.location.hostname === "localhost" ? "localhost" : "skynet-hackathon.hns";

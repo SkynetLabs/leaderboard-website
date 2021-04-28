@@ -15,6 +15,8 @@ const MySkyButton = () => {
   // const { loggedIn } = useStoreState((state) => state.mySky);
   // const { store } = useStore();
 
+  console.log(userID);
+
   useEffect(() => {
     // if we have MySky loaded
     setLoading(true);
@@ -28,7 +30,7 @@ const MySkyButton = () => {
         setLoading(false);
       });
     }
-  }, [mySky]);
+  }, [mySky, handleLoginSuccess]);
 
   useEffect(() => {
     if (profile) {
@@ -37,7 +39,7 @@ const MySkyButton = () => {
         setAvatar(avatarUrl + "/300");
       });
     }
-  }, [profile]);
+  }, [profile, mySky.connector.client]);
 
   const onLogin = () => {
     setLoading(true);
@@ -87,7 +89,7 @@ const MySkyButton = () => {
             <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
             {profile ? "Logout: " + profile.username : "MySky Logout"}
           </button>
-          <img src={avatar} />
+          <img alt="Avatar" src={avatar} />
         </>
       )}
     </>
