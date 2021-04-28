@@ -23,7 +23,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-use": "^17.2.3",
-    "skynet-js": "^4.0.2-beta",
+    "skynet-js": "^4.0.3-beta",
     "swr": "^0.5.5",
     "web-vitals": "^1.0.1"
   },

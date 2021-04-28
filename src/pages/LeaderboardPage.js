@@ -15,6 +15,7 @@ import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
 import MySkyButton from "../components/MySkyButton";
+import UserProfileCard from "../components/UserProfileCard";
 
 const navigation = [
   { name: "Skapp ranking", to: "/leaderboard", icon: CubeTransparentIcon },
@@ -134,6 +135,7 @@ export default function LeaderboardPage({ ...props }) {
                   </NavLink>
                 ))}
                 <MySkyButton />
+                <UserProfileCard />
               </nav>
               <div className="flex-shrink-0 flex border-t border-palette-500 p-4">
                 <Link

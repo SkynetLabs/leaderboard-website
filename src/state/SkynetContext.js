@@ -22,13 +22,20 @@ const userProfile = new UserProfileDAC();
 const dataDomain = window.location.hostname === "localhost" ? "localhost" : "skynet-hackathon.hns";
 
 const SkynetProvider = ({ children }) => {
-  const [skynetState, setSkynetState] = useState({
-    client,
-    mySky: null,
-    // contentRecord,
-    userProfile,
-    dataDomain,
-  });
+  const [userID, setUserID] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [mySky, setMySky] = useState(null);
+  // const [skynetState, setSkynetState] = useState({
+  //   client,
+  //   mySky: null,
+  //   // contentRecord,
+  //   userProfile,
+  //   dataDomain,
+  //   userID,
+  //   setUserID,
+  //   profile,
+  //   setProfile,
+  // });
 
   useEffect(() => {
     // define async setup function
@@ -38,7 +45,7 @@ const SkynetProvider = ({ children }) => {
         // needed for permissions write
         const mySky = await client.loadMySky(dataDomain, {
           debug: true,
-          // dev: true,
+          alpha: false,
         });
 
         // load necessary DACs and permissions
@@ -47,25 +54,31 @@ const SkynetProvider = ({ children }) => {
         // await mySky.loadDacs(userProfile);
 
         // replace mySky in state object
-        setSkynetState({ ...skynetState, mySky, userProfile });
+        // setSkynetState({ ...skynetState, mySky, userProfile });
+        setMySky(mySky);
       } catch (e) {
         console.error(e);
       }
     }
 
     // call async setup function
-    if (!skynetState.mySky) {
+    if (!mySky) {
       initMySky();
     }
 
     return () => {
-      if (skynetState.mySky) {
-        skynetState.mySky.destroy();
+      if (mySky) {
+        mySky.destroy();
+        setMySky(null);
       }
     };
-  }, [skynetState]);
+  }, []);
 
-  return <SkynetContext.Provider value={skynetState}>{children}</SkynetContext.Provider>;
+  return (
+    <SkynetContext.Provider value={{ client, mySky, userProfile, dataDomain, userID, setUserID, profile, setProfile }}>
+      {children}
+    </SkynetContext.Provider>
+  );
 };
 
 export { SkynetContext, SkynetProvider };

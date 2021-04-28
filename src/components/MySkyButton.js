@@ -5,12 +5,12 @@ import { SkynetContext } from "../state/SkynetContext";
 import { UserCircleIcon } from "@heroicons/react/outline";
 
 const MySkyButton = () => {
-  const { mySky, userProfile } = useContext(SkynetContext);
+  const { mySky, userProfile, userID, setUserID, profile, setProfile } = useContext(SkynetContext);
   const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
   const [loading, setLoading] = useState(true); //This will get moved to global state.
-  const [profile, setProfile] = useState();
-  const [avatar, setAvatar] = useState();
-  const [userID, setUserID] = useState();
+  // const [profile, setProfile] = useState();
+  // const [avatar, setAvatar] = useState();
+  // const [userID, setUserID] = useState();
   // const { fetchUserID, logout } = useStoreActions((state) => state.mySky);
   // const { loggedIn } = useStoreState((state) => state.mySky);
   // const { store } = useStore();
@@ -31,7 +31,6 @@ const MySkyButton = () => {
   useEffect(() => {
     // if we have MySky loaded
     setLoading(true);
-    setAvatar(null);
     setProfile(null);
     if (mySky) {
       mySky.checkLogin().then((result) => {
@@ -43,18 +42,17 @@ const MySkyButton = () => {
     }
   }, [mySky, handleLoginSuccess]);
 
-  useEffect(() => {
-    if (profile && mySky?.connector?.client) {
-      const skylink = profile.avatar;
-      mySky.connector.client.getSkylinkUrl(skylink).then((avatarUrl) => {
-        setAvatar(avatarUrl + "/300");
-      });
-    }
-  }, [profile, mySky?.connector?.client]);
+  // useEffect(() => {
+  //   if (profile) {
+  //     const skylink = profile.avatar;
+  //     mySky.connector.client.getSkylinkUrl(skylink).then((avatarUrl) => {
+  //       setAvatar(avatarUrl + "/300");
+  //     });
+  //   }
+  // }, [profile]);
 
   const onLogin = () => {
     setLoading(true);
-    setAvatar(null);
     setProfile(null);
     mySky.requestLoginAccess().then((result) => {
       if (result) {
@@ -67,7 +65,18 @@ const MySkyButton = () => {
   const onLogout = () => {
     mySky.logout();
     setLoggedIn(false);
+    setProfile(null);
   };
+
+  // const handleLoginSuccess = async () => {
+  //   setLoggedIn(true);
+  //   mySky.userID().then((userID) => {
+  //     setUserID(userID);
+  //     userProfile.getProfile(userID).then((result) => {
+  //       setProfile(result);
+  //     });
+  //   });
+  // };
 
   return (
     <>
@@ -87,9 +96,8 @@ const MySkyButton = () => {
             onClick={onLogout}
           >
             <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
-            {profile ? "Logout: " + profile.username : "MySky Logout"}
+            {profile && "username" in profile ? "Logout: " + profile.username : "MySky Logout"}
           </button>
-          <img alt="Avatar" src={avatar} />
         </>
       )}
     </>
