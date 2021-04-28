@@ -29,7 +29,7 @@ const render = (record) => {
                 {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               </span>
             </div>
-            <div className="text-sm text-primary truncate">{record.userPK}</div>
+            <div className="text-sm truncate">{record.userPK}</div>
           </div>
           <div className="flex flex-row space-x-8 flex-shrink-0">
             <div className="flex-shrink-0 flex flex-col text-sm tabular-nums">

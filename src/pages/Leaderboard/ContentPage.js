@@ -1,11 +1,14 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
-// import { SkynetClient } from "skynet-js";
+import { SkynetClient } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
+import Link from "../../components/Link";
 
-// const skynetClient = new SkynetClient();
+const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
+
+console.log(skynetClient);
 
 const endpoint = "content";
 const searchLabel = "Search by identifier";
@@ -16,12 +19,15 @@ const sortConfig = [
 ];
 const sortByDefault = "total";
 const sortDirDefault = "desc";
-// const transform = async (data) => {
-//   console.log(data);
-//   const urls = await Promise.allSettled(data.map(({ identifier }) => identifier));
-//   console.log(urls);
-//   return data.map((record, index) => ({ ...record, url: urls[index] }));
-// };
+const transform = async (data) => {
+  const urls = await Promise.allSettled(data.map(({ identifier }) => skynetClient.getSkylinkUrl(identifier)));
+
+  return data.map((record, index) => {
+    const { value: url } = urls[index];
+
+    return url ? { ...record, url } : record;
+  });
+};
 const render = (record) => {
   return (
     <>
@@ -34,7 +40,9 @@ const render = (record) => {
               {record.rank <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
-            <div className="text-sm text-primary truncate">{record.identifier}</div>
+            <div className="text-sm truncate">
+              {record.url ? <Link href={record.url}>{record.identifier}</Link> : record.identifier}
+            </div>
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
             <p>
@@ -73,7 +81,7 @@ export default function ContentPage({ setTitle }) {
       />
       <RecordList
         endpoint={endpoint}
-        // transform={transform}
+        transform={transform}
         search={search}
         searchKey={searchKey}
         sortBy={sortBy}

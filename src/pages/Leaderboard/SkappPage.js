@@ -1,8 +1,12 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
+import { SkynetClient } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
+import Link from "../../components/Link";
+
+const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
 const endpoint = "skapps";
 const searchLabel = "Search by skapp name";
@@ -13,6 +17,23 @@ const sortConfig = [
 ];
 const sortByDefault = "total";
 const sortDirDefault = "desc";
+const transform = async (data) => {
+  console.log(data);
+
+  return data;
+
+  // const urls = await Promise.allSettled(
+  //   data.map(({ skapp }) => skynetClient.getSkylinkUrl(skapp, { subdomain: true }))
+  // );
+
+  // console.log(urls);
+
+  // return data.map((record, index) => {
+  //   const { value: url } = urls[index];
+
+  //   return url ? { ...record, url } : record;
+  // });
+};
 const render = (record) => {
   return (
     <>
@@ -25,7 +46,9 @@ const render = (record) => {
               {record.rank <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
-            <div className="text-sm text-primary truncate">{record.skapp}</div>
+            <div className="text-sm truncate">
+              {record.url ? <Link href={record.url}>{record.skapp}</Link> : record.skapp}
+            </div>
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
             <p>
@@ -62,7 +85,14 @@ export default function ContentPage({ setTitle }) {
         sortDir={sortDir}
         setSortDir={setSortDir}
       />
-      <RecordList endpoint={endpoint} search={search} searchKey={searchKey} sortBy={sortBy} sortDir={sortDir}>
+      <RecordList
+        endpoint={endpoint}
+        transform={transform}
+        search={search}
+        searchKey={searchKey}
+        sortBy={sortBy}
+        sortDir={sortDir}
+      >
         {render}
       </RecordList>
     </div>
