@@ -16,6 +16,7 @@ const UserProfileCard = () => {
   useEffect(() => {
     console.log(profile);
     setAvatar(null);
+    setScores({ newContentTotal: "-", interactionsTotal: "-" });
     if (profile) {
       if ("avatar" in profile) {
         const { url } = profile.avatar;
@@ -55,20 +56,22 @@ const UserProfileCard = () => {
               <img class="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />
             </div>
           )}
-          <div class="mt-6 flex justify-between text-center">
-            <div>
-              <p class="text-gray-700 font-bold">{scores.interactionsTotal}</p>
-              <p class="text-xs mt-2 text-gray-600 font-hairline">Interactions</p>
-            </div>
-            <div>
-              <p class="text-gray-700 font-bold">{scores.newContentTotal}</p>
-              <p class="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
-            </div>
-            {/* <div>
+          {scores && (
+            <div class="mt-6 flex justify-between text-center">
+              <div>
+                <p class="text-gray-700 font-bold">{scores.interactionsTotal}</p>
+                <p class="text-xs mt-2 text-gray-600 font-hairline">Interactions</p>
+              </div>
+              <div>
+                <p class="text-gray-700 font-bold">{scores.newContentTotal}</p>
+                <p class="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
+              </div>
+              {/* <div>
               <p class="text-gray-700 font-bold">{scores.rank}</p>
               <p class="text-xs mt-2 text-gray-700 font-hairline">Rank</p>
             </div> */}
-          </div>
+            </div>
+          )}
           {!loading && !scores && (
             <div class="mt-6">
               <button

@@ -96,7 +96,7 @@ const MySkyButton = () => {
             onClick={onLogout}
           >
             <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
-            {profile && "username" in profile ? "Logout: " + profile.username : "MySky Logout"}
+            {profile && profile.username ? "Logout: " + profile.username : "MySky Logout"}
           </button>
         </>
       )}
