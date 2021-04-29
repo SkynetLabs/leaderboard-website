@@ -5,7 +5,7 @@ import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
 import SideBar from "./Leaderboard/SideBar";
-import ProfilePage from "./Leaderboard/UserPage";
+import ProfilePage from "./Leaderboard/ProfilePage";
 
 export default function LeaderboardPage({ ...props }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
