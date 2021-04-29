@@ -8,21 +8,12 @@ const MySkyButton = () => {
   const { mySky, userProfile, userID, setUserID, profile, setProfile } = useContext(SkynetContext);
   const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
   const [loading, setLoading] = useState(true); //This will get moved to global state.
-  // const [profile, setProfile] = useState();
-  // const [avatar, setAvatar] = useState();
-  // const [userID, setUserID] = useState();
-  // const { fetchUserID, logout } = useStoreActions((state) => state.mySky);
-  // const { loggedIn } = useStoreState((state) => state.mySky);
-  // const { store } = useStore();
-
-  console.log(userID);
 
   const handleLoginSuccess = useCallback(async () => {
     setLoggedIn(true);
     mySky.userID().then((userID) => {
       setUserID(userID);
       userProfile.getProfile(userID).then((result) => {
-        console.log("profile", result);
         setProfile(result);
       });
     });
@@ -42,15 +33,6 @@ const MySkyButton = () => {
     }
   }, [mySky, handleLoginSuccess]);
 
-  // useEffect(() => {
-  //   if (profile) {
-  //     const skylink = profile.avatar;
-  //     mySky.connector.client.getSkylinkUrl(skylink).then((avatarUrl) => {
-  //       setAvatar(avatarUrl + "/300");
-  //     });
-  //   }
-  // }, [profile]);
-
   const onLogin = () => {
     setLoading(true);
     setProfile(null);
@@ -68,23 +50,18 @@ const MySkyButton = () => {
     setProfile(null);
   };
 
-  // const handleLoginSuccess = async () => {
-  //   setLoggedIn(true);
-  //   mySky.userID().then((userID) => {
-  //     setUserID(userID);
-  //     userProfile.getProfile(userID).then((result) => {
-  //       setProfile(result);
-  //     });
-  //   });
-  // };
-
   return (
     <>
       {loading && (
-        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link">[Spinner]</button>
+        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full">
+          [Spinner]
+        </button>
       )}
       {!loading && !loggedIn && (
-        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link" onClick={onLogin}>
+        <button
+          className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full"
+          onClick={onLogin}
+        >
           <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
           MySky Login
         </button>
@@ -92,7 +69,7 @@ const MySkyButton = () => {
       {!loading && loggedIn && (
         <>
           <button
-            className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link"
+            className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full"
             onClick={onLogout}
           >
             <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
@@ -105,16 +82,3 @@ const MySkyButton = () => {
 };
 
 export default MySkyButton;
-
-// // Example profile object converted from SkyID profile:
-// {
-//   "version": 1,
-//   "username": "dghelm",
-//   "aboutMe": "Developer Evangelist for Skynet Labs.",
-//   "location": "Oklahoma City, OK, USA",
-//   "topics": [],
-//   "avatar": "jADT7g5u7GRJ7YfSoFGeWozCkJF2eJrJSeq9mZeu4LCiXg"
-// }
-
-// Avatar is a folder with various size images named: ["50","150","300","600","1920"]
-// If original image size is smaller than name's dimensions, the size actually the original upload size, despite the file's name.

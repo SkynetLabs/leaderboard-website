@@ -1,49 +1,45 @@
 import { useEffect, useContext, useState } from "react";
 import { SkynetContext } from "../state/SkynetContext";
-import useLeaderboardApi from "../useLeaderboardApi";
-import { axios } from "axios";
+import { useAvatar } from "../hooks/useAvatar";
+import { useScores } from "../hooks/useScores";
+
+// // Example profile object converted from SkyID profile:
+// {
+//   "version": 1,
+//   "username": "dghelm",
+//   "aboutMe": "Developer Evangelist for Skynet Labs.",
+//   "location": "Oklahoma City, OK, USA",
+//   "topics": [],
+//   "avatar": "jADT7g5u7GRJ7YfSoFGeWozCkJF2eJrJSeq9mZeu4LCiXg"
+// }
+
+// Avatar is a folder with various size images named: ["50","150","300","600","1920"]
+// If original image size is smaller than name's dimensions, the size actually the original upload size, despite the file's name.
 
 const UserProfileCard = () => {
-  const { mySky, userID, profile } = useContext(SkynetContext);
-  const [avatar, setAvatar] = useState();
-  const [scores, setScores] = useState({ newContentTotal: "-", interactionsTotal: "-" });
-  const { data, size, loading } = useLeaderboardApi("users", { search: userID, searchKey: "userPK" });
+  const { userID, profile } = useContext(SkynetContext);
+  const [loading, setLoading] = useState(true);
+  const [avatar, getAvatar] = useAvatar();
+  const [scores, getScores, resetScores] = useScores();
 
   const handleSignUp = () => {
     console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
   };
 
   useEffect(() => {
-    console.log(profile);
-    setAvatar(null);
-    setScores({ newContentTotal: "-", interactionsTotal: "-" });
+    setLoading(true);
+    resetScores();
     if (profile) {
-      if ("avatar" in profile) {
-        const { url } = profile.avatar;
-        console.log("avatar", url);
-
-        mySky.connector.client.getSkylinkUrl(url).then((avatarUrl) => {
-          setAvatar(avatarUrl);
-        });
-
-        fetch("https://siasky.dev/leaderboard/users?userPK=" + userID)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("fetch", data);
-            if (data) {
-              setScores(data[0]);
-            }
-          });
-      }
-      console.log(data);
-      console.log(size);
+      getAvatar(profile);
+      getScores(userID);
     }
+    setLoading(false);
   }, [profile]);
 
   return (
     <>
       {userID && profile && (
-        <div class="bg-white shadow p-4 rounded w-52 ml-3">
+        <div class="bg-white shadow p-4 rounded w-full">
           <div class="text-center mt-4">
             {profile.username && <p class="text-gray-600 font-bold">{profile.username}</p>}
             {(profile.firstName || profile.lastname) && (
