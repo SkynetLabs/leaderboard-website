@@ -4,10 +4,15 @@ import { useState, useContext } from "react";
 
 export const useScores = () => {
   const [scores, setScores] = useState();
+  const [newSignup, setNewSignup] = useState(true);
 
   const getScores = async (userID) => {
     fetch("https://siasky.dev/leaderboard/users?userPK=" + userID)
-      .then((response) => response.json())
+      .then((response) => {
+        // console.log(response);
+        setNewSignup(response.status === 201);
+        return response.json();
+      })
       .then((data) => {
         if (data) {
           setScores(data[0]);
@@ -19,5 +24,5 @@ export const useScores = () => {
     setScores();
   };
 
-  return [scores, getScores, resetScores];
+  return [scores, newSignup, getScores, resetScores];
 };

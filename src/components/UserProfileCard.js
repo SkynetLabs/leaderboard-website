@@ -20,7 +20,7 @@ const UserProfileCard = () => {
   const { userID, profile } = useContext(SkynetContext);
   const [loading, setLoading] = useState(true);
   const [avatar, getAvatar] = useAvatar();
-  const [scores, getScores, resetScores] = useScores();
+  const [scores, newSignup, getScores, resetScores] = useScores();
 
   const handleSignUp = () => {
     console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
@@ -39,28 +39,28 @@ const UserProfileCard = () => {
   return (
     <>
       {userID && profile && (
-        <div class="bg-white shadow p-4 rounded w-full">
-          <div class="text-center mt-4">
-            {profile.username && <p class="text-gray-600 font-bold">{profile.username}</p>}
+        <div className="bg-white shadow p-4 rounded w-full">
+          <div className="text-center mt-4">
+            {profile.username && <p className="text-gray-600 font-bold">{profile.username}</p>}
             {(profile.firstName || profile.lastname) && (
-              <p class="text-sm font-hairline text-gray-600 mt-1">{profile.firstName + " " + profile.lastName}</p>
+              <p className="text-sm font-hairline text-gray-600 mt-1">{profile.firstName + " " + profile.lastName}</p>
             )}
-            <p class="text-xs font-hairline text-gray-600 mt-1">{userID.substring(0, 16) + "..."}</p>
+            <p className="text-xs font-hairline text-gray-600 mt-1">{userID.substring(0, 16) + "..."}</p>
           </div>
           {avatar && (
-            <div class="flex justify-center mt-4">
-              <img class="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />
+            <div className="flex justify-center mt-4">
+              <img className="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />
             </div>
           )}
           {scores && (
-            <div class="mt-6 flex justify-between text-center">
+            <div className="mt-6 flex justify-between text-center">
               <div>
-                <p class="text-gray-700 font-bold">{scores.interactionsTotal}</p>
-                <p class="text-xs mt-2 text-gray-600 font-hairline">Interactions</p>
+                <p className="text-gray-700 font-bold">{scores.interactionsTotal}</p>
+                <p className="text-xs mt-2 text-gray-600 font-hairline">Interactions</p>
               </div>
               <div>
-                <p class="text-gray-700 font-bold">{scores.newContentTotal}</p>
-                <p class="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
+                <p className="text-gray-700 font-bold">{scores.newContentTotal}</p>
+                <p className="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
               </div>
               {/* <div>
               <p class="text-gray-700 font-bold">{scores.rank}</p>
@@ -69,13 +69,23 @@ const UserProfileCard = () => {
             </div>
           )}
           {!loading && !scores && (
-            <div class="mt-6">
-              <button
-                class="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
-                onClick={() => handleSignUp()}
-              >
-                Sign-up
-              </button>
+            <div className="mt-6">
+              {newSignup && (
+                <button
+                  className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
+                  onClick={() => handleSignUp()}
+                >
+                  Sign-up
+                </button>
+              )}
+              {!newSignup && (
+                <button
+                  className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
+                  onClick={() => handleSignUp()}
+                >
+                  This state shouldnt happen right?
+                </button>
+              )}
             </div>
           )}
         </div>

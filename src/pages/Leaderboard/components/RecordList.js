@@ -1,5 +1,7 @@
 import useLeaderboardApi, { pageSize } from "../../../useLeaderboardApi";
 import LoadMoreButton from "./LoadMoreButton";
+import { SkynetContext } from "../../../state/SkynetContext";
+import { useContext } from "react";
 
 const ListTemplate = ({ children }) => {
   return (
@@ -11,6 +13,7 @@ const ListTemplate = ({ children }) => {
 
 export default function RecordList({ children, endpoint, transform, search, searchKey, sortBy, sortDir }) {
   const { data, size, setSize, error } = useLeaderboardApi(endpoint, { transform, search, searchKey, sortBy, sortDir });
+  const { userID } = useContext(SkynetContext);
 
   // error fetching data, display error message
   if (error) {
@@ -40,9 +43,9 @@ export default function RecordList({ children, endpoint, transform, search, sear
   return (
     <div>
       <ListTemplate>
-        {records.map((record, index) => (
-          <li key={index}>{children(record)}</li>
-        ))}
+        {records.map((record, index) => {
+          return <li key={index}>{children(record, index + 1, userID)}</li>;
+        })}
       </ListTemplate>
 
       <div className="text-center mt-6">

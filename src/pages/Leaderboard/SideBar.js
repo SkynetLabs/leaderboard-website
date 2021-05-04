@@ -15,10 +15,10 @@ import { ReactComponent as Logo } from "../../svg/LogoWhiteText.svg";
 import Link from "../../components/Link";
 
 const navigation = [
+  { name: "MySky Profile", to: "/leaderboard/profile", icon: UserIcon },
   { name: "Skapp ranking", to: "/leaderboard", icon: CubeTransparentIcon },
   { name: "Content ranking", to: "/leaderboard/content", icon: CollectionIcon },
   { name: "User ranking", to: "/leaderboard/user", icon: UserGroupIcon },
-  { name: "MySky Profile", to: "/leaderboard/profile", icon: UserIcon },
 ];
 
 const SideBar = ({ sidebarOpen, setSidebarOpen }) => {

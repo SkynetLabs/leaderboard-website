@@ -44,14 +44,14 @@ const SkynetProvider = ({ children }) => {
         // load invisible iframe and define app's data domain
         // needed for permissions write
         const mySky = await client.loadMySky(dataDomain, {
-          debug: true,
+          // debug: true,
           alpha: true,
         });
 
         // load necessary DACs and permissions
         // Uncomment line below to load DACs
         // await mySky.loadDacs(contentRecord);
-        // await mySky.loadDacs(userProfile);
+        await mySky.loadDacs(userProfile);
 
         // replace mySky in state object
         // setSkynetState({ ...skynetState, mySky, userProfile });
