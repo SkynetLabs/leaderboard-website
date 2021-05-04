@@ -3,6 +3,9 @@ import Countdown from "./Countdown";
 import SubscribeForm from "./SubscribeForm";
 import Tag from "./Tag";
 import { Header1, Header4, Subheader, Paragraph } from "./Typography";
+import Button from "./Button";
+
+const phase = "explore"; // build, explore, dream
 
 export default function HeroSection() {
   return (
@@ -13,27 +16,67 @@ export default function HeroSection() {
             <Logo className="h-12 w-auto" />
           </div>
           <div className="mt-10">
-            <Tag>Leaderboard coming soon!</Tag>
+            {phase === "build" && <Tag>Leaderboard coming soon!</Tag>}
 
-            <div className="mt-6 sm:max-w-xl space-y-6">
-              <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
-              <Subheader>
-                Join builders, creators and dreamers in Skynet’s latest hackathon - no prior tech experience required.
-                The Build phase is currently underway.
-              </Subheader>
-              <Paragraph>
-                The Explore phase begins on <span className="font-extrabold text-palette-600">April 30, 2021</span> and
-                is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To be
-                notified for the Explore phase, sign up below:
-              </Paragraph>
-            </div>
+            {phase === "build" && (
+              <div className="mt-6 sm:max-w-xl space-y-6">
+                <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
+                <Subheader>
+                  Join builders, creators and dreamers in Skynet’s latest hackathon - no prior tech experience required.
+                  The Build phase is currently underway.
+                </Subheader>
+                <Paragraph>
+                  The Explore phase begins on <span className="font-extrabold text-palette-600">April 30, 2021</span>{" "}
+                  and is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To be
+                  notified for the Explore phase, sign up below:
+                </Paragraph>
+              </div>
+            )}
 
-            <SubscribeForm />
+            {phase === "explore" && (
+              <div className="sm:max-w-xl space-y-6">
+                <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
+                <Subheader>
+                  Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
+                  The Explore phase begins May 7th lasting through May 21st.
+                </Subheader>
+                <Paragraph>
+                  In addition to testing out web apps during the Explore phase, you'll be creating and sharing content
+                  to win prizes! Getting Started:
+                </Paragraph>
 
-            <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
-              <Header4>Countdown to Explore Phase</Header4>
-              <Countdown />
-            </div>
+                <Paragraph>
+                  <ol className="space-y-2 list-decimal list-inside">
+                    <li>
+                      <span className="font-bold">Create a MySky account</span>: All your content across apps is linked
+                      to your MySky, a decentralized identity that you fully own. Learn more here.
+                    </li>
+                    <li>
+                      <span className="font-bold">Add to your MySky profile</span>: Fill out your public profile.
+                    </li>
+                    <li>
+                      <span className="font-bold">Join the Leaderboard</span>: Compete for the top spots! Explore
+                      popular content, applications, and users.
+                    </li>
+                  </ol>
+                </Paragraph>
+              </div>
+            )}
+
+            {phase === "explore" && (
+              <div className="mt-12 flex flex-col">
+                <Button to="/leaderboard">Join the Leaderboard</Button>
+              </div>
+            )}
+
+            {phase === "build" && <SubscribeForm />}
+
+            {phase === "build" && (
+              <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
+                <Header4>Countdown to Explore Phase</Header4>
+                <Countdown />
+              </div>
+            )}
           </div>
         </div>
       </div>

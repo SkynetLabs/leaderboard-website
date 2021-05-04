@@ -1,6 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 import useSubscribe from "./useSubscribe";
+import Button from "../Button";
 
 export default function SubscribeForm({ buttonColor = "primary" }) {
   const [email, setEmail] = React.useState("");
@@ -29,19 +30,9 @@ export default function SubscribeForm({ buttonColor = "primary" }) {
           />
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-3">
-          <button
-            type="submit"
-            disabled={pending}
-            className={classnames(
-              "block w-full rounded-md border border-transparent px-5 py-3 text-base font-semibold shadow focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:px-10 transition-colors duration-200",
-              {
-                "bg-primary text-palette-600 hover:bg-primary-light": buttonColor === "primary",
-                "bg-palette-600 text-white hover:bg-palette-500": buttonColor === "dark",
-              }
-            )}
-          >
+          <Button type="submit" disabled={pending} buttonColor={buttonColor}>
             Notify me
-          </button>
+          </Button>
         </div>
       </div>
 
