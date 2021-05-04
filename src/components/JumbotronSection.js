@@ -55,7 +55,7 @@ export default function JumbotronSection() {
             <div className="mt-6 flex justify-center">
               <div className="max-w-xl w-full">
                 <Button buttonColor="dark" to="/leaderboard">
-                  Go to Leaderboard
+                  Join the Leaderboard
                 </Button>
               </div>
             </div>

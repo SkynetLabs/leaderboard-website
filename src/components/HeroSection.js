@@ -38,7 +38,8 @@ export default function HeroSection() {
                 <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
                 <Subheader>
                   Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
-                  The Explore phase begins May 7th lasting through May 21st.
+                  The Explore phase begins <span className="font-extrabold text-palette-600">May 7th</span> lasting
+                  through <span className="font-extrabold text-palette-600">May 21st</span>.
                 </Subheader>
                 <Paragraph>
                   In addition to testing out web apps during the Explore phase, you'll be creating and sharing content
