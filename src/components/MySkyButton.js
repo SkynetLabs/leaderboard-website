@@ -11,7 +11,7 @@ const MySkyButton = () => {
     setLoggedIn(true);
     mySky.userID().then((userID) => {
       setUserID(userID);
-      console.log("userID: ", userID);
+      // console.log("userID: ", userID);
       userProfile.getProfile(userID).then((result) => {
         setProfile(result);
       });

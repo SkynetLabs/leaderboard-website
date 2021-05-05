@@ -1,31 +1,29 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext } from "react";
 import { SkynetContext } from "../state/SkynetContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { useScores } from "../hooks/useScores";
 import AvatarIcon from "./AvatarIcon";
 
-const newSignup = false;
-
 const UserProfileCard = () => {
   const { userID, profile } = useContext(SkynetContext);
-  const [loading, setLoading] = useState(true);
-  const [avatar, getAvatar] = useAvatar();
-  const [scores, getScores, resetScores] = useScores();
+  // const [loading, setLoading] = useState(true);
+  const [avatar] = useAvatar();
+  const [scores] = useScores();
 
-  const handleSignUp = () => {
-    console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
-  };
+  // const handleSignUp = () => {
+  //   console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
+  // };
 
-  useEffect(() => {
-    setLoading(true);
-    resetScores();
-    if (profile) {
-      getAvatar(profile);
-      getScores(userID);
-    }
-    setLoading(false);
-  }, [profile, getAvatar, getScores, resetScores, userID]);
-
+  // useEffect(() => {
+  //   setLoading(true);
+  //   // resetScores();
+  //   // if (profile) {
+  //   //   // getAvatar(profile);
+  //   //   getScores(userID);
+  //   // }
+  //   setLoading(false);
+  // }, [userID, profile]);
+  // }, [profile, getAvatar, getScores, resetScores]);
   return (
     <>
       {userID && profile && (
@@ -52,26 +50,6 @@ const UserProfileCard = () => {
                 <p className="text-gray-700 font-bold">{scores.newContentTotal}</p>
                 <p className="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
               </div>
-            </div>
-          )}
-          {!loading && !scores && (
-            <div className="mt-6">
-              {newSignup && (
-                <button
-                  className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
-                  onClick={() => handleSignUp()}
-                >
-                  This shouldn't happen.
-                </button>
-              )}
-              {!newSignup && (
-                <button
-                  className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
-                  onClick={() => handleSignUp()}
-                >
-                  This state shouldnt happen right?
-                </button>
-              )}
             </div>
           )}
         </div>

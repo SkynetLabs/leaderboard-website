@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { SkynetClient } from "skynet-js";
 import { SkynetContext } from "../state/SkynetContext";
 
@@ -12,57 +12,39 @@ import { SkynetContext } from "../state/SkynetContext";
 
 export const useAvatar = () => {
   const [avatar, setAvatar] = useState("");
-  const { client } = useContext(SkynetContext);
+  const { profile } = useContext(SkynetContext);
 
-  const getAvatar = async (profile) => {
-    if ("avatar" in profile) {
-      if (typeof profile.avatar === "string") {
-        client.getSkylinkUrl(profile.avatar).then((avatarUrl) => {
-          setAvatar(avatarUrl + "/150");
-        });
-      } else if ("url" in profile.avatar) {
-        client.getSkylinkUrl(profile.avatar.url).then((avatarUrl) => {
-          setAvatar(avatarUrl);
-        });
-      } else if (profile.avatar[0]) {
-        client.getSkylinkUrl(profile.avatar[0].url).then((avatarUrl) => {
-          setAvatar(avatarUrl);
-        });
-      } else {
-        setAvatar(null);
-      }
-    } else {
-      setAvatar(null);
+  useEffect(() => {
+    const getAvatar = async () => {
+      const a = await returnAvatar(profile);
+      setAvatar(a);
+    };
+
+    if (profile) {
+      getAvatar();
     }
-  };
+  }, [profile, setAvatar]);
 
-  const resetAvatar = () => {
-    setAvatar("");
-  };
-
-  return [avatar, getAvatar, resetAvatar];
+  return [avatar];
 };
 
 export const returnAvatar = async (profile) => {
   const client = new SkynetClient("https://siasky.net");
 
-  if ("avatar" in profile) {
+  if (profile && "avatar" in profile) {
     if (typeof profile.avatar === "string") {
-      client.getSkylinkUrl(profile.avatar).then((avatarUrl) => {
-        return avatarUrl + "/150";
-      });
+      const a = await client.getSkylinkUrl(profile.avatar);
+      return a + "/150";
     } else if ("url" in profile.avatar) {
-      client.getSkylinkUrl(profile.avatar.url).then((avatarUrl) => {
-        return avatarUrl;
-      });
+      const avatarUrl = client.getSkylinkUrl(profile.avatar.url);
+      return avatarUrl;
     } else if (profile.avatar[0]) {
-      client.getSkylinkUrl(profile.avatar[0].url).then((avatarUrl) => {
-        return avatarUrl;
-      });
+      const avatarUrl = await client.getSkylinkUrl(profile.avatar[0].url);
+      return avatarUrl;
     } else {
-      return null;
+      return "";
     }
   } else {
-    return null;
+    return "";
   }
 };

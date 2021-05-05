@@ -7,6 +7,7 @@ import UserPage from "./Leaderboard/UserPage";
 import SingleUserPage from "./Leaderboard/SingleUserPage";
 import SideBar from "./Leaderboard/SideBar";
 import ProfilePage from "./Leaderboard/ProfilePage";
+import PrizesPage from "./Leaderboard/PrizesPage";
 
 export default function LeaderboardPage({ ...props }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -47,6 +48,9 @@ export default function LeaderboardPage({ ...props }) {
                   </Route>
                   <Route path="/leaderboard/profile">
                     <ProfilePage setTitle={setTitle} />
+                  </Route>
+                  <Route path="/leaderboard/prizes">
+                    <PrizesPage setTitle={setTitle} />
                   </Route>
                 </Switch>
               </div>

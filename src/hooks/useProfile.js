@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useAvatar } from "./useAvatar";
-import { useScores } from "./useScores";
+import { returnAvatar } from "./useAvatar";
+import { returnScores } from "./useScores";
 
 const emptyScores = {
   interactionsLast24H: null,
@@ -12,43 +12,96 @@ const emptyScores = {
 };
 
 export const useProfile = () => {
-  const [scores, getScores] = useScores();
-  const [avatar, getAvatar, resetAvatar] = useAvatar();
-
+  const [avatar, setAvatar] = useState();
+  const [id, setID] = useState("");
   const [singleUserProfile, setSingleUserProfile] = useState({});
   const [singleUserScores, setSingleUserScores] = useState(emptyScores);
 
-  const getSingleUserProfile = (id) => {
-    resetAvatar();
-    setSingleUserProfile({});
-    setSingleUserScores(emptyScores);
-    getScores(id);
-  };
+  // const fetchAvatar = useCallback(async (profile) => {
+  //   const a = await returnAvatar(profile);
+  //   console.log("fetched: ", a);
+  //   setAvatar(a);
+  // });
+
+  // const fetchScores = useCallback(async (userID) => {
+
+  // const s = await returnScores(userID);
+  // if (s) {
+  //   // grab scores for return
+  //   const {
+  //     interactionsLast24H,
+  //     interactionsTotal,
+  //     newContentLast24H,
+  //     newContentTotal,
+  //     rank,
+  //     userPK,
+  //     userMetadata,
+  //   } = s;
+  //   setSingleUserScores({ interactionsLast24H, interactionsTotal, newContentLast24H, newContentTotal, rank, userPK });
+  //   if (userMetadata.mySkyProfile) {
+  //     fetchAvatar(userMetadata.mySkyProfile.profile);
+  //     setSingleUserProfile(userMetadata.mySkyProfile.profile);
+  //   }
+  // } else {
+  //   setSingleUserScores({});
+  // }
+  // });
 
   useEffect(() => {
-    if (scores) {
-      // grab scores for return
-      const {
-        interactionsLast24H,
-        interactionsTotal,
-        newContentLast24H,
-        newContentTotal,
-        rank,
-        userPK,
-        userMetadata,
-      } = scores;
+    const getProfile = async (id) => {
+      const [scores, profile, avatar] = await getScores(id);
+      setAvatar(avatar);
+      setSingleUserProfile(profile);
+      setSingleUserScores(scores);
+    };
 
-      // return non-metadata info
-      setSingleUserScores({ interactionsLast24H, interactionsTotal, newContentLast24H, newContentTotal, rank, userPK });
-
-      // grab profile for return
-      if (userMetadata.mySkyProfile) {
-        const { profile } = userMetadata.mySkyProfile;
-        getAvatar(profile);
-        setSingleUserProfile(profile);
-      }
+    if (id) {
+      getProfile(id);
     }
-  }, [scores, getAvatar]);
+  }, [id]);
 
-  return [singleUserProfile, singleUserScores, avatar, getSingleUserProfile];
+  return [singleUserProfile, singleUserScores, avatar, setID];
+};
+
+const getScores = async (userID) => {
+  const s = await returnScores(userID);
+  if (s) {
+    // grab scores for return
+    const {
+      interactionsLast24H,
+      interactionsTotal,
+      newContentLast24H,
+      newContentTotal,
+      rank,
+      userPK,
+      userMetadata,
+    } = s;
+
+    const singleUserScores = {
+      interactionsLast24H,
+      interactionsTotal,
+      newContentLast24H,
+      newContentTotal,
+      rank,
+      userPK,
+    };
+    // setSingleUserScores({ interactionsLast24H, interactionsTotal, newContentLast24H, newContentTotal, rank, userPK });
+    if (userMetadata.mySkyProfile) {
+      // fetchAvatar(userMetadata.mySkyProfile.profile);
+      const avatar = await getAvatar(userMetadata.mySkyProfile.profile);
+      // setSingleUserProfile(userMetadata.mySkyProfile.profile);
+      // setSingleUserProfile(userMetadata.mySkyProfile.profile);
+      return [singleUserScores, userMetadata.mySkyProfile.profile, avatar];
+    } else {
+      return [singleUserScores, {}, ""];
+    }
+  }
+  return [emptyScores, {}, ""];
+};
+
+const getAvatar = async (profile) => {
+  const a = await returnAvatar(profile);
+  // console.log("fetched: ", a);
+  // setAvatar(a);
+  return a;
 };

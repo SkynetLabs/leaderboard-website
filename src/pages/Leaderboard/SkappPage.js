@@ -24,6 +24,7 @@ const transform = async (data) => {
       let name = undefined;
       let description = undefined;
       let github = undefined;
+      let wip = undefined;
       let link = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
       if (skappNames[record.skapp]) {
         const r = skappNames[record.skapp];
@@ -31,8 +32,10 @@ const transform = async (data) => {
         name = r.name ? r.name : undefined;
         description = r.description ? r.description : undefined;
         github = r.github ? r.github : undefined;
+        link = r.link ? r.link : link;
+        wip = r.wip ? r.wip : wip;
       }
-      return { ...record, hidden, name, link, description, github };
+      return { ...record, hidden, name, link, description, github, wip };
     })
   );
 
@@ -48,7 +51,7 @@ const transform = async (data) => {
 };
 
 const render = (record, pos) => {
-  let { link, skapp, total, last24H, name, description, github } = record;
+  let { link, skapp, total, last24H, name, description, github, wip } = record;
 
   const displayName = name ? name : skapp;
 
@@ -67,6 +70,11 @@ const render = (record, pos) => {
               {link ? <Link href={link}>{displayName}</Link> : displayName}
               {description && <span className="text-gray-500"> – {description}</span>}
             </div>
+            {wip && (
+              <span className="text-xs items-center font-normal leading-sm px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                Test Version
+              </span>
+            )}
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
             <p className="text-xl mr-6">

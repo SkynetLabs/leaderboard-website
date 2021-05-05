@@ -9,8 +9,6 @@ import { skappNames } from "../../hooks/skappNames";
 
 const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
-console.log(skynetClient);
-
 const endpoint = "content";
 const searchLabel = "Search by identifier";
 const searchKey = "identifier";
