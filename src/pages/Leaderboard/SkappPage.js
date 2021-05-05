@@ -1,12 +1,12 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
-// import { SkynetClient } from "skynet-js";
+import { getFullDomainUrlForPortal } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
-
-// const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
+import { skappNames } from "../../hooks/skappNames";
+import { FaGithub } from "react-icons/fa";
 
 const endpoint = "skapps";
 const searchLabel = "Search by skapp name";
@@ -18,44 +18,69 @@ const sortConfig = [
 const sortByDefault = "total";
 const sortDirDefault = "desc";
 const transform = async (data) => {
-  console.log(data);
+  let modified = await Promise.allSettled(
+    data.map((record, index) => {
+      let hidden = false;
+      let name = undefined;
+      let description = undefined;
+      let github = undefined;
+      let link = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
+      if (skappNames[record.skapp]) {
+        const r = skappNames[record.skapp];
+        hidden = r.hidden ? true : false;
+        name = r.name ? r.name : undefined;
+        description = r.description ? r.description : undefined;
+        github = r.github ? r.github : undefined;
+      }
+      return { ...record, hidden, name, link, description, github };
+    })
+  );
 
-  return data;
+  modified = modified.map((record, index) => {
+    return record.value;
+  });
 
-  // const urls = await Promise.allSettled(
-  //   data.map(({ skapp }) => skynetClient.getSkylinkUrl(skapp, { subdomain: true }))
-  // );
+  modified = modified.filter((record, index) => {
+    return !record.hidden;
+  });
 
-  // console.log(urls);
-
-  // return data.map((record, index) => {
-  //   const { value: url } = urls[index];
-
-  //   return url ? { ...record, url } : record;
-  // });
+  return modified;
 };
-const render = (record) => {
+
+const render = (record, pos) => {
+  let { link, skapp, total, last24H, name, description, github } = record;
+
+  const displayName = name ? name : skapp;
+
   return (
     <>
       <div className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between space-x-8">
           <div className="flex flex-row space-x-4 truncate">
             <div className="flex items-center text-sm text-palette-600 font-semibold">
-              <span className="text-gray-400 w-10">{ordinal(record.rank)}</span>
-              {record.rank <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
-              {record.rank <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
-              {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              <span className="text-gray-400 w-10">{ordinal(pos)}</span>
+              {pos <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
             <div className="text-sm truncate">
-              {record.url ? <Link href={record.url}>{record.skapp}</Link> : record.skapp}
+              {link ? <Link href={link}>{displayName}</Link> : displayName}
+              {description && <span className="text-gray-500"> – {description}</span>}
             </div>
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
+            <p className="text-xl mr-6">
+              {github && (
+                <Link href={github}>
+                  <FaGithub className="text-gray-900" />
+                </Link>
+              )}
+            </p>
             <p>
-              {record.total} <span className="text-gray-400 ml-2">total</span>
+              {total} <span className="text-gray-400 ml-2">total</span>
             </p>
             <p className="xl:w-48">
-              {record.last24H} <span className="text-gray-400 ml-2">in last 24h</span>
+              {last24H} <span className="text-gray-400 ml-2">in last 24h</span>
             </p>
           </div>
         </div>

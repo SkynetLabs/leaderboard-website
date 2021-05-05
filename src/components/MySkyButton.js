@@ -3,35 +3,70 @@ import { useEffect, useContext, useState, useCallback } from "react";
 // import { useStoreState, useStoreActions, useStore } from 'easy-peasy';
 import { SkynetContext } from "../state/SkynetContext";
 import { UserCircleIcon } from "@heroicons/react/outline";
+import { deriveDiscoverableTweak } from "skynet-js/dist/mjs/mysky/tweak";
+import { setEntry } from "skynet-js/dist/cjs/registry";
+import { extractOptions } from "skynet-js/dist/cjs/utils/options";
+import { defaultSetEntryOptions } from "skynet-js/dist/cjs/registry";
+import { genKeyPairFromSeed } from "skynet-js";
+import { uint8ArrayToStringUtf8, hexToUint8Array } from "skynet-js/dist/mjs/utils/string";
 
 const MySkyButton = () => {
-  const { mySky, userProfile } = useContext(SkynetContext);
+  const { mySky, userProfile, userID, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
   const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
   const [loading, setLoading] = useState(true); //This will get moved to global state.
-  const [profile, setProfile] = useState();
-  const [avatar, setAvatar] = useState();
-  const [userID, setUserID] = useState();
-  // const { fetchUserID, logout } = useStoreActions((state) => state.mySky);
-  // const { loggedIn } = useStoreState((state) => state.mySky);
-  // const { store } = useStore();
-
-  console.log(userID);
 
   const handleLoginSuccess = useCallback(async () => {
+    // const skylinkTests = async (userID) => {
+    //   const path = "skyuser.hns/skyprofile.hns/userprofile.json";
+    //   // const path = "localhost/testEntry";
+    //   // mySky.getJSON(path).then((r) => {
+    //   //   console.log("getJSON", r);
+    //   // });
+    //   // mySky.getEntryLink(path).then((r) => {
+    //   //   console.log("entryLink", r);
+    //   // });
+
+    //   const { publicKey, privateKey } = genKeyPairFromSeed("1234");
+
+    //   const dataKey = deriveDiscoverableTweak(path);
+    //   //hex of AABDo7H_syQIYPSkXg1JTd6Vhp2tIEP2CHgO9FJPZTalRQ
+    //   const data = hexToUint8Array("000043a3b1ffb3240860f4a45e0d494dde95869dad2043f608780ef4524f6536a545");
+    //   const revision = 2n;
+
+    //   const entry = { dataKey, data, revision };
+    //   console.log("entry", entry);
+
+    //   // const sig = await mySky.signRegistryEntry(entry, path);
+    //   // console.log("sig", sig);
+
+    //   mySky.connector.client.registry.getEntryUrl(publicKey, dataKey, { hashedDataKeyHex: true }).then((r) => {
+    //     console.log("url", r);
+    //   });
+
+    //   await mySky.connector.client.registry.setEntry(privateKey, entry, { hashedDataKeyHex: true });
+
+    //   // mySky.connector.client.registry.postSignedEntry(userID, entry, sig);
+
+    //   // mySky.userID({ legacyAppID: "skyfeed" }).then((r) => {
+    //   //   console.log("legacy id skyfeed", r);
+    //   // });
+    //   console.log(userID);
+    // };
+
     setLoggedIn(true);
     mySky.userID().then((userID) => {
       setUserID(userID);
+      console.log("userID: ", userID);
       userProfile.getProfile(userID).then((result) => {
-        console.log("profile", result);
         setProfile(result);
       });
+      // skylinkTests(userID);
     });
   }, [setLoggedIn, setUserID, setProfile, userProfile, mySky]);
 
   useEffect(() => {
     // if we have MySky loaded
     setLoading(true);
-    setAvatar(null);
     setProfile(null);
     if (mySky) {
       mySky.checkLogin().then((result) => {
@@ -43,18 +78,8 @@ const MySkyButton = () => {
     }
   }, [mySky, handleLoginSuccess]);
 
-  useEffect(() => {
-    if (profile && mySky?.connector?.client) {
-      const skylink = profile.avatar;
-      mySky.connector.client.getSkylinkUrl(skylink).then((avatarUrl) => {
-        setAvatar(avatarUrl + "/300");
-      });
-    }
-  }, [profile, mySky?.connector?.client]);
-
   const onLogin = () => {
     setLoading(true);
-    setAvatar(null);
     setProfile(null);
     mySky.requestLoginAccess().then((result) => {
       if (result) {
@@ -65,17 +90,23 @@ const MySkyButton = () => {
   };
 
   const onLogout = () => {
-    mySky.logout();
+    mySkyLogout();
     setLoggedIn(false);
+    setProfile(null);
   };
 
   return (
     <>
       {loading && (
-        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link">[Spinner]</button>
+        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full">
+          [Spinner]
+        </button>
       )}
       {!loading && !loggedIn && (
-        <button className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link" onClick={onLogin}>
+        <button
+          className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full"
+          onClick={onLogin}
+        >
           <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
           MySky Login
         </button>
@@ -83,13 +114,12 @@ const MySkyButton = () => {
       {!loading && loggedIn && (
         <>
           <button
-            className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link"
+            className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link w-full"
             onClick={onLogout}
           >
             <UserCircleIcon className="mr-3 h-6 w-6" aria-hidden="true" />
-            {profile ? "Logout: " + profile.username : "MySky Logout"}
+            {profile && profile.username ? "Logout: " + profile.username : "MySky Logout"}
           </button>
-          <img alt="Avatar" src={avatar} />
         </>
       )}
     </>
@@ -97,16 +127,3 @@ const MySkyButton = () => {
 };
 
 export default MySkyButton;
-
-// // Example profile object converted from SkyID profile:
-// {
-//   "version": 1,
-//   "username": "dghelm",
-//   "aboutMe": "Developer Evangelist for Skynet Labs.",
-//   "location": "Oklahoma City, OK, USA",
-//   "topics": [],
-//   "avatar": "jADT7g5u7GRJ7YfSoFGeWozCkJF2eJrJSeq9mZeu4LCiXg"
-// }
-
-// Avatar is a folder with various size images named: ["50","150","300","600","1920"]
-// If original image size is smaller than name's dimensions, the size actually the original upload size, despite the file's name.
