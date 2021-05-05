@@ -11,7 +11,7 @@ import { genKeyPairFromSeed } from "skynet-js";
 import { uint8ArrayToStringUtf8, hexToUint8Array } from "skynet-js/dist/mjs/utils/string";
 
 const MySkyButton = () => {
-  const { mySky, userProfile, userID, setUserID, profile, setProfile } = useContext(SkynetContext);
+  const { mySky, userProfile, userID, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
   const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
   const [loading, setLoading] = useState(true); //This will get moved to global state.
 
@@ -90,7 +90,7 @@ const MySkyButton = () => {
   };
 
   const onLogout = () => {
-    mySky.logout();
+    mySkyLogout();
     setLoggedIn(false);
     setProfile(null);
   };

@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import { SkynetClient } from "skynet-js";
-import { UserCircleIcon } from "@heroicons/react/solid";
+import AvatarIcon from "../../components/AvatarIcon";
+import Link from "../../components/Link";
 
 const endpoint = "users";
 const searchLabel = "Search by user public key";
@@ -23,6 +24,7 @@ const client = new SkynetClient("https://siasky.net/");
 const transform = async (data) => {
   let modified = await Promise.allSettled(
     data.map(async (record, index) => {
+      // console.log(record);
       let username = null;
       let avatar = undefined;
       if (record.userMetadata && record.userMetadata.mySkyProfile && record.userMetadata.mySkyProfile.profile) {
@@ -43,6 +45,7 @@ const transform = async (data) => {
       return { ...record, username, avatar };
     })
   );
+  // console.log(modified);
 
   modified = modified.map((r) => r.value);
 
@@ -59,6 +62,10 @@ const transform = async (data) => {
 };
 
 const render = (record, pos, userID) => {
+  if (!record) {
+    return null;
+  }
+
   const {
     userPK,
     interactionsTotal,
@@ -77,8 +84,9 @@ const render = (record, pos, userID) => {
           <div className="flex flex-row space-x-4 truncate">
             <div className="flex items-center align-middle text-sm text-palette-600 font-semibold">
               <span className="text-gray-400 sm:w-10">{ordinal(pos)}</span>
-              {avatar && <img className="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />}
-              {!avatar && <UserCircleIcon className="w-16 h-16 text-gray-200" />}
+              {/* {avatar && <img className="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />}
+              {!avatar && <UserCircleIcon className="w-16 h-16 text-gray-200" />} */}
+              <AvatarIcon avatar={avatar} />
               {/* <span className="hidden sm:flex">
                 {pos <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
                 {pos <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
@@ -86,7 +94,9 @@ const render = (record, pos, userID) => {
               </span> */}
             </div>
             <div className="flex items-center align-middle text-sm text-palette-600">
-              <div className="text-sm truncate">{username ? username : userPK}</div>
+              <div className="text-sm truncate">
+                <Link to={"user/" + userPK}>{username ? username : userPK}</Link>
+              </div>
             </div>
           </div>
           <div className="flex flex-row space-x-8 flex-shrink-0">

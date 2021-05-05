@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { SkynetContext } from "../state/SkynetContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { useScores } from "../hooks/useScores";
+import AvatarIcon from "./AvatarIcon";
 
 // // Example profile object converted from SkyID profile:
 // {
@@ -16,11 +17,13 @@ import { useScores } from "../hooks/useScores";
 // Avatar is a folder with various size images named: ["50","150","300","600","1920"]
 // If original image size is smaller than name's dimensions, the size actually the original upload size, despite the file's name.
 
+const newSignup = false;
+
 const UserProfileCard = () => {
   const { userID, profile } = useContext(SkynetContext);
   const [loading, setLoading] = useState(true);
   const [avatar, getAvatar] = useAvatar();
-  const [scores, newSignup, getScores, resetScores] = useScores();
+  const [scores, getScores, resetScores] = useScores();
 
   const handleSignUp = () => {
     console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
@@ -49,7 +52,7 @@ const UserProfileCard = () => {
           </div>
           {avatar && (
             <div className="flex justify-center mt-4">
-              <img className="shadow sm:w-16 sm:h-16 w-16 h-16 rounded-full" src={avatar} alt="Avatar" />
+              <AvatarIcon avatar={avatar} />
             </div>
           )}
           {scores && (

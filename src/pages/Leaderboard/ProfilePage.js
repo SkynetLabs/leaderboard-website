@@ -32,42 +32,9 @@ export default function ProfilePage({ setTitle }) {
   return (
     <div className="space-y-4">
       {loading && "Loading..."}
-      {!loading && !userID && <CreateAccountInstructions />}
-      {!loading && userID && !profile && <ProfileDisplay firstTime={true} />}
-      {!loading && userID && profile && <ProfileDisplay firstTime={false} />}
+      {/* {!loading && !userID && <CreateAccountInstructions />} */}
+      {!loading && userID && !profile && <ProfileEditor firstTime={true} />}
+      {!loading && userID && profile && <ProfileEditor firstTime={false} />}
     </div>
   );
 }
-
-const CreateAccountInstructions = () => {
-  return (
-    <div>
-      <h1>Welcome to the Skynet -- Login with your MySky Account to get started.</h1>
-      <p>
-        A MySky account lets you take your identity and data with you across all of Skynet. Something about discoverable
-        content. It's fully decentralized.
-      </p>
-    </div>
-  );
-};
-
-const ProfileDisplay = ({ firstTime }) => {
-  return (
-    <div>
-      {/* <h1>You're logged in!</h1>
-      {firstTime && (
-        <p>
-          "You're logged in and don't have a profile. maybe you could use this form to create one.
-          https://skyprofile.hns.siasky.net/"}
-        </p>
-      )}
-      {!firstTime && (
-        <p>
-          "You're logged in and already have a profile. maybe you could use update it or be presented with the cards
-          from the frontpage.
-        </p>
-      )} */}
-      <ProfileEditor />
-    </div>
-  );
-};

@@ -1,5 +1,9 @@
 export const skappNames = {
-  "snew.hns": { name: "Skynet Workshop" },
+  "snew.hns": {
+    name: "Skynet Workshop",
+    description: "Project built to teach developers Skynet and MySky",
+    github: "https://github.com/SkynetLabs/skynet-workshop",
+  },
   "0008ma52pgm6oac9qrj3fi5a202tcu590bs7es148n5e6mjm78n4it0": { name: "SVGUP" },
   localhost: { hidden: true },
   "0000chsgunr75ulvqcblsc61bag320tf32peqjra2vs8vrob3gj8lp0": { name: "SkynetClient API Usage" },
@@ -9,7 +13,12 @@ export const skappNames = {
   "0001pdr6q7bk35vqc3rsta9pvh09r32hogbvprvdjkeoa0sgkinedm8": {},
   "600ci0qbat6kpl15ff16qbkh6dr7gk1qbdpi0gusprg5779gj7l24k0": { name: "SkyGames SDK", wip: true },
   "skytransfer.hns": { name: "SkyTransfer" },
-  "skytter.hns": { name: "SkyChess" },
+  "skychess.hns": {
+    name: "SkyChess",
+    description: "Find an opponent or watch a chess match",
+    developer: "redsolver",
+    github: "https://github.com/redsolver/skychess",
+  },
   "ozujw.hns.siasky.dev": { name: "SkyNetGram" },
   "00071mk4hmbg2m0s2m9n957s1j23ro89ele1f7dkve6c5fvb09j788g": { name: "Arigale CMS" },
   "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": { name: "How About Skapp" },

@@ -11,7 +11,7 @@ import { SkynetContext } from "../state/SkynetContext";
 // - else, set avatar to null
 
 export const useAvatar = () => {
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState("");
   const { client } = useContext(SkynetContext);
 
   const getAvatar = async (profile) => {
@@ -36,7 +36,11 @@ export const useAvatar = () => {
     }
   };
 
-  return [avatar, getAvatar];
+  const resetAvatar = () => {
+    setAvatar("");
+  };
+
+  return [avatar, getAvatar, resetAvatar];
 };
 
 export const returnAvatar = async (profile) => {

@@ -19,7 +19,11 @@ const ProfileEditor = () => {
       setFirstName(profile.firstName);
       setLastName(profile.lastName);
       setAbout(profile.aboutMe);
-      setPhoto(profile.avatar[0].url);
+      if (profile.avatar[0]) {
+        setPhoto(profile.avatar[0].url);
+      } else {
+        setPhoto(profile.avatar.url);
+      }
     }
   }, [profile]);
 

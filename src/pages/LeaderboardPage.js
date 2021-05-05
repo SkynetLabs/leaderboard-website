@@ -4,6 +4,7 @@ import { MenuIcon } from "@heroicons/react/outline";
 import SkappPage from "./Leaderboard/SkappPage";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
+import SingleUserPage from "./Leaderboard/SingleUserPage";
 import SideBar from "./Leaderboard/SideBar";
 import ProfilePage from "./Leaderboard/ProfilePage";
 
@@ -37,6 +38,9 @@ export default function LeaderboardPage({ ...props }) {
                   </Route>
                   <Route path="/leaderboard/content">
                     <ContentPage setTitle={setTitle} />
+                  </Route>
+                  <Route path="/leaderboard/user/:showID">
+                    <SingleUserPage setTitle={setTitle} />
                   </Route>
                   <Route path="/leaderboard/user">
                     <UserPage setTitle={setTitle} />
