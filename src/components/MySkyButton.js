@@ -2,6 +2,7 @@ import { useEffect, useContext, useState, useCallback } from "react";
 import { SkynetContext } from "../state/SkynetContext";
 import { UserCircleIcon } from "@heroicons/react/outline";
 import { ReactComponent as Spinner } from "../svg/Spinner.svg";
+import classnames from "classnames";
 
 const MySkyButton = () => {
   const { mySky, userProfile, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
@@ -50,24 +51,24 @@ const MySkyButton = () => {
     setProfile(null);
   };
 
-  const classes =
-    "group flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md hover:text-palette-100 hover:bg-palette-400";
+  const classes = "group flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md";
+  const clickableClasses = "hover:text-palette-100 hover:bg-palette-400";
 
   return (
     <>
       {loading && (
-        <button className={classes}>
-          <Spinner className="mr-4 h-6 w-6" aria-hidden="true" /> Loading mySky
+        <button className={classnames(classes, "cursor-auto")} disabled={true}>
+          <Spinner className="mr-4 h-6 w-6" aria-hidden="true" /> Loading MySky
         </button>
       )}
       {!loading && !loggedIn && (
-        <button className={classes} onClick={onLogin}>
+        <button className={classnames(classes, clickableClasses)} onClick={onLogin}>
           <UserCircleIcon className="mr-4 h-6 w-6" aria-hidden="true" />
           MySky Login
         </button>
       )}
       {!loading && loggedIn && (
-        <button className={classes} onClick={onLogout}>
+        <button className={classnames(classes, clickableClasses)} onClick={onLogout}>
           <UserCircleIcon className="mr-4 h-6 w-6" aria-hidden="true" />
           {profile && profile.username ? "Logout: " + profile.username : "MySky Logout"}
         </button>
