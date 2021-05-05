@@ -21,6 +21,13 @@ export const skappNames = {
     developer: "redsolver",
     github: "https://github.com/redsolver/skychess",
   },
+  "skytter.hns": {
+    name: "SkyChess",
+    description: "Find an opponent or watch a chess match",
+    developer: "redsolver",
+    github: "https://github.com/redsolver/skychess",
+    wip: true,
+  },
   "ozujw.hns.siasky.dev": {
     name: "SkyNetGram",
     description: "Shared feed for square images",
