@@ -23,6 +23,72 @@ const navigation = [
   // { name: "Prizes", to: "/leaderboard/prizes", icon: GiftIcon },
 ];
 
+const resources = [
+  { name: "Getting started", href: "https://support.siasky.net/getting-started/using-skynet" },
+  {
+    name: "Hackathon blog",
+    href: "https://blog.sia.tech/built-to-explore-the-skynet-spring-2021-hackathon-a0cff382bb0c",
+  },
+  { name: "Siasky.net", href: "https://siasky.net" },
+];
+
+const SidebarContent = () => (
+  <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-palette-500 overflow-y-auto">
+    <div className="flex items-center flex-shrink-0 px-4">
+      <Logo className="h-8 w-auto" />
+    </div>
+    <div className="mt-5 flex-grow flex flex-col">
+      <nav className="flex-1 px-2 space-y-8 bg-palette-500" aria-label="Sidebar">
+        <div className="space-y-1">
+          {navigation.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.to}
+              exact={true}
+              activeClassName="active"
+              className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link"
+            >
+              <item.icon className="mr-3 h-6 w-6" aria-hidden="true" />
+              {item.name}
+            </NavLink>
+          ))}
+        </div>
+        <div className="space-y-3">
+          <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="resources-headline">
+            Resources
+          </h3>
+          <div className="space-y-1" role="group" aria-labelledby="projects-headline">
+            {resources.map(({ name, ...props }) => (
+              <Link
+                key={name}
+                className="group flex items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md hover:text-palette-100 hover:bg-palette-400"
+                {...props}
+              >
+                <span className="truncate">{name}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <div className="flex-shrink-0 flex p-4">
+        <UserProfileCard />
+      </div>
+      <div className="flex-shrink-0 flex p-4">
+        <MySkyButton />
+      </div>
+      <div className="flex-shrink-0 flex p-4">
+        <Link
+          to="/"
+          className="group flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md hover:text-palette-100 hover:bg-palette-400"
+        >
+          <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Homepage
+        </Link>
+      </div>
+    </div>
+  </div>
+);
+
 const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <>
@@ -74,39 +140,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
                   </button>
                 </div>
               </Transition.Child>
-              <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                <div className="flex-shrink-0 flex items-center px-4">
-                  <Logo className="h-8 w-auto" />
-                </div>
-                <nav className="mt-5 px-2 space-y-1">
-                  {navigation.map((item) => (
-                    <NavLink
-                      key={item.name}
-                      to={item.to}
-                      exact={true}
-                      activeClassName="active"
-                      className="group flex items-center px-2 py-2 text-base font-medium rounded-md nav-link"
-                    >
-                      <item.icon className="mr-4 h-6 w-6" aria-hidden="true" />
-                      {item.name}
-                    </NavLink>
-                  ))}
-                  <div className="flex p-4 pt-4">
-                    <UserProfileCard />
-                  </div>
-                </nav>
-                <div className="flex-shrink-0 flex border-t border-palette-500 p-4">
-                  <MySkyButton />
-                </div>
-                <div className="mt-5 px-2 space-y-1">
-                  <Link
-                    to="/"
-                    className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
-                  >
-                    <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Homepage
-                  </Link>
-                </div>
-              </div>
+              <SidebarContent />
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -119,41 +153,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }) => {
       <div className="hidden bg-palette-600 lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-64">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-col h-0 flex-1">
-            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex items-center flex-shrink-0 px-4">
-                <Logo className="h-8 w-auto" />
-              </div>
-              <nav className="mt-5 flex-1 px-2 space-y-1">
-                {navigation.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.to}
-                    exact={true}
-                    activeClassName="active"
-                    className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link"
-                  >
-                    <item.icon className="mr-3 h-6 w-6" aria-hidden="true" />
-                    {item.name}
-                  </NavLink>
-                ))}
-                <div className="flex p-4 pt-12">
-                  <UserProfileCard />
-                </div>
-              </nav>
-              <div className="flex-shrink-0 mt-32 flex border-t border-palette-500 p-4">
-                <MySkyButton />
-              </div>
-              <div className="flex-shrink-0 flex border-t border-palette-500 p-4">
-                <Link
-                  to="/"
-                  className="group flex flex-grow items-center px-2 py-2 text-base font-medium rounded-md nav-link"
-                >
-                  <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Homepage
-                </Link>
-              </div>
-            </div>
-          </div>
+          <SidebarContent />
         </div>
       </div>
     </>

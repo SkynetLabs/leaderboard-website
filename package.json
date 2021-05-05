@@ -6,13 +6,13 @@
     "@fontsource/sora": "^4.2.2",
     "@fontsource/source-code-pro": "^4.2.3",
     "@fontsource/source-sans-pro": "^4.2.2",
-    "@headlessui/react": "^1.0.0",
+    "@headlessui/react": "^1.1.1",
     "@heroicons/react": "^1.0.1",
     "@skynethub/userprofile-library": "^0.1.7-beta",
     "@tailwindcss/aspect-ratio": "^0.2.0",
-    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/user-event": "^13.1.8",
     "classnames": "^2.3.1",
     "jsonp": "^0.2.1",
     "ky": "^0.27.0",
@@ -24,10 +24,10 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-use": "^17.2.3",
+    "react-use": "^17.2.4",
     "skynet-js": "^4.0.5-beta",
     "social-dac-library": "^0.2.2",
-    "swr": "^0.5.5",
+    "swr": "^0.5.6",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
@@ -35,10 +35,10 @@
     "cross-env": "^7.0.2",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.1",
-    "postcss": "^8.2.10",
+    "postcss": "^8.2.13",
     "postcss-cli": "^8.2.0",
     "prettier": "^2.1.2",
-    "tailwindcss": "^2.1.1"
+    "tailwindcss": "^2.1.2"
   },
   "scripts": {
     "start": "yarn build:css && cross-env REACT_APP_PORTAL_URL=https://siasky.net react-scripts start",
