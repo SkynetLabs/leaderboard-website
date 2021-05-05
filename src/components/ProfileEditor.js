@@ -3,7 +3,7 @@ import { SkynetContext } from "../state/SkynetContext";
 import Link from "./Link";
 
 const ProfileEditor = () => {
-  const { userID, profile, client, userProfile } = useContext(SkynetContext);
+  const { profile, client, userProfile } = useContext(SkynetContext);
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -36,7 +36,7 @@ const ProfileEditor = () => {
     if (photo) {
       getDisplayPhotoUrl();
     }
-  }, [photo]);
+  }, [photo, client]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

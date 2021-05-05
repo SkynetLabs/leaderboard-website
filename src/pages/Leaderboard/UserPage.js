@@ -1,4 +1,4 @@
-import { FireIcon } from "@heroicons/react/solid";
+// import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
@@ -72,7 +72,7 @@ const render = (record, pos, userID) => {
     interactionsLast24H,
     newContentTotal,
     newContentLast24H,
-    userMetadata,
+    _,
     username,
     avatar,
   } = record;

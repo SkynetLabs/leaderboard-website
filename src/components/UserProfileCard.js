@@ -4,19 +4,6 @@ import { useAvatar } from "../hooks/useAvatar";
 import { useScores } from "../hooks/useScores";
 import AvatarIcon from "./AvatarIcon";
 
-// // Example profile object converted from SkyID profile:
-// {
-//   "version": 1,
-//   "username": "dghelm",
-//   "aboutMe": "Developer Evangelist for Skynet Labs.",
-//   "location": "Oklahoma City, OK, USA",
-//   "topics": [],
-//   "avatar": "jADT7g5u7GRJ7YfSoFGeWozCkJF2eJrJSeq9mZeu4LCiXg"
-// }
-
-// Avatar is a folder with various size images named: ["50","150","300","600","1920"]
-// If original image size is smaller than name's dimensions, the size actually the original upload size, despite the file's name.
-
 const newSignup = false;
 
 const UserProfileCard = () => {
@@ -37,7 +24,7 @@ const UserProfileCard = () => {
       getScores(userID);
     }
     setLoading(false);
-  }, [profile]);
+  }, [profile, getAvatar, getScores, userID]);
 
   return (
     <>
@@ -65,10 +52,6 @@ const UserProfileCard = () => {
                 <p className="text-gray-700 font-bold">{scores.newContentTotal}</p>
                 <p className="text-xs mt-2 text-gray-600 font-hairline">Creations</p>
               </div>
-              {/* <div>
-              <p class="text-gray-700 font-bold">{scores.rank}</p>
-              <p class="text-xs mt-2 text-gray-700 font-hairline">Rank</p>
-            </div> */}
             </div>
           )}
           {!loading && !scores && (
@@ -78,7 +61,7 @@ const UserProfileCard = () => {
                   className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
                   onClick={() => handleSignUp()}
                 >
-                  Sign-up
+                  This shouldn't happen.
                 </button>
               )}
               {!newSignup && (

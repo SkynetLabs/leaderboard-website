@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 // Call API and get the scores for a specfic UserID
 

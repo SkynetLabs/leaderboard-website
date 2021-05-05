@@ -2,9 +2,9 @@ import { useEffect, useContext } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ordinal from "ordinal";
-import { UserCircleIcon, LocationMarkerIcon } from "@heroicons/react/solid";
-import { useSocialList } from "../../hooks/useSocialList";
-import Tag from "../../components/Tag";
+import { UserCircleIcon } from "@heroicons/react/solid";
+// import { useSocialList } from "../../hooks/useSocialList";
+// import Tag from "../../components/Tag";
 import { useProfile } from "../../hooks/useProfile";
 import { SkynetContext } from "../../state/SkynetContext";
 
@@ -12,8 +12,8 @@ import { SkynetContext } from "../../state/SkynetContext";
 
 export default function SingleUserPage({ setTitle }) {
   const { showID } = useParams();
-  const { userID } = useContext(SkynetContext);
-  const [loading, setLoading] = useState(true);
+  // const { userID } = useContext(SkynetContext);
+  // const [loading, setLoading] = useState(true);
   const [singleProfile, singleScores, singleAvatar, getSingleProfile] = useProfile();
   // const [
   //   areFollowing,
@@ -35,13 +35,15 @@ export default function SingleUserPage({ setTitle }) {
   useEffect(() => {
     if (singleProfile.connections) {
       let filledConnections = singleProfile.connections.filter((connection) => {
-        for (const [key, value] of Object.entries(connection)) {
+        for (const [_, value] of Object.entries(connection)) {
           if (value) {
             return true;
           }
 
           return false;
         }
+
+        return false;
       });
 
       setConnections(filledConnections);
@@ -55,7 +57,7 @@ export default function SingleUserPage({ setTitle }) {
       getSingleProfile(showID);
       // getFollowingList(showID);
     }
-  }, [showID]);
+  }, [showID, getSingleProfile]);
 
   return (
     <main class="profile-page">

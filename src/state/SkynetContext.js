@@ -4,7 +4,7 @@ import { SkynetClient } from "skynet-js";
 // To import DAC, uncomment here, and 2 spots below.
 // import { ContentRecordDAC } from '@skynetlabs/content-record-library';
 import { UserProfileDAC } from "@skynethub/userprofile-library";
-import { SocialDAC } from "social-dac-library";
+// import { SocialDAC } from "social-dac-library";
 
 const SkynetContext = createContext(undefined);
 
@@ -41,23 +41,23 @@ const SkynetProvider = ({ children }) => {
   //   setProfile,
   // });
 
-  useEffect(() => {
-    const getSocialList = async () => {
-      // const list = socialDAC.getFollowingForUser(userID);
-      // setSocialList(list);
-    };
+  // useEffect(() => {
+  //   const getSocialList = async () => {
+  //     // const list = socialDAC.getFollowingForUser(userID);
+  //     // setSocialList(list);
+  //   };
 
-    // const getProfile = async () => {
-    // };
+  //   // const getProfile = async () => {
+  //   // };
 
-    if (userID && mySky) {
-      // getProfile();
-      getSocialList();
-    } else {
-      setSocialList([]);
-      setProfile(null);
-    }
-  }, [userID]);
+  //   if (userID && mySky) {
+  //     // getProfile();
+  //     getSocialList();
+  //   } else {
+  //     setSocialList([]);
+  //     setProfile(null);
+  //   }
+  // }, [userID, mySky]);
 
   useEffect(() => {
     // define async setup function

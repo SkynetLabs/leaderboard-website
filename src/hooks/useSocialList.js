@@ -51,7 +51,7 @@ export const useSocialList = () => {
   const followUser = async () => {
     if (userID) {
       setActionLoading(true);
-      const follow = await socialDAC.follow(currentUser);
+      // const follow = await socialDAC.follow(currentUser);
       const list = await socialDAC.getFollowingForUser(userID);
       setSocialList(list);
       setActionLoading(false);

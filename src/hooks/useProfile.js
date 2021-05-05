@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAvatar } from "./useAvatar";
 import { useScores } from "./useScores";
 
@@ -48,7 +48,7 @@ export const useProfile = () => {
         setSingleUserProfile(profile);
       }
     }
-  }, [scores]);
+  }, [scores, getAvatar]);
 
   return [singleUserProfile, singleUserScores, avatar, getSingleUserProfile];
 };
