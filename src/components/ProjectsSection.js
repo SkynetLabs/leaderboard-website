@@ -80,9 +80,9 @@ export default function ProjectsSection() {
               <li key={project.name}>
                 <div className="space-y-4">
                   <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    <div className="aspect-w-3 aspect-h-2 bg-palette-600 rounded-lg">
+                    <div className="aspect-w-3 aspect-h-2 bg-palette-600 rounded-lg border border-palette-300">
                       <img
-                        className="object-cover shadow-lg rounded-lg hover:opacity-90 transition transition-opacity bg-palette-600"
+                        className="object-cover shadow-lg rounded-lg hover:opacity-90 transition-opacity bg-palette-600"
                         src={project.imageUrl}
                         alt="project thumbnail or screenshot"
                       />
