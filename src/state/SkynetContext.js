@@ -95,7 +95,7 @@ const SkynetProvider = ({ children }) => {
         setMySky(null);
       }
     };
-  }, []);
+  }, [mySky]);
 
   const mySkyLogout = () => {
     mySky.logout();

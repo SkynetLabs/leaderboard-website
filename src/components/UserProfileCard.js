@@ -24,7 +24,7 @@ const UserProfileCard = () => {
       getScores(userID);
     }
     setLoading(false);
-  }, [profile, getAvatar, getScores, userID]);
+  }, [profile, getAvatar, getScores, resetScores, userID]);
 
   return (
     <>

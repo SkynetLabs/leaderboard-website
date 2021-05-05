@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ordinal from "ordinal";
@@ -6,7 +6,7 @@ import { UserCircleIcon } from "@heroicons/react/solid";
 // import { useSocialList } from "../../hooks/useSocialList";
 // import Tag from "../../components/Tag";
 import { useProfile } from "../../hooks/useProfile";
-import { SkynetContext } from "../../state/SkynetContext";
+// import { SkynetContext } from "../../state/SkynetContext";
 
 // TODO: if userID == showID, link to edit page? load latest, not scraper profile?
 
@@ -35,7 +35,7 @@ export default function SingleUserPage({ setTitle }) {
   useEffect(() => {
     if (singleProfile.connections) {
       let filledConnections = singleProfile.connections.filter((connection) => {
-        for (const [_, value] of Object.entries(connection)) {
+        for (const [, value] of Object.entries(connection)) {
           if (value) {
             return true;
           }

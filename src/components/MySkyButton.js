@@ -3,7 +3,7 @@ import { SkynetContext } from "../state/SkynetContext";
 import { UserCircleIcon } from "@heroicons/react/outline";
 
 const MySkyButton = () => {
-  const { mySky, userProfile, userID, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
+  const { mySky, userProfile, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
   const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
   const [loading, setLoading] = useState(true); //This will get moved to global state.
 

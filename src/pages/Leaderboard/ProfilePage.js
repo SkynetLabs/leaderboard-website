@@ -6,7 +6,7 @@ import ProfileEditor from "../../components/ProfileEditor";
 export default function ProfilePage({ setTitle }) {
   const { userID, profile } = useContext(SkynetContext);
   const [loading, setLoading] = useState(false);
-  const [emptyProfile, setEmptyProfile] = useState(true);
+  const [, setEmptyProfile] = useState(true);
 
   useEffect(() => {
     setTitle("MySky Profile");

@@ -72,7 +72,7 @@ const render = (record, pos, userID) => {
     interactionsLast24H,
     newContentTotal,
     newContentLast24H,
-    _,
+    // userMetadata,
     username,
     avatar,
   } = record;
