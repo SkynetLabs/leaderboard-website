@@ -17,9 +17,9 @@ import Link from "../../components/Link";
 
 const navigation = [
   // { name: "MySky Profile", to: "/leaderboard/profile", icon: UserIcon },
-  { name: "Skapp ranking", to: "/leaderboard", icon: CubeTransparentIcon },
-  { name: "Content ranking", to: "/leaderboard/content", icon: CollectionIcon },
-  { name: "User ranking", to: "/leaderboard/user", icon: UserGroupIcon },
+  { name: "Explore Apps", to: "/leaderboard", icon: CubeTransparentIcon },
+  { name: "Discover Content", to: "/leaderboard/content", icon: CollectionIcon },
+  { name: "User Leaderboard", to: "/leaderboard/user", icon: UserGroupIcon },
   // { name: "Prizes", to: "/leaderboard/prizes", icon: GiftIcon },
 ];
 

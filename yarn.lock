@@ -1970,10 +1970,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@skynethub/userprofile-library@^0.1.7-beta":
-  version "0.1.7-beta"
-  resolved "https://registry.yarnpkg.com/@skynethub/userprofile-library/-/userprofile-library-0.1.7-beta.tgz#269d2f7d15450d1f203fe5c35be0864e851f833d"
-  integrity sha512-I1X1MqWoRzwa20LnZ0iL+vluOJJKzZ2ZcCBX/PFh7dSSYLi+vGrvXRm6uoloUC9hqImH7Ymb7uP2MUxRqlZzpg==
+"@skynethub/userprofile-library@^0.1.8-beta":
+  version "0.1.8-beta"
+  resolved "https://registry.yarnpkg.com/@skynethub/userprofile-library/-/userprofile-library-0.1.8-beta.tgz#9a8c5e387192a8090a446ec7b1e3c0f3ae44ed21"
+  integrity sha512-8OixMEf3clSAse2Ym44cYDZLp0gTW/e37yhEiCMdaGn9yjAnNSaDWE3VgzZeQlA/Oj97mYhVlQpkiEXsjrp1Iw==
   dependencies:
     post-me "^0.4.5"
     skynet-js "^4.0.5-beta"

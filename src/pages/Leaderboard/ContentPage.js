@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
 import { skappNames } from "../../hooks/skappNames";
+import userBlocklist from "../../hooks/userBlocklist.js";
 
 const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
@@ -52,22 +53,31 @@ const transform = async (data) => {
   });
 
   modified = modified.filter((record, index) => {
-    return !record.hidden;
+    if (record.hidden) {
+      return false;
+    }
+
+    if (userBlocklist.includes(record.creator)) {
+      return false;
+    }
+
+    return true;
   });
 
   return modified;
 };
-const render = (record) => {
+const render = (record, pos, userID) => {
+  console.log(record);
   return (
     <>
-      <div className="px-4 py-4 sm:px-6">
+      <div className={"px-4 py-4 sm:px-6" + (userID === record.creator ? " bg-green-50" : "")}>
         <div className="flex items-center justify-between space-x-8">
           <div className="flex flex-row space-x-4 truncate">
             <div className="flex items-center text-sm text-palette-600 font-semibold">
               <span className="text-gray-400 w-10">{ordinal(record.rank)}</span>
-              {record.rank <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
-              {record.rank <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
-              {record.rank <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
             <div className="text-sm truncate">
               {record.url ? <Link href={record.url}>{record.identifier}</Link> : record.identifier}

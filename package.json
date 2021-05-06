@@ -8,7 +8,7 @@
     "@fontsource/source-sans-pro": "^4.2.2",
     "@headlessui/react": "^1.1.1",
     "@heroicons/react": "^1.0.1",
-    "@skynethub/userprofile-library": "^0.1.7-beta",
+    "@skynethub/userprofile-library": "^0.1.8-beta",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.1.0",

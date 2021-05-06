@@ -1,6 +1,6 @@
-import { ReactComponent as LogoSymbol } from "../svg/LogoSymbol.svg";
-import Link from "./Link";
-import { Header2, Paragraph } from "./Typography";
+import { ReactComponent as LogoSymbol } from "../../svg/LogoSymbol.svg";
+import Link from "../Link";
+import { Header2, Paragraph } from "../Typography";
 
 export default function SkynetSection() {
   return (

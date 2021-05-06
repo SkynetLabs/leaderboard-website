@@ -7,6 +7,8 @@ import RecordList from "./components/RecordList";
 import { SkynetClient } from "skynet-js";
 import AvatarIcon from "../../components/AvatarIcon";
 import Link from "../../components/Link";
+import { returnAvatar } from "../../hooks/useAvatar";
+import userBlocklist from "../../hooks/userBlocklist.js";
 
 const endpoint = "users";
 const searchLabel = "Search by user public key";
@@ -25,33 +27,22 @@ const client = new SkynetClient("https://siasky.net/");
 const transform = async (data) => {
   let modified = await Promise.allSettled(
     data.map(async (record, index) => {
-      // console.log(record);
       let username = null;
       let avatar = undefined;
       if (record.userMetadata && record.userMetadata.mySkyProfile && record.userMetadata.mySkyProfile.profile) {
         const mySkyProfile = record.userMetadata.mySkyProfile.profile;
         username = mySkyProfile.username;
-        if (mySkyProfile.avatar) {
-          if (mySkyProfile.avatar[0]) {
-            avatar = await client.getSkylinkUrl(mySkyProfile.avatar[0].url);
-          } else if (mySkyProfile.avatar.url) {
-            avatar = await client.getSkylinkUrl(mySkyProfile.avatar.url);
-          } else {
-            avatar = null;
-          }
-        } else {
-          avatar = null;
-        }
+        avatar = await returnAvatar(mySkyProfile);
       }
       return { ...record, username, avatar };
     })
   );
-  // console.log(modified);
 
   modified = modified.map((r) => r.value);
 
+  //blocklist
   modified = modified.filter((record) => {
-    let displayUser = true;
+    let displayUser = !userBlocklist.includes(record.userPK);
 
     //here we could add username blocking behavior --
     // displayUser = !!record.username;
@@ -66,7 +57,6 @@ const render = (record, pos, userID) => {
   if (!record) {
     return null;
   }
-
   const {
     userPK,
     interactionsTotal,
@@ -80,7 +70,7 @@ const render = (record, pos, userID) => {
 
   return (
     <>
-      <div className={"px-4 py-4 sm:px-6" + (userID === userPK ? " bg-green-100" : "")}>
+      <div className={"px-4 py-4 sm:px-6" + (userID === userPK ? " bg-green-50" : "")}>
         <div className="flex items-center justify-between space-x-8 ">
           <div className="flex flex-row space-x-4 truncate">
             <div className="flex items-center align-middle text-sm text-palette-600 font-semibold">

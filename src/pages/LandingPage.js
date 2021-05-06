@@ -1,10 +1,10 @@
-import HeroSection from "../components/HeroSection";
-import ProjectsSection from "../components/ProjectsSection";
-import DescriptionSection from "../components/DescriptionSection";
-import SkynetSection from "../components/SkynetSection";
-import SubscribeSection from "../components/SubscribeSection";
-import JumbotronSection from "../components/JumbotronSection";
-import FooterSection from "../components/FooterSection";
+import HeroSection from "../components/LandingPage/HeroSection";
+import ProjectsSection from "../components/LandingPage/ProjectsSection";
+import DescriptionSection from "../components/LandingPage/DescriptionSection";
+import SkynetSection from "../components/LandingPage/SkynetSection";
+import SubscribeSection from "../components/LandingPage/SubscribeSection";
+import JumbotronSection from "../components/LandingPage/JumbotronSection";
+import FooterSection from "../components/LandingPage/FooterSection";
 
 const phase = "explore"; // build, explore, dream
 

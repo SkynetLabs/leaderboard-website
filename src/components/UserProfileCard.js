@@ -62,7 +62,11 @@ const UserProfileCard = () => {
             {(profile.firstName || profile.lastname) && (
               <p className="text-sm font-hairline text-gray-600 mt-1">{profile.firstName + " " + profile.lastName}</p>
             )}
-            <p className="text-xs font-hairline text-gray-600 mt-1 break-all">{userID}</p>
+            <p className="text-xs font-hairline text-gray-600 mt-1 break-all">
+              <Link to={"/leaderboard/user/" + userID} className="text-gray-600">
+                {userID}
+              </Link>
+            </p>
           </div>
           {avatar && (
             <div className="flex justify-center mt-4">

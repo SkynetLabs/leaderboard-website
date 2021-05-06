@@ -1,5 +1,5 @@
-import Link from "./Link";
-import { Header2, Subheader } from "./Typography";
+import Link from "../Link";
+import { Header2, Subheader } from "../Typography";
 
 const projects = [
   {
@@ -10,7 +10,7 @@ const projects = [
   },
   {
     name: "GiphyAF",
-    description: "Create a your GIF library on Skynet.",
+    description: "Create your GIF library on Skynet.",
     imageUrl: "/projects/giphyaf.png",
     url: "https://giphyaf.hns.siasky.net",
   },
@@ -31,6 +31,12 @@ const projects = [
     description: "Find opponents and rewatch chess matches.",
     imageUrl: "/projects/SkyChess.png",
     url: "https://skychess.hns.siasky.net",
+  },
+  {
+    name: "SkyNect-4",
+    description: "Childhood classic, running on Skynet.",
+    imageUrl: "/projects/SkyNect.png",
+    url: "https://skorn.hns.siasky.net",
   },
   {
     name: "SkyNetGram",
@@ -55,12 +61,6 @@ const projects = [
     description: "Create webgames and deploy them to Skynet.",
     imageUrl: "/projects/WebGamesIDE.png",
     url: "https://webgames-ide.hns.siasky.net",
-  },
-  {
-    name: "Alternative: SkyNect-4",
-    description: "Childhood classic, running on Skynet.",
-    imageUrl: "/projects/SkyNect.png",
-    url: "https://skorn.hns.siasky.net",
   },
 ];
 

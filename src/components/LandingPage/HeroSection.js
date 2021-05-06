@@ -1,9 +1,9 @@
-import { ReactComponent as Logo } from "../svg/LogoBlackText.svg";
-import Countdown from "./Countdown";
-import SubscribeForm from "./SubscribeForm";
-import Tag from "./Tag";
-import { Header1, Header4, Subheader, Paragraph } from "./Typography";
-import Button from "./Button";
+import { ReactComponent as Logo } from "../../svg/LogoBlackText.svg";
+import Countdown from "../Countdown";
+import SubscribeForm from "../SubscribeForm";
+import Tag from "../Tag";
+import { Header1, Header4, Subheader, Paragraph } from "../Typography";
+import Button from "../Button";
 
 const phase = "explore"; // build, explore, dream
 
@@ -45,10 +45,10 @@ export default function HeroSection() {
 
                 <Paragraph>
                   In addition to testing out web apps during the Explore phase, you'll be creating and sharing content
-                  to win prizes! Getting Started:
+                  to win prizes! We'll be tracking the whole event on our leaderboard.
                 </Paragraph>
 
-                <ol className="space-y-2 list-decimal list-inside text-lg text-palette-400 font-content">
+                {/* <ol className="space-y-2 list-decimal list-inside text-lg text-palette-400 font-content">
                   <li>
                     <span className="font-bold">Create a MySky account</span>: All your content across apps is linked to
                     your MySky, a decentralized identity that you fully own. Learn more here.
@@ -60,13 +60,13 @@ export default function HeroSection() {
                     <span className="font-bold">Join the Leaderboard</span>: Compete for the top spots! Explore popular
                     content, applications, and users.
                   </li>
-                </ol>
+                </ol> */}
               </div>
             )}
 
             {phase === "explore" && (
               <div className="mt-12 flex flex-col">
-                <Button to="/leaderboard">Join the Leaderboard</Button>
+                <Button to="/leaderboard">Get Started Exploring</Button>
               </div>
             )}
 

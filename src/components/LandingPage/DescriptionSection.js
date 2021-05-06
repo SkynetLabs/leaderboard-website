@@ -1,6 +1,6 @@
-import Link from "./Link";
-import Tag from "./Tag";
-import { Header3, Paragraph } from "./Typography";
+import Link from "../Link";
+import Tag from "../Tag";
+import { Header3, Paragraph } from "../Typography";
 
 const phase = "explore"; // build, explore, dream
 
@@ -96,8 +96,8 @@ export default function DescriptionSection() {
           <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
             <PhaseHeader current={phase === "build"}>Build Phase (&gt;$20k Prizes)</PhaseHeader>
             <Paragraph>
-              The build phase is taking place on Gitcoin,{" "}
-              <Link href="https://gitcoin.co/hackathon/built-to-explore/onboard">sign up</Link> and start hacking today.
+              In the build phase, hackers created web applications focused on creating and sharing content using
+              Skynet's new MySky and DAC tools.
             </Paragraph>
 
             <PhaseHeader current={phase === "explore"}>Explore Phase ($3k Prizes)</PhaseHeader>

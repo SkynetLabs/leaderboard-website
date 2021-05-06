@@ -1,7 +1,7 @@
-import Button from "./Button";
-import { Header2 } from "./Typography";
+import SubscribeForm from "../SubscribeForm";
+import { Header2 } from "../Typography";
 
-export default function JumbotronSection() {
+export default function SubscribeSection() {
   return (
     <div className="relative mt-24 sm:mt-32 sm:py-16">
       <div aria-hidden="true" className="hidden sm:block">
@@ -46,18 +46,15 @@ export default function JumbotronSection() {
           </div>
           <div className="relative">
             <div className="sm:text-center space-y-6">
-              <Header2>Ready to start Exploring?</Header2>
+              <Header2>Get notified for the next phase</Header2>
               <p className="mx-auto max-w-2xl text-lg text-palette-600">
-                Head to the leaderboard to sign-up, create a profile, and start claiming your prizes!
+                We’ll have daily prizes, and will be showing all the applications builders have made for you to explore
+                in at our Explore Phase kickoff event.
               </p>
             </div>
 
-            <div className="mt-6 flex justify-center">
-              <div className="max-w-xl w-full">
-                <Button buttonColor="dark" to="/leaderboard">
-                  Join the Leaderboard
-                </Button>
-              </div>
+            <div className="flex justify-center">
+              <SubscribeForm buttonColor="dark" />
             </div>
           </div>
         </div>

@@ -28,17 +28,17 @@ export const useAvatar = () => {
   return [avatar];
 };
 
-export const returnAvatar = async (profile) => {
-  const client = new SkynetClient("https://siasky.net");
+const client = new SkynetClient("https://siasky.net");
 
+export const returnAvatar = async (profile) => {
   if (profile && "avatar" in profile) {
     if (typeof profile.avatar === "string") {
       const a = await client.getSkylinkUrl(profile.avatar);
       return a + "/150";
     } else if ("url" in profile.avatar) {
-      const avatarUrl = client.getSkylinkUrl(profile.avatar.url);
+      const avatarUrl = await client.getSkylinkUrl(profile.avatar.url);
       return avatarUrl;
-    } else if (profile.avatar[0]) {
+    } else if (profile.avatar[0] && profile.avatar[0].url) {
       const avatarUrl = await client.getSkylinkUrl(profile.avatar[0].url);
       return avatarUrl;
     } else {
