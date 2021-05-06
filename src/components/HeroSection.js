@@ -36,31 +36,31 @@ export default function HeroSection() {
             {phase === "explore" && (
               <div className="sm:max-w-xl space-y-6">
                 <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
+
                 <Subheader>
                   Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
                   The Explore phase begins <span className="font-extrabold text-palette-600">May 7th</span> lasting
                   through <span className="font-extrabold text-palette-600">May 21st</span>.
                 </Subheader>
+
                 <Paragraph>
                   In addition to testing out web apps during the Explore phase, you'll be creating and sharing content
                   to win prizes! Getting Started:
                 </Paragraph>
 
-                <Paragraph>
-                  <ol className="space-y-2 list-decimal list-inside">
-                    <li>
-                      <span className="font-bold">Create a MySky account</span>: All your content across apps is linked
-                      to your MySky, a decentralized identity that you fully own. Learn more here.
-                    </li>
-                    <li>
-                      <span className="font-bold">Add to your MySky profile</span>: Fill out your public profile.
-                    </li>
-                    <li>
-                      <span className="font-bold">Join the Leaderboard</span>: Compete for the top spots! Explore
-                      popular content, applications, and users.
-                    </li>
-                  </ol>
-                </Paragraph>
+                <ol className="space-y-2 list-decimal list-inside text-lg text-palette-400 font-content">
+                  <li>
+                    <span className="font-bold">Create a MySky account</span>: All your content across apps is linked to
+                    your MySky, a decentralized identity that you fully own. Learn more here.
+                  </li>
+                  <li>
+                    <span className="font-bold">Add to your MySky profile</span>: Fill out your public profile.
+                  </li>
+                  <li>
+                    <span className="font-bold">Join the Leaderboard</span>: Compete for the top spots! Explore popular
+                    content, applications, and users.
+                  </li>
+                </ol>
               </div>
             )}
 
