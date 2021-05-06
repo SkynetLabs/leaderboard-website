@@ -1,6 +1,7 @@
 // import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useContext } from "react";
+import { SkynetContext } from "../../state/SkynetContext";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import { SkynetClient } from "skynet-js";
@@ -126,6 +127,7 @@ const render = (record, pos, userID) => {
 };
 
 export default function ContentPage({ setTitle }) {
+  const { userID } = useContext(SkynetContext);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState(sortByDefault);
   const [sortDir, setSortDir] = useState(sortDirDefault);
@@ -133,6 +135,14 @@ export default function ContentPage({ setTitle }) {
   useEffect(() => {
     setTitle("Users Leaderboard");
   }, [setTitle]);
+
+  const searchActions = useMemo(() => {
+    if (userID) {
+      return [{ name: "my profile", type: "button", onClick: () => setSearch(userID) }];
+    }
+
+    return [];
+  }, [userID, setSearch]);
 
   return (
     <div className="space-y-4">
@@ -145,6 +155,7 @@ export default function ContentPage({ setTitle }) {
         setSortBy={setSortBy}
         sortDir={sortDir}
         setSortDir={setSortDir}
+        searchActions={searchActions}
       />
       <RecordList
         endpoint={endpoint}
