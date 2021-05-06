@@ -27,7 +27,7 @@ const UserProfileCard = () => {
   // }, [userID, profile]);
   // }, [profile, getAvatar, getScores, resetScores]);
 
-  console.log("card profile", profile);
+  // console.log("card profile", profile);
 
   return (
     <div className="w-full">

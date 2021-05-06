@@ -67,7 +67,6 @@ const transform = async (data) => {
   return modified;
 };
 const render = (record, pos, userID) => {
-  console.log(record);
   return (
     <>
       <div className={"px-4 py-4 sm:px-6" + (userID === record.creator ? " bg-green-50" : "")}>

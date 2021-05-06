@@ -1,4 +1,4 @@
-import Link from "../Link";
+// import Link from "../Link";
 import Tag from "../Tag";
 import { Header3, Paragraph } from "../Typography";
 
