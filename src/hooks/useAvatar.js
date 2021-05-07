@@ -22,6 +22,8 @@ export const useAvatar = () => {
 
     if (profile) {
       getAvatar();
+    } else {
+      setAvatar("");
     }
   }, [profile, setAvatar]);
 

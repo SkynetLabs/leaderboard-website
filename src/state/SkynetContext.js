@@ -58,6 +58,15 @@ const SkynetProvider = ({ children }) => {
   //     setProfile(null);
   //   }
   // }, [userID, mySky]);
+  useEffect(() => {
+    if (userID) {
+      userProfile.getProfile(userID).then((result) => {
+        setProfile(result);
+      });
+    } else {
+      setProfile(null);
+    }
+  }, [userID]);
 
   useEffect(() => {
     // define async setup function
@@ -100,7 +109,7 @@ const SkynetProvider = ({ children }) => {
   const mySkyLogout = () => {
     mySky.logout();
     setUserID("");
-    setProfile("");
+    setProfile(null);
     setSocialList([]);
   };
 

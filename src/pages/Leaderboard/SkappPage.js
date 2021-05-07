@@ -1,6 +1,6 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getFullDomainUrlForPortal } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
@@ -97,14 +97,14 @@ const render = (record, pos) => {
   );
 };
 
-export default function ContentPage({ setTitle }) {
+export default function ContentPage() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState(sortByDefault);
   const [sortDir, setSortDir] = useState(sortDirDefault);
 
-  useEffect(() => {
-    setTitle("Skapps Leaderboard");
-  }, [setTitle]);
+  // useEffect(() => {
+  //   setTitle("Skapps Leaderboard");
+  // }, [setTitle]);
 
   return (
     <div className="space-y-4">

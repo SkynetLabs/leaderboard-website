@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import { MenuIcon } from "@heroicons/react/outline";
-import SkappPage from "./Leaderboard/SkappPage";
+import SkappPage from "./Leaderboard/SkappPageFull";
 import ContentPage from "./Leaderboard/ContentPage";
 import UserPage from "./Leaderboard/UserPage";
 import SingleUserPage from "./Leaderboard/SingleUserPage";

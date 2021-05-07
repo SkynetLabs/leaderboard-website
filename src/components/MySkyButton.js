@@ -5,25 +5,18 @@ import { ReactComponent as Spinner } from "../svg/Spinner.svg";
 import classnames from "classnames";
 
 const MySkyButton = () => {
-  const { mySky, userProfile, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
-  const [loggedIn, setLoggedIn] = useState(false); //This will get moved to global state.
+  const { mySky, userID, setUserID, profile, setProfile, mySkyLogout } = useContext(SkynetContext);
   let [loading, setLoading] = useState(true); //This will get moved to global state.
 
   const handleLoginSuccess = useCallback(async () => {
-    setLoggedIn(true);
     mySky.userID().then((userID) => {
       setUserID(userID);
-      // console.log("userID: ", userID);
-      userProfile.getProfile(userID).then((result) => {
-        setProfile(result);
-      });
     });
-  }, [setLoggedIn, setUserID, setProfile, userProfile, mySky]);
+  }, [setUserID, mySky]);
 
   useEffect(() => {
     // if we have MySky loaded
     setLoading(true);
-    setProfile(null);
     if (mySky) {
       mySky.checkLogin().then((result) => {
         if (result) {
@@ -36,7 +29,6 @@ const MySkyButton = () => {
 
   const onLogin = () => {
     setLoading(true);
-    setProfile(null);
     mySky.requestLoginAccess().then((result) => {
       if (result) {
         handleLoginSuccess();
@@ -47,8 +39,6 @@ const MySkyButton = () => {
 
   const onLogout = () => {
     mySkyLogout();
-    setLoggedIn(false);
-    setProfile(null);
   };
 
   const classes = "group flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md";
@@ -61,13 +51,13 @@ const MySkyButton = () => {
           <Spinner className="mr-4 h-6 w-6" aria-hidden="true" /> Loading MySky
         </button>
       )}
-      {!loading && !loggedIn && (
+      {!loading && !userID && (
         <button className={classnames(classes, clickableClasses)} onClick={onLogin}>
           <UserCircleIcon className="mr-4 h-6 w-6" aria-hidden="true" />
           MySky Login
         </button>
       )}
-      {!loading && loggedIn && (
+      {!loading && userID && (
         <button className={classnames(classes, clickableClasses)} onClick={onLogout}>
           <UserCircleIcon className="mr-4 h-6 w-6" aria-hidden="true" />
           {profile && profile.username ? "Logout: " + profile.username : "MySky Logout"}
