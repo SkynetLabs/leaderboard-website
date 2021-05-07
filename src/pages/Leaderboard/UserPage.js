@@ -128,7 +128,7 @@ export default function ContentPage({ setTitle }) {
 
   const searchActions = useMemo(() => {
     if (userID) {
-      return [{ name: "my profile", type: "button", onClick: () => setSearch(userID) }];
+      return [{ name: "Find my UserID", type: "button", onClick: () => setSearch(userID) }];
     }
 
     return [];
@@ -136,6 +136,8 @@ export default function ContentPage({ setTitle }) {
 
   return (
     <div className="space-y-4">
+      <div className="text-sm font-medium">Don't see yourself? Data is scraped every 15 minutes. Check back soon.</div>
+
       <SearchBar
         sortConfig={sortConfig}
         searchLabel={searchLabel}

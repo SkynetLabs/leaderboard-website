@@ -50,14 +50,14 @@ export default function SkappPageTop() {
       </Paragraph>
 
       <Divider /> */}
-      <div className="pt-6">
+      <div className="pt-6 pb-2">
         <Header3>Check out the Builder Apps</Header3>
-        <span className="py-3">
+        <div className="pt-2">
           <Paragraph>
             Look for the MySky Login button and make some things. Your data will be public, discoverable, and usable by
             other apps!
           </Paragraph>
-        </span>
+        </div>
       </div>
     </div>
   );
