@@ -1,8 +1,9 @@
 import { ReactComponent as Logo } from "../svg/LogoBlackText.svg";
-import Countdown from "./Countdown";
+// import Countdown from "./Countdown";
 import SubscribeForm from "./SubscribeForm";
 import Tag from "./Tag";
-import { Header1, Header4, Subheader, Paragraph } from "./Typography";
+import { Header1, Subheader, Paragraph } from "./Typography";
+// import { Header1, Header4, Subheader, Paragraph } from "./Typography";
 
 export default function HeroSection() {
   return (
@@ -30,10 +31,10 @@ export default function HeroSection() {
 
             <SubscribeForm />
 
-            <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
+            {/* <div className="mt-12 sm:mt-24 flex flex-col space-y-8">
               <Header4>Countdown to Explore Phase</Header4>
               <Countdown />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
