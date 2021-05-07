@@ -1,25 +1,60 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useMemo } from "react";
 import { SkynetContext } from "../state/SkynetContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { Header1, Header3, Subheader, Paragraph } from "./Typography";
 import ProgressSteps from "./ProgressSteps";
 import Link from "./Link";
-// import MySkyButton from "./MySkyButton";
+
+const getStepStatus = (currentStep, step) => {
+  if (currentStep > step) return "complete";
+  if (currentStep === step) return "current";
+  return "upcoming";
+};
 
 export default function SkappPageTop() {
-  const { userID } = useContext(SkynetContext);
+  const { userID, mySky } = useContext(SkynetContext);
   const [avatar] = useAvatar();
-  const [step, setStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1);
+  const steps = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "Login with MySky",
+        description: "Create a new decentralized login for all of Skynet",
+        status: getStepStatus(currentStep, 1),
+        onClick: () => {
+          console.log(mySky);
+          mySky.requestLoginAccess();
+        },
+      },
+      {
+        id: 2,
+        name: "Create a Profile",
+        description: "Add a username, avatar and contact info to receive prizes",
+        status: getStepStatus(currentStep, 2),
+        onClick: () => {
+          window.open("https://skyprofile.hns.siasky.net", "_blank");
+        },
+      },
+      {
+        id: 3,
+        name: "Explore & Create",
+        description: "Use apps to rank up on the leaderboard",
+        status: getStepStatus(currentStep, 3),
+      },
+    ],
+    [mySky, currentStep]
+  );
 
   useEffect(() => {
     if (userID && avatar) {
-      setStep(3);
+      setCurrentStep(3);
     } else if (userID) {
-      setStep(2);
+      setCurrentStep(2);
     } else {
-      setStep(1);
+      setCurrentStep(1);
     }
-  }, [userID, avatar, setStep]);
+  }, [userID, avatar, setCurrentStep]);
 
   return (
     <div className="space-y-4">
@@ -28,8 +63,7 @@ export default function SkappPageTop() {
       </div>
       {/* <div className="bg-white px-6 py-6 rounded shadow"> */}
       <div className="pb-6">
-        <Header3>Getting Started</Header3>
-        <ProgressSteps step={step} />
+        <ProgressSteps steps={steps} currentStep={currentStep} />
       </div>
       <Divider />
       <div className="py-6 text-center">

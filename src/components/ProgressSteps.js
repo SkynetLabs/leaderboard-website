@@ -1,93 +1,121 @@
-import { UserCircleIcon, ArrowSmRightIcon, IdentificationIcon, MapIcon } from "@heroicons/react/outline";
+import { CheckIcon } from "@heroicons/react/solid";
+import classnames from "classnames";
 
-const StepCard = ({ icon, title, description, active, completed, xPadding }) => {
-  if (!active && !completed) {
-    return (
-      <div className="w-1/3 text-center">
-        <div className="bg-gray-300 rounded-lg flex items-center justify-center border-gray-200">
-          <div className="w-1/3 bg-transparent h-20 flex items-center justify-center icon-step font-thin">{icon}</div>
-          <div className="w-2/3 bg-gray-200 h-24 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
-            <h2 className="font-bold text-sm">{title}</h2>
-            <p className="text-xs text-gray-600">{description}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+export default function ProgressSteps({ steps }) {
+  console.log(steps);
 
-  if (active) {
-    return (
-      <div className="w-1/3 text-center">
-        <div className="bg-primary-light rounded-lg flex items-center justify-center border border-primary">
-          <div className="w-1/3 bg-transparent lg:h-20 flex items-center justify-center icon-step font-thin">
-            {icon}
-          </div>
-          <div className="w-2/3 bg-green-50 lg:h-24 lg:py-0 py-2 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
-            <h2 className="font-bold text-sm">{title}</h2>
-            <p className="text-xs text-gray-600">{description}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (completed) {
-    return (
-      <div className="w-1/3 text-center opacity-50">
-        <div className="bg-primary-light rounded-lg flex items-center justify-center border-primary">
-          <div className="w-1/3 bg-transparent lg:h-20 flex items-center justify-center icon-step font-thin">
-            {icon}
-          </div>
-          <div className="w-2/3 bg-green-50 py-2 lg:py-0 lg:h-24 flex flex-col items-center justify-center px-1 rounded-r-lg body-step">
-            <h2 className="font-bold text-sm">{title}</h2>
-            <p className="text-xs text-gray-600">{description}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
-
-const ArrowDivider = ({ completed }) => {
   return (
-    <div className={"flex-1 flex items-center justify-center opacity-" + (completed ? "50" : "100")}>
-      <ArrowSmRightIcon className="w-8 h-8 mx-2" />
+    <div className="lg:border-t lg:border-b lg:border-gray-200">
+      <nav className="mx-auto max-w-7xl" aria-label="Progress">
+        <ol className="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none bg-white">
+          {steps.map((step, stepIdx) => (
+            <li key={step.id} className="relative overflow-hidden lg:flex-1">
+              <div
+                className={classnames(
+                  stepIdx === 0 ? "border-b-0 rounded-t-md" : "",
+                  stepIdx === steps.length - 1 ? "border-t-0 rounded-b-md" : "",
+                  "border border-gray-200 overflow-hidden lg:border-0"
+                )}
+              >
+                {step.status === "complete" ? (
+                  <button className="group text-left cursor-auto" disabled={true}>
+                    <span
+                      className="absolute top-0 left-0 w-1 h-full bg-transparent lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={classnames(
+                        stepIdx !== 0 ? "lg:pl-9" : "",
+                        "px-6 py-5 flex items-start text-sm font-medium text-palette-300"
+                      )}
+                    >
+                      <span className="flex-shrink-0">
+                        <span className="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-30 rounded-full">
+                          <CheckIcon className="w-6 h-6 text-white" aria-hidden="true" />
+                        </span>
+                      </span>
+                      <span className="mt-0.5 ml-4 min-w-0 flex flex-col space-y-2">
+                        <span className="text-xs font-semibold tracking-wide uppercase">{step.name}</span>
+                        <span className="text-sm font-medium">{step.description}</span>
+                      </span>
+                    </span>
+                  </button>
+                ) : step.status === "current" ? (
+                  <button
+                    type="button"
+                    aria-current="step"
+                    className={classnames("group text-left", { "cursor-auto": !step.onClick })}
+                    onClick={step.onClick}
+                    disabled={!step.onClick}
+                  >
+                    <span
+                      className="absolute top-0 left-0 w-1 h-full bg-primary lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={classnames(
+                        stepIdx !== 0 ? "lg:pl-9" : "",
+                        "px-6 py-5 flex items-start text-sm font-medium"
+                      )}
+                    >
+                      <span className="flex-shrink-0">
+                        <span className="w-10 h-10 flex items-center justify-center border-2 border-primary rounded-full">
+                          <span className="text-primary">{step.id}</span>
+                        </span>
+                      </span>
+                      <span className="mt-0.5 ml-4 min-w-0 flex flex-col space-y-2">
+                        <span className="text-xs font-semibold text-palette-600 group-hover:text-primary tracking-wide uppercase transition-colors">
+                          {step.name}
+                        </span>
+                        <span className="text-sm font-medium text-palette-400">{step.description}</span>
+                      </span>
+                    </span>
+                  </button>
+                ) : (
+                  <button className="group text-left cursor-auto" disabled={true}>
+                    <span
+                      className="absolute top-0 left-0 w-1 h-full bg-transparent lg:w-full lg:h-1 lg:bottom-0 lg:top-auto"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className={classnames(
+                        stepIdx !== 0 ? "lg:pl-9" : "",
+                        "px-6 py-5 flex items-start text-sm font-medium"
+                      )}
+                    >
+                      <span className="flex-shrink-0">
+                        <span className="w-10 h-10 flex items-center justify-center border-2 border-palette-200 rounded-full">
+                          <span className="text-palette-300">{step.id}</span>
+                        </span>
+                      </span>
+                      <span className="mt-0.5 ml-4 min-w-0 flex flex-col space-y-2">
+                        <span className="text-xs font-semibold text-gray-500 tracking-wide uppercase">{step.name}</span>
+                        <span className="text-sm font-medium text-gray-500">{step.description}</span>
+                      </span>
+                    </span>
+                  </button>
+                )}
+
+                {stepIdx !== 0 ? (
+                  <>
+                    {/* Separator */}
+                    <div className="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
+                      <svg
+                        className="h-full w-full text-gray-300"
+                        viewBox="0 0 12 82"
+                        fill="none"
+                        preserveAspectRatio="none"
+                      >
+                        <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor" vectorEffect="non-scaling-stroke" />
+                      </svg>
+                    </div>
+                  </>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </nav>
     </div>
   );
-};
-
-const ProgressSteps = ({ step, xPadding = 6 }) => {
-  return (
-    <div>
-      <h1 className="mb-4 text-center font-semibold text-gray-700">STEPS</h1>
-      <div className={"flex px-" + xPadding}>
-        <StepCard
-          title="Login with MySky"
-          description="Create a new decentralized login for all of Skynet"
-          icon={<UserCircleIcon className="w-8 h-8" />}
-          active={step === 1}
-          completed={step > 1}
-        />
-        <ArrowDivider completed={step > 1} />
-        <StepCard
-          title="Create a Profile"
-          description="Add a username, avatar and contact info to receive prizes"
-          icon={<IdentificationIcon className="w-8 h-8" />}
-          active={step === 2}
-          completed={step > 2}
-        />
-        <ArrowDivider completed={step > 2} />
-        <StepCard
-          title="Explore &amp; Create"
-          description="Use apps to rank up on the leaderboard"
-          icon={<MapIcon className="w-8 h-8" />}
-          active={step === 3}
-          completed={false}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default ProgressSteps;
+}
