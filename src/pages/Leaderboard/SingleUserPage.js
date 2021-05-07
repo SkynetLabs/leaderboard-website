@@ -52,23 +52,16 @@ export default function SingleUserPage({ setTitle }) {
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
-                <div className="w-full lg:w-4/12 px-4 lg:order-2 flex justify-center">
-                  <div className="mx-auto">
-                    {singleAvatar && (
-                      <img
-                        alt="..."
-                        src={singleAvatar}
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                        style={{ maxWidth: "150px" }}
-                      />
-                    )}
-                    {!singleAvatar && (
-                      <UserCircleIcon
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 text-gray-200"
-                        style={{ maxWidth: "150px" }}
-                      />
-                    )}
-                  </div>
+                <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                  {singleAvatar && (
+                    <div
+                      className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 bg-contain bg-no-repeat bg-center h-40 w-40"
+                      style={{ backgroundImage: `url("${singleAvatar}")` }}
+                    />
+                  )}
+                  {!singleAvatar && (
+                    <UserCircleIcon className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 text-gray-200 h-40 w-40" />
+                  )}
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                   {/* <div className="py-6 px-3 mt-32 sm:mt-0">
@@ -107,7 +100,7 @@ export default function SingleUserPage({ setTitle }) {
                   </div> */}
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                  <div className="flex justify-center py-4 lg:pt-4 pt-8 lg:mt-0 mt-16">
+                  <div className="flex justify-center py-4 lg:pt-4 pt-32">
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block tracking-wide text-gray-700">
                         {singleScores.rank ? ordinal(singleScores.rank) : "-"}
