@@ -62,7 +62,12 @@ export default function ProgressSteps({ steps }) {
                         </span>
                       </span>
                       <span className="mt-0.5 ml-4 min-w-0 flex flex-col space-y-2">
-                        <span className="text-xs font-semibold text-palette-600 group-hover:text-primary tracking-wide uppercase transition-colors">
+                        <span
+                          className={classnames(
+                            "text-xs font-semibold text-palette-600 tracking-wide uppercase transition-colors",
+                            { "group-hover:text-primary": step.onClick }
+                          )}
+                        >
                           {step.name}
                         </span>
                         <span className="text-sm font-medium text-palette-400">{step.description}</span>
