@@ -16,9 +16,9 @@ import { ReactComponent as Logo } from "../../svg/LogoWhiteText.svg";
 import Link from "../../components/Link";
 
 const navigation = [
-  { name: "Explore Apps", to: "/leaderboard", icon: CubeTransparentIcon },
-  { name: "Discover Content", to: "/leaderboard/content", icon: CollectionIcon },
-  { name: "User Leaderboard", to: "/leaderboard/user", icon: UserGroupIcon },
+  { name: "Explore Apps", to: "/leaderboard", Icon: CubeTransparentIcon, exact: true },
+  { name: "Discover Content", to: "/leaderboard/content", Icon: CollectionIcon, exact: false },
+  { name: "User Leaderboard", to: "/leaderboard/users", Icon: UserGroupIcon, exact: false },
   // { name: "MySky Profile", to: "/leaderboard/profile", icon: UserIcon },
   // { name: "Prizes", to: "/leaderboard/prizes", icon: GiftIcon },
 ];
@@ -45,16 +45,15 @@ const SidebarContent = () => {
       <div className="mt-5 flex-grow flex flex-col">
         <nav className="flex-1 px-2 space-y-8 bg-palette-500" aria-label="Sidebar">
           <div className="space-y-1">
-            {navigation.map((item) => (
+            {navigation.map(({ name, Icon, ...props }) => (
               <NavLink
-                key={item.name}
-                to={item.to}
-                exact={true}
+                key={name}
                 activeClassName="active"
                 className="group flex items-center px-2 py-2 text-sm font-medium rounded-md nav-link"
+                {...props}
               >
-                <item.icon className="mr-3 h-6 w-6" aria-hidden="true" />
-                {item.name}
+                <Icon className="mr-3 h-6 w-6" aria-hidden="true" />
+                {name}
               </NavLink>
             ))}
           </div>

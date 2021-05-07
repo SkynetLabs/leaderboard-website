@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ordinal from "ordinal";
-import { UserCircleIcon } from "@heroicons/react/solid";
+import Link from "../../components/Link";
+import { UserCircleIcon, ArrowCircleLeftIcon } from "@heroicons/react/solid";
 // import { useSocialList } from "../../hooks/useSocialList";
 // import Tag from "../../components/Tag";
 import { useProfile } from "../../hooks/useProfile";
@@ -49,6 +50,14 @@ export default function SingleUserPage({ setTitle }) {
     <main className="profile-page">
       <section className="relative py-16">
         <div className="container mx-auto px-4">
+          <div className="mb-4">
+            <Link
+              to="/leaderboard/users"
+              className="group inline-flex items-center px-3 py-2 text-sm font-medium text-palette-400 rounded-md hover:text-palette-100 hover:bg-palette-400"
+            >
+              <ArrowCircleLeftIcon className="mr-4 h-6 w-6" aria-hidden="true" /> Go back to the list
+            </Link>
+          </div>
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">

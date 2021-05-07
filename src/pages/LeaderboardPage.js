@@ -40,10 +40,10 @@ export default function LeaderboardPage({ ...props }) {
                   <Route path="/leaderboard/content">
                     <ContentPage setTitle={setTitle} />
                   </Route>
-                  <Route path="/leaderboard/user/:showID">
+                  <Route path="/leaderboard/users/:showID">
                     <SingleUserPage setTitle={setTitle} />
                   </Route>
-                  <Route path="/leaderboard/user">
+                  <Route path="/leaderboard/users">
                     <UserPage setTitle={setTitle} />
                   </Route>
                   <Route path="/leaderboard/profile">
