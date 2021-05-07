@@ -23,9 +23,9 @@ export default function HeroSection() {
                 The Build phase is currently underway.
               </Subheader>
               <Paragraph>
-                The Explore phase begins on <span className="font-extrabold text-palette-600">April 30, 2021</span> and
-                is open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To be
-                notified for the Explore phase, sign up below:
+                The Explore phase begins on <span className="font-extrabold text-palette-600">May 7, 2021</span> and is
+                open to the public. Win Siacoin and swag for trying out the new decentralized ecosystem! To be notified
+                for the Explore phase, sign up below:
               </Paragraph>
             </div>
 
