@@ -12,7 +12,7 @@ const getStepStatus = (currentStep, step) => {
 };
 
 export default function SkappPageTop() {
-  const { userID, mySky } = useContext(SkynetContext);
+  const { userID, mySky, setUserID } = useContext(SkynetContext);
   const [avatar] = useAvatar();
   const [currentStep, setCurrentStep] = useState(1);
   const steps = useMemo(
@@ -23,8 +23,11 @@ export default function SkappPageTop() {
         description: "Create a new decentralized login for all of Skynet",
         status: getStepStatus(currentStep, 1),
         onClick: () => {
-          console.log(mySky);
-          mySky.requestLoginAccess();
+          mySky.requestLoginAccess().then((result) => {
+            if (result) {
+              mySky.userID().then(setUserID);
+            }
+          });
         },
       },
       {
