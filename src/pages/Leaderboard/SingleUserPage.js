@@ -52,8 +52,8 @@ export default function SingleUserPage({ setTitle }) {
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
-                <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div className="relative">
+                <div className="w-full lg:w-4/12 px-4 lg:order-2 flex justify-center">
+                  <div className="mx-auto">
                     {singleAvatar && (
                       <img
                         alt="..."
@@ -107,7 +107,7 @@ export default function SingleUserPage({ setTitle }) {
                   </div> */}
                 </div>
                 <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                  <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                  <div className="flex justify-center py-4 lg:pt-4 pt-8 lg:mt-0 mt-16">
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block tracking-wide text-gray-700">
                         {singleScores.rank ? ordinal(singleScores.rank) : "-"}
@@ -130,19 +130,21 @@ export default function SingleUserPage({ setTitle }) {
                 </div>
               </div>
               <div className="text-center mt-12">
-                <h2 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+                <h2 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 ">
                   {singleProfile.username ? singleProfile.username : "-"}
                 </h2>
                 {(singleProfile.firstName || singleProfile.lastname) && (
-                  <h3 className="text-md font-semibold leading-normal mb-2 text-gray-600 mb-2">
+                  <h3 className="text-md font-semibold leading-normal mb-2 text-gray-600">
                     {singleProfile.firstName} {singleProfile.lastName}
                   </h3>
                 )}
                 <h4 className="text-md font-normal leading-normal mb-2 text-gray-600 mb-2">{showID ? showID : "-"}</h4>
-                <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-semibold">
-                  <span className="font-normal uppercase">Location:</span>{" "}
-                  {singleProfile.location ? singleProfile.location : "Unknown"}
-                </div>
+                {singleProfile.location && (
+                  <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-semibold">
+                    <span className="font-normal uppercase">Location:</span>{" "}
+                    {singleProfile.location ? singleProfile.location : "Unknown"}
+                  </div>
+                )}
                 {singleProfile.aboutMe && (
                   <div className="py-10 text-center">
                     <div className="flex flex-wrap justify-center">

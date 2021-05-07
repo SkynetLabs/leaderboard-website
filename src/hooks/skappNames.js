@@ -75,12 +75,12 @@ export const skappNames = {
   //   github: "https://github.com/redsolver/skychess",
   //   wip: true,
   // },
-  // "000du3qhfcikrooj19d8nca0lfk7ptc9rj0r6t2jsifrm5v28upgue8": {
-  //   name: "SkyNetGram",
-  //   wip: true,
-  //   description: "Shared feed for square images",
-  //   github: "https://github.com/rajatbeladiya/SkyNetGram",
-  // },
+  "metformin10.hns": {
+    name: "SkyNetGram",
+    description: "Shared feed for square images",
+    imageUrl: "/projects/SkynetGram.png",
+    github: "https://github.com/rajatbeladiya/SkyNetGram",
+  },
   // "000039hsk30kqji7a52014da9sr5pujkp3nnneufi5ghd9ieaul7pdo": {},
   // "0001pdr6q7bk35vqc3rsta9pvh09r32hogbvprvdjkeoa0sgkinedm8": {},
   // "600ci0qbat6kpl15ff16qbkh6dr7gk1qbdpi0gusprg5779gj7l24k0": {
