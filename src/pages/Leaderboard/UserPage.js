@@ -86,7 +86,7 @@ const render = (record, pos, userID) => {
             </div>
             <div className="flex items-center align-middle text-sm text-palette-600">
               <div className="text-sm truncate">
-                <Link to={"user/" + userPK}>{username ? username : userPK}</Link>
+                <Link to={"/leaderboard/users/" + userPK}>{username ? username : userPK}</Link>
               </div>
             </div>
           </div>
