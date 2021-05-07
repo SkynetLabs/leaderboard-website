@@ -41,7 +41,7 @@ const MySkyButton = () => {
     mySkyLogout();
   };
 
-  const classes = "group flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md";
+  const classes = "flex flex-grow items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md text-left";
   const clickableClasses = "hover:text-palette-100 hover:bg-palette-400";
 
   return (

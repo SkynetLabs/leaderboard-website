@@ -46,7 +46,7 @@ export default function SkappPageTop() {
         status: getStepStatus(currentStep, 3),
       },
     ],
-    [mySky, currentStep]
+    [mySky, setUserID, currentStep]
   );
 
   useEffect(() => {
