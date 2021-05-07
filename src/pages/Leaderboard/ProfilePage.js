@@ -16,7 +16,6 @@ export default function ProfilePage({ setTitle }) {
     setLoading(true);
     if (profile) {
       const { aboutMe, avatar, username } = profile;
-      console.log(profile);
 
       if (!aboutMe && !avatar && !username) {
         setEmptyProfile(true);

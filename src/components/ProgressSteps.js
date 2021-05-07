@@ -2,8 +2,6 @@ import { CheckIcon } from "@heroicons/react/solid";
 import classnames from "classnames";
 
 export default function ProgressSteps({ steps }) {
-  console.log(steps);
-
   return (
     <div className="lg:border-t lg:border-b lg:border-gray-200">
       <nav className="mx-auto max-w-7xl" aria-label="Progress">

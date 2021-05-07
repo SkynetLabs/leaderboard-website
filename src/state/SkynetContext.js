@@ -68,6 +68,23 @@ const SkynetProvider = ({ children }) => {
     }
   }, [userID]);
 
+  const refreshUser = () => {
+    if (userID) {
+      userProfile.getProfile(userID).then((result) => {
+        setProfile(result);
+      });
+    } else {
+      setProfile(null);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("focus", refreshUser);
+    return () => {
+      window.removeEventListener("focus", refreshUser);
+    };
+  });
+
   useEffect(() => {
     // define async setup function
     async function initMySky() {

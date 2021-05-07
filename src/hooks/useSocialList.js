@@ -14,7 +14,6 @@ export const useSocialList = () => {
 
   useEffect(() => {
     if (userID & socialList) {
-      console.log("social", socialList);
       if (socialList.includes(currentUser)) {
         setAreFollowing(true);
       } else {
@@ -40,7 +39,6 @@ export const useSocialList = () => {
     if (userID) {
       setListLoading(true);
       const followList = await socialDAC.getFollowingForUser(otherUserID);
-      console.log("followList", followList);
 
       setCurrentUser(otherUserID);
       setFollowingList(followList);

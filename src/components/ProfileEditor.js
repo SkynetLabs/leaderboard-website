@@ -14,7 +14,6 @@ const ProfileEditor = () => {
   useEffect(() => {
     //set initial state values
     if (profile) {
-      console.log(profile);
       setUsername(profile.username);
       setFirstName(profile.firstName);
       setLastName(profile.lastName);
@@ -42,7 +41,6 @@ const ProfileEditor = () => {
     e.preventDefault();
     const avatar = photo ? [{ url: photo }] : undefined;
     const updated = { ...profile, username, firstName, lastName, aboutMe: about, avatar };
-    console.log(updated);
 
     // call userprofile dac code here.
     if (userProfile) {
