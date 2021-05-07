@@ -1,10 +1,11 @@
-import { FireIcon } from "@heroicons/react/solid";
+// import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useState } from "react";
 import { getFullDomainUrlForPortal } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
+import AvatarIcon from "../../components/AvatarIcon";
 import { skappNames } from "../../hooks/skappNames";
 import { FaGithub } from "react-icons/fa";
 
@@ -25,6 +26,7 @@ const transform = async (data) => {
       let description = undefined;
       let github = undefined;
       let wip = undefined;
+      let imageUrl = undefined;
       let link = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
       if (skappNames[record.skapp]) {
         const r = skappNames[record.skapp];
@@ -34,8 +36,9 @@ const transform = async (data) => {
         github = r.github ? r.github : undefined;
         link = r.link ? r.link : link;
         wip = r.wip ? r.wip : wip;
+        imageUrl = r.imageUrl ? r.imageUrl : imageUrl;
       }
-      return { ...record, hidden, name, link, description, github, wip };
+      return { ...record, hidden, name, link, description, github, wip, imageUrl };
     })
   );
 
@@ -51,7 +54,7 @@ const transform = async (data) => {
 };
 
 const render = (record, pos) => {
-  let { link, skapp, total, last24H, name, description, github, wip } = record;
+  let { link, skapp, total, last24H, name, description, github, wip, imageUrl } = record;
 
   const displayName = name ? name : skapp;
 
@@ -62,13 +65,16 @@ const render = (record, pos) => {
           <div className="flex flex-row space-x-4 truncate">
             <div className="flex items-center text-sm text-palette-600 font-semibold">
               <span className="text-gray-400 w-10">{ordinal(pos)}</span>
-              {pos <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              <AvatarIcon avatar={imageUrl} skapp />
+              {/* {pos <= 3 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               {pos <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
-              {pos <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
+              {pos <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />} */}
             </div>
-            <div className="text-sm truncate">
-              {link ? <Link href={link}>{displayName}</Link> : displayName}
-              {description && <span className="text-gray-500"> – {description}</span>}
+            <div className="flex items-center align-middle text-sm text-palette-600">
+              <div className="text-sm truncate">
+                {link ? <Link href={link}>{displayName}</Link> : displayName}
+                {description && <span className="text-gray-500"> – {description}</span>}
+              </div>
             </div>
             {wip && (
               <span className="text-xs items-center font-normal leading-sm px-3 py-1 bg-blue-100 text-blue-700 rounded-full">

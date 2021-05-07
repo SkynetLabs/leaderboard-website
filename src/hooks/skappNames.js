@@ -9,12 +9,14 @@ export const skappNames = {
     name: "SkyTransfer",
     description: "Encrypted file storage and sharing, across devices",
     github: "https://github.com/kamy22/skytransfer",
+    imageUrl: "/projects/SkyTransfer1.png",
   },
   "skychess.hns": {
     name: "SkyChess",
     description: "Find an opponent or watch a chess match",
     developer: "redsolver",
     github: "https://github.com/redsolver/skychess",
+    imageUrl: "/projects/SkyChess.png",
   },
   "giphyaf.hns": {
     name: "GiphyAF",
@@ -33,16 +35,19 @@ export const skappNames = {
     description: "Shared feed for square images",
     github: "https://github.com/rajatbeladiya/SkyNetGram",
     link: "https://ozujw.hns.siasky.net",
+    imageUrl: "/projects/SkynetGram.png",
   },
   "webgames-ide.hns": {
     name: "Webgame IDE",
     description: "Create games and deploy them to Skynet",
     github: "https://github.com/ericflo/webgames-ide",
+    imageUrl: "/projects/WebGamesIDE.png",
   },
   "0008ma52pgm6oac9qrj3fi5a202tcu590bs7es148n5e6mjm78n4it0": {
     name: "SVGUP",
     description: "Upload and Edit SVG Files",
     github: "https://github.com/lucasespinosa28/SVGUP",
+    imageUrl: "/projects/SVGUp.png",
   },
   "0000chsgunr75ulvqcblsc61bag320tf32peqjra2vs8vrob3gj8lp0": {
     name: "SkynetClient API Usage",
