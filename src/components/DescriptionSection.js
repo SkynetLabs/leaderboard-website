@@ -94,7 +94,7 @@ export default function DescriptionSection() {
               Explore is to create and share amazing content with the world. Users from all backgrounds and experience
               levels with decentralized technology are welcome to participate in Explore! Small prizes will be awarded
               to participants throughout this phase, with an exciting participation prize to anyone who engages with
-              multiple applications per day for at least 15 out of the 18 days.
+              multiple applications per day for at least 10 out of the 14 days.
             </Paragraph>
 
             <Header3>Dream Phase ($2k Prizes)</Header3>
