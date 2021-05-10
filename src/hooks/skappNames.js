@@ -30,13 +30,13 @@ export const skappNames = {
     github: "https://github.com/michaelmuenzer/skybookmarks",
     imageUrl: "/projects/SkyBookmarks.png",
   },
-  "ozujw.hns.siasky.dev": {
-    name: "SkyNetGram",
-    description: "Shared feed for square images",
-    github: "https://github.com/rajatbeladiya/SkyNetGram",
-    link: "https://ozujw.hns.siasky.net",
-    imageUrl: "/projects/SkynetGram.png",
-  },
+  // "ozujw.hns.siasky.dev": {
+  //   name: "SkyNetGram",
+  //   description: "Shared feed for square images",
+  //   github: "https://github.com/rajatbeladiya/SkyNetGram",
+  //   link: "ozujw.hns",
+  //   imageUrl: "/projects/SkynetGram.png",
+  // },
   "webgames-ide.hns": {
     name: "Webgame IDE",
     description: "Create games and deploy them to Skynet",
@@ -54,13 +54,20 @@ export const skappNames = {
     description: "Play around with skynet-js API",
     github: "https://github.com/antonyip/ss-api",
   },
-  "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": {
+  "tirthahalli.hns": {
     name: "How About Skapp",
     description: "Propose and vote on ideas",
     github: "https://github.com/devAttila87/siasky-habout",
     imageUrl: "/projects/Habout.png",
     // wip: true,
   },
+  // "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": {
+  //   name: "How About Skapp",
+  //   description: "Propose and vote on ideas",
+  //   github: "https://github.com/devAttila87/siasky-habout",
+  //   imageUrl: "/projects/Habout.png",
+  //   // wip: true,
+  // },
   // // Below shouldn't appear after new leaderboard rules.
   localhost: { hidden: true },
   "snew.hns": {

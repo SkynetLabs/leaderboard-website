@@ -8,7 +8,7 @@
     "@fontsource/source-sans-pro": "^4.2.2",
     "@headlessui/react": "^1.1.1",
     "@heroicons/react": "^1.0.1",
-    "@skynethub/userprofile-library": "^0.1.8-beta",
+    "@skynethub/userprofile-library": "^0.1.9-beta",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.1.0",
@@ -26,7 +26,7 @@
     "react-scripts": "4.0.3",
     "react-use": "^17.2.4",
     "skynet-js": "^4.0.5-beta",
-    "social-dac-library": "^0.2.2",
+    "social-dac-library": "^0.2.3",
     "swr": "^0.5.6",
     "web-vitals": "^1.0.1"
   },

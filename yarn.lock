@@ -1970,10 +1970,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@skynethub/userprofile-library@^0.1.8-beta":
-  version "0.1.8-beta"
-  resolved "https://registry.yarnpkg.com/@skynethub/userprofile-library/-/userprofile-library-0.1.8-beta.tgz#9a8c5e387192a8090a446ec7b1e3c0f3ae44ed21"
-  integrity sha512-8OixMEf3clSAse2Ym44cYDZLp0gTW/e37yhEiCMdaGn9yjAnNSaDWE3VgzZeQlA/Oj97mYhVlQpkiEXsjrp1Iw==
+"@skynethub/userprofile-library@^0.1.9-beta":
+  version "0.1.9-beta"
+  resolved "https://registry.yarnpkg.com/@skynethub/userprofile-library/-/userprofile-library-0.1.9-beta.tgz#f624189ba34bac98c71559987b2ffc098ab44374"
+  integrity sha512-MgSlKzyhIeKcaa+bLQAVp9DYPEc7hCEO36kFzY90BwUg+qi2LqjPZt7XXfWK2iCPGztT5e8SFEVhmMlvwmiVcQ==
   dependencies:
     post-me "^0.4.5"
     skynet-js "^4.0.5-beta"
@@ -11165,10 +11165,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-social-dac-library@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/social-dac-library/-/social-dac-library-0.2.2.tgz#d5c82c308c67ca0dda131d0816b902eae0667901"
-  integrity sha512-b0Ps/B5l6C8RBDkRnea6CEqzwYJxsqdyksE4/EQ1FyFhMXEfEUGtVdx9bS6jsbTjo1YOTR4x65OCzm6O2Slsfg==
+social-dac-library@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/social-dac-library/-/social-dac-library-0.2.3.tgz#2e7e530fb27dd3ab98ebad54675ddd6cdfb9b515"
+  integrity sha512-m2Ls0GPOtRBiDd/DbVtnb2KRArxasoVHFbh9JKiHrFnYIhE//FUHZxpF00Va4BZfjtHnoD2IlE0WTYM79XwCZQ==
   dependencies:
     post-me "^0.4.5"
     skynet-js "^4.0.3-beta"

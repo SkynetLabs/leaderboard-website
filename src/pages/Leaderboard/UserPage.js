@@ -4,7 +4,6 @@ import React, { useEffect, useState, useMemo, useContext } from "react";
 import { SkynetContext } from "../../state/SkynetContext";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
-// import { SkynetClient } from "skynet-js";
 import AvatarIcon from "../../components/AvatarIcon";
 import Link from "../../components/Link";
 import { returnAvatar } from "../../hooks/useAvatar";
@@ -21,8 +20,6 @@ const sortConfig = [
 ];
 const sortByDefault = "newContentTotal";
 const sortDirDefault = "desc";
-
-// const client = new SkynetClient("https://siasky.net/");
 
 const transform = async (data) => {
   let modified = await Promise.allSettled(

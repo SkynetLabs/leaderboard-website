@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { SkynetClient } from "skynet-js";
-import { SkynetContext } from "../state/SkynetContext";
+import { client, SkynetContext } from "../state/SkynetContext";
 
 // derives an avatar URL from a profile object
 // Right now this isn't standardized:
@@ -29,8 +28,6 @@ export const useAvatar = () => {
 
   return [avatar];
 };
-
-const client = new SkynetClient("https://siasky.net");
 
 export const returnAvatar = async (profile) => {
   if (profile && "avatar" in profile) {

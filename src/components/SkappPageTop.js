@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState, useMemo } from "react";
-import { SkynetContext } from "../state/SkynetContext";
+import { client, SkynetContext } from "../state/SkynetContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { Header1, Header3, Subheader, Paragraph } from "./Typography";
 import ProgressSteps from "./ProgressSteps";
@@ -36,7 +36,8 @@ export default function SkappPageTop() {
         description: "Add a username, avatar and contact info to receive prizes",
         status: getStepStatus(currentStep, 2),
         onClick: () => {
-          window.open("https://skyprofile.hns.siasky.net", "_blank");
+          // window.open("https://skyprofile.hns.siasky.net", "_blank");
+          client.openFileHns("skyprofile", { subdomain: true });
         },
       },
       {

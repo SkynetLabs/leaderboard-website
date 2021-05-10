@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SkynetContext } from "../state/SkynetContext";
 import { useAvatar } from "../hooks/useAvatar";
 import { useScores } from "../hooks/useScores";
@@ -7,10 +7,22 @@ import GlowingPointer from "./GlowingPointer";
 import Link from "./Link";
 
 const UserProfileCard = () => {
-  const { userID, profile } = useContext(SkynetContext);
+  const { userID, profile, client } = useContext(SkynetContext);
   // const [loading, setLoading] = useState(true);
   const [avatar] = useAvatar();
   const [scores] = useScores();
+  const [skyProfileUrl, setSkyProfileUrl] = useState("https://skyprofile.hns.siasky.net");
+
+  useEffect(() => {
+    const initSkyProfileUrl = async () => {
+      const url = await client.getHnsUrl("skyprofile", { subdomain: true });
+      setSkyProfileUrl(url);
+    };
+
+    if (client) {
+      initSkyProfileUrl();
+    }
+  }, [client]);
 
   // const handleSignUp = () => {
   //   console.log("Do Signup. After signup, we should be able to search and get a hit, even with 0 interactions.");
@@ -58,7 +70,8 @@ const UserProfileCard = () => {
           <div className="text-center mt-2">
             <p className="text-gray-600 font-bold mb-1">Need a Profile?</p>
             <span className="font-semibold">
-              <Link href="https://skyprofile.hns.siasky.net">Try SkyProfile!</Link>
+              {/* <Link href="https://skyprofile.hns.siasky.net">Try SkyProfile!</Link> */}
+              <Link href={skyProfileUrl}>Try SkyProfile!</Link>
             </span>
             <p className="text-sm font-thin text-gray-600 mt-1 mb-2">
               Be sure to include contact info to recieve prizes.

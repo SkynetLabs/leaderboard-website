@@ -1,14 +1,16 @@
 // import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useState } from "react";
-import { getFullDomainUrlForPortal } from "skynet-js";
+// import { getFullDomainUrlForPortal, SkynetClient } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
 import AvatarIcon from "../../components/AvatarIcon";
 import { skappNames } from "../../hooks/skappNames";
 import { FaGithub } from "react-icons/fa";
+import { client } from "../../state/SkynetContext";
 
+// const client = new SkynetClient();
 const endpoint = "skapps";
 const searchLabel = "Search by skapp name";
 const searchKey = "skapp";
@@ -20,21 +22,22 @@ const sortByDefault = "total";
 const sortDirDefault = "desc";
 const transform = async (data) => {
   let modified = await Promise.allSettled(
-    data.map((record, index) => {
+    data.map(async (record, index) => {
       let hidden = false;
       let name = undefined;
       let description = undefined;
       let github = undefined;
       let wip = undefined;
       let imageUrl = undefined;
-      let link = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
+      // let link = getFullDomainUrlForPortal(client., record.skapp);
+      let link = await client.getFullDomainUrl(record.skapp, { subdomain: true });
       if (skappNames[record.skapp]) {
         const r = skappNames[record.skapp];
         hidden = r.hidden ? true : false;
         name = r.name ? r.name : undefined;
         description = r.description ? r.description : undefined;
         github = r.github ? r.github : undefined;
-        link = r.link ? r.link : link;
+        link = r.link ? await client.getFullDomainUrl(r.link, { subdomain: true }) : link;
         wip = r.wip ? r.wip : wip;
         imageUrl = r.imageUrl ? r.imageUrl : imageUrl;
       }

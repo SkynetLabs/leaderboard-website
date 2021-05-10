@@ -1,14 +1,15 @@
 import { FireIcon } from "@heroicons/react/solid";
 import ordinal from "ordinal";
 import React, { useEffect, useState } from "react";
-import { SkynetClient, getFullDomainUrlForPortal } from "skynet-js";
+// import { SkynetClient, getFullDomainUrlForPortal } from "skynet-js";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
 import { skappNames } from "../../hooks/skappNames";
 import userBlocklist from "../../hooks/userBlocklist.js";
+import { client } from "../../state/SkynetContext";
 
-const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
+// const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
 const endpoint = "content";
 const searchLabel = "Search by identifier";
@@ -29,11 +30,11 @@ const transform = async (data) => {
       let skappUrl = undefined;
 
       if (record.link) {
-        url = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
+        url = await client.getFullDomainUrl(record.skapp);
         let hash = record.link.substring(record.link.indexOf("#") + 1);
         url = hash ? url + "#" + hash : url;
       } else {
-        url = await skynetClient.getSkylinkUrl(record.identifier, { subdomain: true });
+        url = await client.getSkylinkUrl(record.identifier, { subdomain: true });
       }
       if (record.metadata) {
         fileType = record.metadata.contentType;
@@ -41,7 +42,7 @@ const transform = async (data) => {
 
       if (skappNames[record.skapp]) {
         skappName = skappNames[record.skapp].name;
-        skappUrl = getFullDomainUrlForPortal("https://siasky.net", record.skapp);
+        skappUrl = await client.getFullDomainUrl(record.skapp);
       }
 
       return { ...record, hidden, url, fileType, skappName, skappUrl };

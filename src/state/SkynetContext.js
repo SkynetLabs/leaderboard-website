@@ -10,10 +10,10 @@ const SkynetContext = createContext(undefined);
 
 // We'll define a portal to allow for developing on localhost.
 // When hosted on a skynet portal, SkynetClient doesn't need any arguments.
-const portal = window.location.hostname === "localhost" ? "https://siasky.net" : undefined;
+const portal = window.location.hostname === "localhost" ? "https://siasky.dev" : undefined;
 
 // Initiate the SkynetClient
-const client = new SkynetClient(portal);
+export const client = new SkynetClient(portal);
 
 // For now, we won't use any DACs -- uncomment to create
 // const contentRecord = new ContentRecordDAC();

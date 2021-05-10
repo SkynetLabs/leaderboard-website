@@ -1,4 +1,5 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
+import { SkynetContext } from "../../state/SkynetContext";
 import MySkyButton from "../../components/MySkyButton";
 import UserProfileCard from "../../components/UserProfileCard";
 import { Dialog, Transition } from "@headlessui/react";
@@ -31,12 +32,41 @@ const resources = [
   },
   { name: "Siasky.net", href: "https://siasky.net" },
 ];
+
 const tools = [
-  { name: "Rift - Data Explorer", href: "https://riftapp.hns.siasky.net/#/data" },
-  { name: "SkyProfile Editor", href: "https://skyprofile.hns.siasky.net" },
+  { name: "Rift - Data Explorer", href: "riftapp.hns/#/data" },
+  { name: "SkyProfile Editor", href: "skyprofile.hns" },
 ];
 
 const SidebarContent = () => {
+  const { client } = useContext(SkynetContext);
+  const [portalTools, setTools] = useState(tools);
+
+  useEffect(() => {
+    const initToolUrls = async () => {
+      const portalIndepTools = await Promise.allSettled(
+        tools.map(async (r) => {
+          let href = await client.getFullDomainUrl(r.href.split("#")[0], { subdomain: true });
+          if (r.href.split("#")[1]) {
+            href = href + "/#" + r.href.split("#")[1];
+          }
+
+          return { ...r, href };
+        })
+      );
+
+      const portalIndepToolsResolved = portalIndepTools.map((r) => {
+        return r.value;
+      });
+
+      setTools(portalIndepToolsResolved);
+    };
+
+    if (client) {
+      initToolUrls();
+    }
+  }, [client]);
+
   return (
     <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-palette-500 overflow-y-auto">
       <div className="flex items-center flex-shrink-0 px-4">
@@ -78,7 +108,7 @@ const SidebarContent = () => {
               Community Tools
             </h3>
             <div className="space-y-1" role="group" aria-labelledby="projects-headline">
-              {tools.map(({ name, ...props }) => (
+              {portalTools.map(({ name, ...props }) => (
                 <Link
                   key={name}
                   className="group flex items-center px-3 py-2 text-sm font-medium text-palette-200 rounded-md hover:text-palette-100 hover:bg-palette-400"
