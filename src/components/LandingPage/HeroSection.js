@@ -39,8 +39,8 @@ export default function HeroSection() {
 
                 <Subheader>
                   Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
-                  The Explore phase begins <span className="font-extrabold text-palette-600">May 7th</span> lasting
-                  through <span className="font-extrabold text-palette-600">May 21st</span>.
+                  The Explore phase begins <span className="font-extrabold text-palette-600">May 12th</span> lasting
+                  through <span className="font-extrabold text-palette-600">May 25th</span>.
                 </Subheader>
 
                 <Paragraph>
