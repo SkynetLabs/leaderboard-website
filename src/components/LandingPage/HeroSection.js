@@ -45,7 +45,7 @@ export default function HeroSection() {
 
                 <Paragraph>
                   In addition to testing out web apps during the Explore phase, you'll be creating and sharing content
-                  to win prizes! We'll be tracking the whole event on our leaderboard.
+                  to win prizes! We'll be tracking the whole event on our Leaderboard.
                 </Paragraph>
 
                 {/* <ol className="space-y-2 list-decimal list-inside text-lg text-palette-400 font-content">

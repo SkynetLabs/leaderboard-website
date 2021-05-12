@@ -1,7 +1,7 @@
 export const skappNames = {
   "arigale.hns": {
     name: "Arigale CMS",
-    description: "Decentralized backend for schemas and post",
+    description: "Decentralized backend for schemas and posts",
     github: "https://github.com/bhanupsingh77/arigale-cms",
     imageUrl: "/projects/Arigale.png",
   },
@@ -45,7 +45,7 @@ export const skappNames = {
   },
   "0008ma52pgm6oac9qrj3fi5a202tcu590bs7es148n5e6mjm78n4it0": {
     name: "SVGUP",
-    description: "Upload and Edit SVG Files",
+    description: "Upload and edit SVG Files",
     github: "https://github.com/lucasespinosa28/SVGUP",
     imageUrl: "/projects/SVGUp.png",
   },
@@ -69,7 +69,7 @@ export const skappNames = {
     hidden: true,
     // wip: true,
   },
-  // // Below shouldn't appear after new leaderboard rules.
+  // // Below shouldn't appear after new leaderboardrules.
   localhost: { hidden: true },
   "snew.hns": {
     name: "Skynet Workshop",
@@ -99,7 +99,7 @@ export const skappNames = {
   // },
   // "00071mk4hmbg2m0s2m9n957s1j23ro89ele1f7dkve6c5fvb09j788g": {
   //   name: "Arigale CMS",
-  //   description: "Decentralized backend for schemas and post",
+  //   description: "Decentralized backend for schemas and posts",
   //   github: "https://github.com/bhanupsingh77/arigale-cms",
   //   wip: true,
   // },

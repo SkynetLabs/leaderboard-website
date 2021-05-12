@@ -43,7 +43,7 @@ export default function SkappPageTop() {
       {
         id: 3,
         name: "Explore & Create",
-        description: "Use apps to rank up on the leaderboard",
+        description: "Use apps to rank up on the Leaderboard",
         status: getStepStatus(currentStep, 3),
       },
     ],
@@ -72,7 +72,7 @@ export default function SkappPageTop() {
       <Divider />
       <div className="py-6 text-center">
         <Subheader>
-          Have Questions? Want to chat with other explorers?{" "}
+          Have questions? Want to chat with other Explorers?{" "}
           <Link href="https://discord.gg/skynetlabs">Join our Discord.</Link>
         </Subheader>
       </div>
