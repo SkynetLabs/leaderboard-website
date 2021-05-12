@@ -36,13 +36,17 @@ const transform = async (data) => {
       let skappName = undefined;
       let skappUrl = undefined;
 
-      if (record.link) {
-        url = await client.getFullDomainUrl(record.skapp);
-        let hash = record.link.substring(record.link.indexOf("#") + 1);
-        url = hash ? url + "#" + hash : url;
+      if (record.metadata.content) {
+        if (record.metadata.content.link) {
+          let link = record.metadata.content.link;
+          url = await client.getFullDomainUrl(record.skapp);
+          let hash = link.substring(link.indexOf("#") + 1);
+          url = hash ? url + "#" + hash : url;
+        }
       } else {
         url = await client.getSkylinkUrl(record.identifier, { subdomain: true });
       }
+
       if (record.metadata) {
         fileType = record.metadata.contentType;
       }
@@ -71,7 +75,7 @@ const transform = async (data) => {
   return modified;
 };
 
-const entryTypeDisplay = { INTERACTION: "Interacted", NEWCONTENT: "Created" };
+const entryTypeDisplay = { INTERACTION: "Interacted", NEWCONTENT: "Created", POST: "Post", COMMENT: "Comment" };
 const dateToFormat = "MM/DD/YYYY HH:mm:ss";
 
 const render = (record, pos, userID) => {
