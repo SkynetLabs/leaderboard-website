@@ -11098,6 +11098,26 @@ skynet-js@^4.0.5-beta:
     url-join "^4.0.1"
     url-parse "1.4.7"
 
+skynet-js@^4.0.6-beta:
+  version "4.0.6-beta"
+  resolved "https://registry.yarnpkg.com/skynet-js/-/skynet-js-4.0.6-beta.tgz#45532a45d989a587f216516e6618cfb6194f4dca"
+  integrity sha512-2dOmdOIwRgISWShyCePU5qJ1PPPN0vqb8WlQhBztQgJeZQwx0AGhZr9HWgboaItwK3iMb4KAjdq4wpoXbs2u+g==
+  dependencies:
+    axios "^0.21.0"
+    base32-encode "^1.1.1"
+    base64-js "^1.3.1"
+    blakejs "^1.1.0"
+    buffer "^6.0.1"
+    mime "^2.5.2"
+    path-browserify "^1.0.1"
+    post-me "^0.4.5"
+    randombytes "^2.1.0"
+    sjcl "^1.0.8"
+    skynet-mysky-utils "^0.2.2"
+    tweetnacl "^1.0.3"
+    url-join "^4.0.1"
+    url-parse "1.4.7"
+
 skynet-mysky-utils@^0.1.0, skynet-mysky-utils@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/skynet-mysky-utils/-/skynet-mysky-utils-0.1.2.tgz#1ca5e9cf69a71ac67dd805c90371fd71f622adc1"
