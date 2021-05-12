@@ -1,5 +1,5 @@
-import SubscribeForm from "./SubscribeForm";
-import { Header2 } from "./Typography";
+import SubscribeForm from "../SubscribeForm";
+import { Header2 } from "../Typography";
 
 export default function SubscribeSection() {
   return (

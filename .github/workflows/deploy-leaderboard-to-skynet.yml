@@ -1,9 +1,9 @@
-name: Deploy to Skynet
+name: Deploy Leaderboard to Skynet
 
 on:
   push:
     branches:
-      - main
+      - leaderboard
 
 jobs:
   build:
@@ -30,4 +30,4 @@ jobs:
         with:
           upload-dir: build
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.REGISTRY_SEED || '' }}
+          registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/leaderboard' && secrets.LEADERBOARD_REGISTRY_SEED || '' }}

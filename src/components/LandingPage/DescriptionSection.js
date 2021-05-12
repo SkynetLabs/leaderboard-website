@@ -1,6 +1,23 @@
-import Link from "./Link";
-import Tag from "./Tag";
-import { Header3, Paragraph } from "./Typography";
+// import Link from "../Link";
+import Tag from "../Tag";
+import { Header3, Paragraph } from "../Typography";
+
+const phase = "explore"; // build, explore, dream
+
+const PhaseHeader = ({ children, current }) => {
+  if (current) {
+    return (
+      <div className="flex justify-between space-x-4">
+        <Header3>{children}</Header3>
+        <span className="flex items-center flex-shrink-0">
+          <Tag>in progress</Tag>
+        </span>
+      </div>
+    );
+  }
+
+  return <Header3>{children}</Header3>;
+};
 
 export default function DescriptionSection() {
   return (
@@ -77,18 +94,13 @@ export default function DescriptionSection() {
         </div>
         <div className="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
           <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-            <div className="flex justify-between space-x-4">
-              <Header3>Build Phase (&gt;$20k Prizes)</Header3>
-              <span className="flex items-center flex-shrink-0">
-                <Tag>in progress</Tag>
-              </span>
-            </div>
+            <PhaseHeader current={phase === "build"}>Build Phase (&gt;$20k Prizes)</PhaseHeader>
             <Paragraph>
-              The build phase is taking place on Gitcoin,{" "}
-              <Link href="https://gitcoin.co/hackathon/built-to-explore/onboard">sign up</Link> and start hacking today.
+              In the build phase, hackers created web applications focused on creating and sharing content using
+              Skynet's new MySky and DAC tools.
             </Paragraph>
 
-            <Header3>Explore Phase ($3k Prizes)</Header3>
+            <PhaseHeader current={phase === "explore"}>Explore Phase ($3k Prizes)</PhaseHeader>
             <Paragraph>
               Application developers will have the opportunity to test their app with real-life end users. The goal of
               Explore is to create and share amazing content with the world. Users from all backgrounds and experience
@@ -97,7 +109,7 @@ export default function DescriptionSection() {
               multiple applications per day for at least 10 out of the 14 days.
             </Paragraph>
 
-            <Header3>Dream Phase ($2k Prizes)</Header3>
+            <PhaseHeader current={phase === "dream"}>Dream Phase ($2k Prizes)</PhaseHeader>
             <Paragraph>
               Technical and non-technical participants will ideate around future decentralized use-cases across
               industries. The Dream phase is about letting go of the realities of today and instead looking into the

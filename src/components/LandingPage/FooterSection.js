@@ -1,4 +1,4 @@
-import Link from "./Link";
+import Link from "../Link";
 
 // this gets injected by github action in build time
 const commitSha = process.env.REACT_APP_GIT_SHA;
