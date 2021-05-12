@@ -61,13 +61,14 @@ export const skappNames = {
     imageUrl: "/projects/Habout.png",
     // wip: true,
   },
-  // "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": {
-  //   name: "How About Skapp",
-  //   description: "Propose and vote on ideas",
-  //   github: "https://github.com/devAttila87/siasky-habout",
-  //   imageUrl: "/projects/Habout.png",
-  //   // wip: true,
-  // },
+  "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": {
+    name: "How About Skapp",
+    description: "Propose and vote on ideas",
+    github: "https://github.com/devAttila87/siasky-habout",
+    imageUrl: "/projects/Habout.png",
+    hidden: true,
+    // wip: true,
+  },
   // // Below shouldn't appear after new leaderboard rules.
   localhost: { hidden: true },
   "snew.hns": {
