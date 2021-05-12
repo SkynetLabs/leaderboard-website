@@ -18,7 +18,7 @@ const sortConfig = [
   { name: "Interactions (total)", field: "total" },
   { name: "Interactions (24 hours)", field: "last24H" },
 ];
-const sortByDefault = "total";
+const sortByDefault = "last24H";
 const sortDirDefault = "desc";
 const transform = async (data) => {
   let modified = await Promise.allSettled(

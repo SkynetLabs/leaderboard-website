@@ -4,17 +4,130 @@ import { useParams } from "react-router-dom";
 import ordinal from "ordinal";
 import Link from "../../components/Link";
 import { UserCircleIcon, ArrowCircleLeftIcon } from "@heroicons/react/solid";
+import Moment from "react-moment";
 // import { useSocialList } from "../../hooks/useSocialList";
 // import Tag from "../../components/Tag";
 import { useProfile } from "../../hooks/useProfile";
 // import { SkynetContext } from "../../state/SkynetContext";
+// import SearchBar from "./components/SearchBar";
+import RecordList from "./components/RecordList";
+import { client } from "../../state/SkynetContext";
+// import { FireIcon } from "@heroicons/react/solid";
+// import userBlocklist from "../../hooks/userBlocklist.js";
+import { skappNames } from "../../hooks/skappNames";
 
 // TODO: if userID == showID, link to edit page? load latest, not scraper profile?
+
+const endpoint = "usercontent";
+// const searchLabel = "remove me";
+const searchKey = "userPK";
+// const sortConfig = [
+//   { name: "Interactions (total)", field: "total" },
+//   { name: "Interactions (24 hours)", field: "last24H" },
+// ];
+const sortByDefault = "createdAt";
+const sortDirDefault = "desc";
+const transform = async (data) => {
+  let modified = await Promise.allSettled(
+    data.map(async (record, index) => {
+      let hidden = false;
+      let url = undefined;
+      let fileType = undefined;
+      let skappName = undefined;
+      let skappUrl = undefined;
+
+      if (record.link) {
+        url = await client.getFullDomainUrl(record.skapp);
+        let hash = record.link.substring(record.link.indexOf("#") + 1);
+        url = hash ? url + "#" + hash : url;
+      } else {
+        url = await client.getSkylinkUrl(record.identifier, { subdomain: true });
+      }
+      if (record.metadata) {
+        fileType = record.metadata.contentType;
+      }
+
+      if (skappNames[record.skapp]) {
+        skappName = skappNames[record.skapp].name;
+        skappUrl = await client.getFullDomainUrl(record.skapp);
+      }
+
+      return { ...record, hidden, url, fileType, skappName, skappUrl };
+    })
+  );
+
+  modified = modified.map((record, index) => {
+    return record.value;
+  });
+
+  modified = modified.filter((record, index) => {
+    if (record) {
+      return true;
+    }
+
+    return false;
+  });
+
+  return modified;
+};
+
+const entryTypeDisplay = { INTERACTION: "Interacted", NEWCONTENT: "Created" };
+const dateToFormat = "MM/DD/YYYY HH:mm:ss";
+
+const render = (record, pos, userID) => {
+  return (
+    <>
+      <div className={"px-4 py-4 sm:px-6" + (userID === record.creator ? " bg-green-50" : "")}>
+        <div className="flex items-center justify-between space-x-8">
+          <div className="flex flex-row space-x-16 truncate">
+            <div className="flex items-center text-sm text-palette-600 font-semibold">
+              <span className="text-gray-400 w-10">{entryTypeDisplay[record.entryType]}</span>
+            </div>
+            <div className="text-sm truncate">
+              {record.url ? <Link href={record.url}>{record.identifier}</Link> : record.identifier}
+            </div>
+          </div>
+          <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
+            {record.fileType && (
+              <span className="text-xs inline-flex items-center font-normal leading-sm px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                {record.fileType}
+              </span>
+            )}
+            {record.skappName && (
+              <span className="text-xs inline-flex items-center font-normal leading-sm px-3 py-1 bg-green-100 text-green-700 rounded-full">
+                {record.skappUrl ? (
+                  <Link className="text-green-700" href={record.skappUrl}>
+                    {record.skappName}
+                  </Link>
+                ) : (
+                  record.skappName
+                )}
+              </span>
+            )}
+            <p>
+              <Moment format={dateToFormat}>{record.createdAt}</Moment>
+              {/* <span className="text-gray-400 ml-2">total</span> */}
+            </p>
+            {/* <p className="xl:w-48">
+              {record.last24H} <span className="text-gray-400 ml-2">in last 24h</span>
+            </p> */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default function SingleUserPage({ setTitle }) {
   const { showID } = useParams();
   const [singleProfile, singleScores, singleAvatar, setID] = useProfile();
   const [connections] = useState([]);
+
+  const [search, setSearch] = useState("");
+  const [sortBy] = useState(sortByDefault);
+  const [sortDir] = useState(sortDirDefault);
+  // const [sortBy, setSortBy] = useState(sortByDefault);
+  // const [sortDir, setSortDir] = useState(sortDirDefault);
 
   useEffect(() => {
     setTitle("");
@@ -43,6 +156,7 @@ export default function SingleUserPage({ setTitle }) {
   useEffect(() => {
     if (showID) {
       setID(showID);
+      setSearch(showID);
     }
   }, [showID, setID]);
 
@@ -113,6 +227,7 @@ export default function SingleUserPage({ setTitle }) {
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block tracking-wide text-gray-700">
                         {singleScores.rank ? ordinal(singleScores.rank) : "-"}
+                        {/* {singleScores.rank ? ordinal(singleScores.rank) : "-"} */}
                       </span>
                       <span className="text-sm text-gray-500">Rank</span>
                     </div>
@@ -186,6 +301,28 @@ export default function SingleUserPage({ setTitle }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="space-y-4">
+            {/* <SearchBar
+              sortConfig={sortConfig}
+              searchLabel={searchLabel}
+              search={search}
+              setSearch={setSearch}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              sortDir={sortDir}
+              setSortDir={setSortDir}
+            /> */}
+            <RecordList
+              endpoint={endpoint}
+              transform={transform}
+              search={search}
+              searchKey={searchKey}
+              sortBy={sortBy}
+              sortDir={sortDir}
+            >
+              {render}
+            </RecordList>
           </div>
         </div>
       </section>

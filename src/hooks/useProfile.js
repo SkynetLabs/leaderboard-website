@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { returnAvatar } from "./useAvatar";
 import { returnScores } from "./useScores";
+// import { returnUserContent } from "./useUserContent";
 
 const emptyScores = {
   interactionsLast24H: null,
@@ -16,6 +17,7 @@ export const useProfile = () => {
   const [id, setID] = useState("");
   const [singleUserProfile, setSingleUserProfile] = useState({});
   const [singleUserScores, setSingleUserScores] = useState(emptyScores);
+  // const [singleUserContent, setSingleUserContent] = useState([]);
 
   // const fetchAvatar = useCallback(async (profile) => {
   //   const a = await returnAvatar(profile);
@@ -53,6 +55,8 @@ export const useProfile = () => {
       setAvatar(avatar);
       setSingleUserProfile(profile);
       setSingleUserScores(scores);
+      // const [content] = await getUserContent(id);
+      // setSingleUserContent(userContent);
     };
 
     if (id) {
@@ -89,6 +93,7 @@ const getScores = async (userID) => {
     if (userMetadata.mySkyProfile) {
       // fetchAvatar(userMetadata.mySkyProfile.profile);
       const avatar = await getAvatar(userMetadata.mySkyProfile.profile);
+      // const userContent = await getUserContent(userID);
       // setSingleUserProfile(userMetadata.mySkyProfile.profile);
       // setSingleUserProfile(userMetadata.mySkyProfile.profile);
       return [singleUserScores, userMetadata.mySkyProfile.profile, avatar];
