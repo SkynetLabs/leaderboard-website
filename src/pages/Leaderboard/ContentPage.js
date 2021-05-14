@@ -33,6 +33,8 @@ const transform = async (data) => {
         url = await client.getFullDomainUrl(record.skapp);
         let hash = record.link.substring(record.link.indexOf("#") + 1);
         url = hash ? url + "#" + hash : url;
+      } else if (record.identifier.startsWith("sky:")) {
+        url = null;
       } else {
         url = await client.getSkylinkUrl(record.identifier, { subdomain: true });
       }

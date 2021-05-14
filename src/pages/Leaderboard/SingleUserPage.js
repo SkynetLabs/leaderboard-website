@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ordinal from "ordinal";
 import Link from "../../components/Link";
@@ -8,12 +7,12 @@ import Moment from "react-moment";
 // import { useSocialList } from "../../hooks/useSocialList";
 // import Tag from "../../components/Tag";
 import { useProfile } from "../../hooks/useProfile";
-// import { SkynetContext } from "../../state/SkynetContext";
 // import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
-import { client } from "../../state/SkynetContext";
+import { client, SkynetContext } from "../../state/SkynetContext";
 // import { FireIcon } from "@heroicons/react/solid";
 // import userBlocklist from "../../hooks/userBlocklist.js";
+import userAdminList from "../../hooks/userAdminList.js";
 import { skappNames } from "../../hooks/skappNames";
 
 // TODO: if userID == showID, link to edit page? load latest, not scraper profile?
@@ -124,8 +123,10 @@ const render = (record, pos, userID) => {
 
 export default function SingleUserPage({ setTitle }) {
   const { showID } = useParams();
+  const { userID } = useContext(SkynetContext);
   const [singleProfile, singleScores, singleAvatar, setID] = useProfile();
   const [connections] = useState([]);
+  const [adminView, setAdminView] = useState(false);
 
   const [search, setSearch] = useState("");
   const [sortBy] = useState(sortByDefault);
@@ -163,6 +164,14 @@ export default function SingleUserPage({ setTitle }) {
       setSearch(showID);
     }
   }, [showID, setID]);
+
+  useEffect(() => {
+    if (userAdminList.includes(userID)) {
+      setAdminView(true);
+    } else {
+      setAdminView(false);
+    }
+  }, [userID]);
 
   return (
     <main className="profile-page">
@@ -292,12 +301,12 @@ export default function SingleUserPage({ setTitle }) {
                     </div>
                   </div>
                 )}
-                {/* <div className="mb-2 text-gray-700 mt-10">
-                  <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>Solution Manager - Creative Tim Officer
-                </div>
-                <div className="mb-2 text-gray-700">
-                  <i className="fas fa-university mr-2 text-lg text-gray-500"></i>University of Computer Science
-                </div> */}
+                {adminView && (
+                  <div className="mb-2 text-gray-700 mt-10">
+                    <pre>contact: {JSON.stringify(singleProfile.contact)}</pre>
+                    <pre>{JSON.stringify(singleProfile.connections)}</pre>
+                  </div>
+                )}
                 <div className="py-10 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4"></div>
