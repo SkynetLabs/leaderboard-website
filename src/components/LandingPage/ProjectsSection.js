@@ -29,6 +29,12 @@ const projects = [
     url: "skybookmarks.hns",
   },
   {
+    name: "SkyChat",
+    description: "Chat with friends and strangers.",
+    imageUrl: "/projects/SkyChat2.png",
+    url: "chatbubble.hns",
+  },
+  {
     name: "SkyChess",
     description: "Find opponents and rewatch chess matches.",
     imageUrl: "/projects/SkyChess.png",

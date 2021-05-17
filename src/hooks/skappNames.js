@@ -5,11 +5,29 @@ export const skappNames = {
     github: "https://github.com/bhanupsingh77/arigale-cms",
     imageUrl: "/projects/Arigale.png",
   },
-  "skytransfer.hns": {
-    name: "SkyTransfer",
-    description: "Encrypted file storage and sharing, across devices",
-    github: "https://github.com/kamy22/skytransfer",
-    imageUrl: "/projects/SkyTransfer1.png",
+  "giphyaf.hns": {
+    name: "GiphyAF",
+    description: "Create your GIF library on Skynet",
+    github: "https://github.com/jordanpinski/giphyaf",
+    imageUrl: "/projects/giphyaf.png",
+  },
+  "chatbubble.hns": {
+    name: "SkyChat",
+    description: "Decentralized chat, inspired by Discord",
+    imageUrl: "/projects/SkyChat.png",
+    github: "https://github.com/adnssc/SkyChat",
+  },
+  "metformin10.hns": {
+    name: "SkyNetGram",
+    description: "Shared feed for square images",
+    imageUrl: "/projects/SkynetGram.png",
+    github: "https://github.com/rajatbeladiya/SkyNetGram",
+  },
+  "skybookmarks.hns": {
+    name: "SkyBookmarks",
+    description: "Save and view saved links",
+    github: "https://github.com/michaelmuenzer/skybookmarks",
+    imageUrl: "/projects/SkyBookmarks.png",
   },
   "skychess.hns": {
     name: "SkyChess",
@@ -18,25 +36,19 @@ export const skappNames = {
     github: "https://github.com/redsolver/skychess",
     imageUrl: "/projects/SkyChess.png",
   },
-  "giphyaf.hns": {
-    name: "GiphyAF",
-    description: "Create your GIF library on Skynet",
-    github: "https://github.com/jordanpinski/giphyaf",
-    imageUrl: "/projects/giphyaf.png",
+  "skytransfer.hns": {
+    name: "SkyTransfer",
+    description: "Encrypted file storage and sharing, across devices",
+    github: "https://github.com/kamy22/skytransfer",
+    imageUrl: "/projects/SkyTransfer1.png",
   },
-  "skybookmarks.hns": {
-    name: "SkyBookmarks",
-    description: "Save and view saved links",
-    github: "https://github.com/michaelmuenzer/skybookmarks",
-    imageUrl: "/projects/SkyBookmarks.png",
+  "tirthahalli.hns": {
+    name: "How About Skapp",
+    description: "Propose and vote on ideas",
+    github: "https://github.com/devAttila87/siasky-habout",
+    imageUrl: "/projects/Habout.png",
+    // wip: true,
   },
-  // "ozujw.hns.siasky.dev": {
-  //   name: "SkyNetGram",
-  //   description: "Shared feed for square images",
-  //   github: "https://github.com/rajatbeladiya/SkyNetGram",
-  //   link: "ozujw.hns",
-  //   imageUrl: "/projects/SkynetGram.png",
-  // },
   "webgames-ide.hns": {
     name: "Webgame IDE",
     description: "Create games and deploy them to Skynet",
@@ -53,13 +65,6 @@ export const skappNames = {
     name: "SkynetClient API Usage",
     description: "Play around with skynet-js API",
     github: "https://github.com/antonyip/ss-api",
-  },
-  "tirthahalli.hns": {
-    name: "How About Skapp",
-    description: "Propose and vote on ideas",
-    github: "https://github.com/devAttila87/siasky-habout",
-    imageUrl: "/projects/Habout.png",
-    // wip: true,
   },
   "0004m25ifbub93sj9itg9po8ptd78lke2bqhbj3qo4eekd42ocdlh88": {
     name: "How About Skapp",
@@ -83,12 +88,6 @@ export const skappNames = {
   //   github: "https://github.com/redsolver/skychess",
   //   wip: true,
   // },
-  "metformin10.hns": {
-    name: "SkyNetGram",
-    description: "Shared feed for square images",
-    imageUrl: "/projects/SkynetGram.png",
-    github: "https://github.com/rajatbeladiya/SkyNetGram",
-  },
   // "000039hsk30kqji7a52014da9sr5pujkp3nnneufi5ghd9ieaul7pdo": {},
   // "0001pdr6q7bk35vqc3rsta9pvh09r32hogbvprvdjkeoa0sgkinedm8": {},
   // "600ci0qbat6kpl15ff16qbkh6dr7gk1qbdpi0gusprg5779gj7l24k0": {
