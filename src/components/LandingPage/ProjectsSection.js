@@ -44,7 +44,7 @@ const projects = [
     name: "SkyNect-4",
     description: "Childhood classic, running on Skynet.",
     imageUrl: "/projects/SkyNect.png",
-    url: "skorn.hns",
+    url: "skynect4.hns",
   },
   {
     name: "SkyNetGram",
