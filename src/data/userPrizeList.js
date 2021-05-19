@@ -1,0 +1,9 @@
+const userPrizeList = [
+  "e453031a0a0d574bc58259e3d077f0ccc01f0f2bf1c4e7bcd1d868b2e8af7377",
+  "0c47cbcd96ef115de2d2153b79f465bac19b1d5ca5b6ccea045d539f6a52d445",
+  "71fa5a8be410fa76f786fdcf4da157617b7032f90cbb28ee4a3e0d9fef599dbc",
+  "2cdb62359901721ad2d3454500c11cdd30105774f7699991080a6c7844940cc4",
+  "810a5928dc55b8ec80d8acd47ffa2e7947f1d1b928cc1df3b0d1e7e5ff1fb57e",
+];
+
+export default userPrizeList;

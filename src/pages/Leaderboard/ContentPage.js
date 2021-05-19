@@ -5,9 +5,11 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
-import { skappNames } from "../../hooks/skappNames";
-import userBlocklist from "../../hooks/userBlocklist.js";
+import { skappNames } from "../../data/skappNames";
+import userBlocklist from "../../data/userBlocklist";
 import { client } from "../../state/SkynetContext";
+import { FaRegUserCircle, FaGift } from "react-icons/fa";
+import contentPrizeList from "../../data/contentPrizeList";
 
 // const skynetClient = new SkynetClient(process.env.REACT_APP_PORTAL_URL);
 
@@ -23,11 +25,12 @@ const sortDirDefault = "desc";
 const transform = async (data) => {
   let modified = await Promise.allSettled(
     data.map(async (record, index) => {
-      let hidden = false;
+      let display = true;
       let url = undefined;
       let fileType = undefined;
       let skappName = undefined;
       let skappUrl = undefined;
+      let prize = undefined;
 
       if (record.link) {
         url = await client.getFullDomainUrl(record.skapp);
@@ -47,24 +50,20 @@ const transform = async (data) => {
         skappUrl = await client.getFullDomainUrl(record.skapp);
       }
 
-      return { ...record, hidden, url, fileType, skappName, skappUrl };
+      if (userBlocklist.includes(record.creator)) {
+        display = false;
+      }
+
+      if (contentPrizeList.includes(record.identifier)) {
+        prize = true;
+      }
+
+      return { ...record, display, url, fileType, skappName, skappUrl, prize };
     })
   );
 
   modified = modified.map((record, index) => {
     return record.value;
-  });
-
-  modified = modified.filter((record, index) => {
-    if (record.hidden) {
-      return false;
-    }
-
-    if (userBlocklist.includes(record.creator)) {
-      return false;
-    }
-
-    return true;
   });
 
   return modified;
@@ -81,9 +80,22 @@ const render = (record, pos, userID) => {
               {pos <= 2 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
               {pos <= 1 && <FireIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />}
             </div>
+
             <div className="text-sm truncate">
               {record.url ? <Link href={record.url}>{record.identifier}</Link> : record.identifier}
             </div>
+            {record.prize && (
+              <p className="text-xl mr-6">
+                <FaGift className="text-gray-400" />
+              </p>
+            )}
+            {record.creator && record.creator !== "unknown" && (
+              <p className="text-xl mr-6">
+                <Link to={`/leaderboard/users/${record.creator}`}>
+                  <FaRegUserCircle className="text-gray-400" />
+                </Link>
+              </p>
+            )}
           </div>
           <div className="flex-shrink-0 flex flex-col xl:flex-row text-sm xl:space-x-4 xl:text-right tabular-nums">
             {record.fileType && (

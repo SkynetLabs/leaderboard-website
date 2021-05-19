@@ -7,7 +7,9 @@ import RecordList from "./components/RecordList";
 import AvatarIcon from "../../components/AvatarIcon";
 import Link from "../../components/Link";
 import { returnAvatar } from "../../hooks/useAvatar";
-import userBlocklist from "../../hooks/userBlocklist.js";
+import userBlocklist from "../../data/userBlocklist";
+import { BsGift } from "react-icons/bs";
+import userPrizeList from "../../data/userPrizeList";
 
 const endpoint = "users";
 const searchLabel = "Search by user public key";
@@ -26,26 +28,35 @@ const transform = async (data) => {
     data.map(async (record, index) => {
       let username = null;
       let avatar = undefined;
+      let prize = undefined;
+
+      // blocklist
+      let display = !userBlocklist.includes(record.userPK);
+
+      if (userPrizeList.includes(record.userPK)) {
+        prize = true;
+      }
+
       if (record.userMetadata && record.userMetadata.mySkyProfile && record.userMetadata.mySkyProfile.profile) {
         const mySkyProfile = record.userMetadata.mySkyProfile.profile;
         username = mySkyProfile.username;
         avatar = await returnAvatar(mySkyProfile);
       }
-      return { ...record, username, avatar };
+      return { ...record, username, avatar, display, prize };
     })
   );
 
   modified = modified.map((r) => r.value);
 
   //blocklist
-  modified = modified.filter((record) => {
-    let displayUser = !userBlocklist.includes(record.userPK);
+  // modified = modified.filter((record) => {
+  //   let displayUser = !userBlocklist.includes(record.userPK);
 
-    //here we could add username blocking behavior --
-    // displayUser = !!record.username;
+  //   //here we could add username blocking behavior --
+  //   // displayUser = !!record.username;
 
-    return displayUser;
-  });
+  //   return displayUser;
+  // });
 
   return modified;
 };
@@ -85,6 +96,11 @@ const render = (record, pos, userID) => {
               <div className="text-sm truncate">
                 <Link to={"/leaderboard/users/" + userPK}>{username ? username : userPK}</Link>
               </div>
+              {record.prize && (
+                <p className="text-xl mr-6 align-middle items-center">
+                  <BsGift className="text-gray-500 ml-4" />
+                </p>
+              )}
             </div>
           </div>
           <div className="flex flex-row space-x-8 flex-shrink-0">

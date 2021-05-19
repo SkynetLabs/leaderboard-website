@@ -6,7 +6,7 @@ import SearchBar from "./components/SearchBar";
 import RecordList from "./components/RecordList";
 import Link from "../../components/Link";
 import AvatarIcon from "../../components/AvatarIcon";
-import { skappNames } from "../../hooks/skappNames";
+import { skappNames } from "../../data/skappNames";
 import { FaGithub } from "react-icons/fa";
 import { client } from "../../state/SkynetContext";
 
@@ -23,7 +23,7 @@ const sortDirDefault = "desc";
 const transform = async (data) => {
   let modified = await Promise.allSettled(
     data.map(async (record, index) => {
-      let hidden = false;
+      let display = true;
       let name = undefined;
       let description = undefined;
       let github = undefined;
@@ -33,7 +33,7 @@ const transform = async (data) => {
       let link = await client.getFullDomainUrl(record.skapp, { subdomain: true });
       if (skappNames[record.skapp]) {
         const r = skappNames[record.skapp];
-        hidden = r.hidden ? true : false;
+        display = r.hidden ? false : true;
         name = r.name ? r.name : undefined;
         description = r.description ? r.description : undefined;
         github = r.github ? r.github : undefined;
@@ -41,7 +41,7 @@ const transform = async (data) => {
         wip = r.wip ? r.wip : wip;
         imageUrl = r.imageUrl ? r.imageUrl : imageUrl;
       }
-      return { ...record, hidden, name, link, description, github, wip, imageUrl };
+      return { ...record, display, name, link, description, github, wip, imageUrl };
     })
   );
 
@@ -49,9 +49,9 @@ const transform = async (data) => {
     return record.value;
   });
 
-  modified = modified.filter((record, index) => {
-    return !record.hidden;
-  });
+  // modified = modified.filter((record, index) => {
+  //   return !record.hidden;
+  // });
 
   return modified;
 };

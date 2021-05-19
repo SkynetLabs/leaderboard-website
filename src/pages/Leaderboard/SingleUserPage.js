@@ -11,9 +11,9 @@ import { useProfile } from "../../hooks/useProfile";
 import RecordList from "./components/RecordList";
 import { client, SkynetContext } from "../../state/SkynetContext";
 // import { FireIcon } from "@heroicons/react/solid";
-// import userBlocklist from "../../hooks/userBlocklist.js";
-import userAdminList from "../../hooks/userAdminList.js";
-import { skappNames } from "../../hooks/skappNames";
+// import userBlocklist from "../../data/userBlocklist";
+import userAdminList from "../../data/userAdminList";
+import { skappNames } from "../../data/skappNames";
 
 // TODO: if userID == showID, link to edit page? load latest, not scraper profile?
 

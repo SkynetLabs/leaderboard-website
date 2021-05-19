@@ -29,6 +29,15 @@ export default function RecordList({ children, endpoint, transform, search, sear
 
   const records = data.flat();
 
+  // if the record explicitly states display as false:
+  // remove entry.
+  const displayRecords = records.filter((r) => {
+    if (r.display === false) {
+      return false;
+    }
+    return true;
+  });
+
   // no records found, display a message
   if (records.length === 0) {
     return (
@@ -43,7 +52,7 @@ export default function RecordList({ children, endpoint, transform, search, sear
   return (
     <div>
       <ListTemplate>
-        {records.map((record, index) => {
+        {displayRecords.map((record, index) => {
           return <li key={index}>{children(record, index + 1, userID)}</li>;
         })}
       </ListTemplate>
