@@ -36,6 +36,13 @@ export const skappNames = {
     github: "https://github.com/redsolver/skychess",
     imageUrl: "/projects/SkyChess.png",
   },
+  "skynect4.hns": {
+    name: "SkyNect-4",
+    description: "Play the childhood classic, running on Skynet.",
+    developer: "stelballe",
+    github: "https://github.com/figurestudios/SkyNect-4",
+    imageUrl: "/projects/SkyNect.png",
+  },
   "skytransfer.hns": {
     name: "SkyTransfer",
     description: "Encrypted file storage and sharing, across devices",
