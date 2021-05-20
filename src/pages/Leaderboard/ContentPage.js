@@ -32,7 +32,9 @@ const transform = async (data) => {
       let skappUrl = undefined;
       let prize = undefined;
 
-      if (record.link) {
+      if (record.link && record.link.startsWith("http")) {
+        url = record.link;
+      } else if (record.link) {
         url = await client.getFullDomainUrl(record.skapp);
         let hash = record.link.substring(record.link.indexOf("#") + 1);
         url = hash ? url + "#" + hash : url;
