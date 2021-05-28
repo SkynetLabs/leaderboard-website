@@ -4,8 +4,9 @@ import SubscribeForm from "../SubscribeForm";
 import Tag from "../Tag";
 import { Header1, Header4, Subheader, Paragraph } from "../Typography";
 import Button from "../Button";
+import Link from "../Link";
 
-const phase = "explore"; // build, explore, dream
+const phase = "dream"; // build, explore, dream
 
 export default function HeroSection() {
   return (
@@ -67,6 +68,37 @@ export default function HeroSection() {
             {phase === "explore" && (
               <div className="mt-12 flex flex-col">
                 <Button to="/leaderboard">Get Started Exploring</Button>
+              </div>
+            )}
+
+            {phase === "dream" && (
+              <div className="sm:max-w-xl space-y-6">
+                <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
+
+                <Subheader>
+                  Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
+                  The Dream phase begins <span className="font-extrabold text-palette-600">May 26th</span> lasting
+                  through <span className="font-extrabold text-palette-600">June 6th</span>.
+                </Subheader>
+
+                <Paragraph>
+                  Get inspired by what our builders and creators made in the first two phases. Once you have a MySky
+                  login, use <Link href="https://tirthahalli.hns.siasky.net/">How About Skapp</Link> to share your ideas
+                  about the future that decentralization will bring.
+                  <br />
+                  <br />
+                  <span className="font-extrabold text-palette-600">
+                    <Link href="https://blog.sia.tech/a-dream-of-the-future-ideation-begins-427e41e553a9">
+                      See our blog for more information and submissions requirements.
+                    </Link>
+                  </span>
+                </Paragraph>
+              </div>
+            )}
+
+            {phase === "dream" && (
+              <div className="mt-12 flex flex-col">
+                <Button to="/leaderboard">Explore the Leaderboard</Button>
               </div>
             )}
 

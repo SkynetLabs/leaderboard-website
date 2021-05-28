@@ -2,7 +2,7 @@
 import Tag from "../Tag";
 import { Header3, Paragraph } from "../Typography";
 
-const phase = "explore"; // build, explore, dream
+const phase = "dream"; // build, explore, dream
 
 const PhaseHeader = ({ children, current }) => {
   if (current) {
