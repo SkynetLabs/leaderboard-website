@@ -6,7 +6,7 @@ import { Header1, Header4, Subheader, Paragraph } from "../Typography";
 import Button from "../Button";
 import Link from "../Link";
 
-const phase = "dream"; // build, explore, dream
+const phase = "ended"; // build, explore, dream
 
 export default function HeroSection() {
   return (
@@ -97,6 +97,36 @@ export default function HeroSection() {
             )}
 
             {phase === "dream" && (
+              <div className="mt-12 flex flex-col">
+                <Button to="/leaderboard">Explore the Leaderboard</Button>
+              </div>
+            )}
+
+            {phase === "ended" && (
+              <div className="sm:max-w-xl space-y-6">
+                <Header1>Built to Explore&nbsp;- A&nbsp;Dream of the Future</Header1>
+
+                <Subheader>
+                  Join builder, creators, and dreamers in Skynet's latest hackathon - no prior tech experience required.
+                  The Dream phase has now completed. Thanks to all the participants!
+                </Subheader>
+
+                <Paragraph>
+                  Get inspired by what our builders and creators made in the first two phases. Once you have a MySky
+                  login, use <Link href="https://tirthahalli.hns.siasky.net/">How About Skapp</Link> to share your ideas
+                  about the future that decentralization will bring.
+                  <br />
+                  <br />
+                  <span className="font-extrabold text-palette-600">
+                    <Link href="https://blog.sia.tech/a-dream-of-the-future-ideation-begins-427e41e553a9">
+                      See our blog for more information and submissions requirements.
+                    </Link>
+                  </span>
+                </Paragraph>
+              </div>
+            )}
+
+            {phase === "ended" && (
               <div className="mt-12 flex flex-col">
                 <Button to="/leaderboard">Explore the Leaderboard</Button>
               </div>
