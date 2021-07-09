@@ -21,7 +21,7 @@ export const useScores = () => {
   }, [userID, setScores]);
 
   // const getScores = async (userID) => {
-  //   fetch("https://siasky.dev/leaderboard/users?userPK=" + userID)
+  //   fetch("https://dev1.siasky.dev/leaderboard/users?userPK=" + userID)
   //     .then((response) => {
   //       return response.json();
   //     })
@@ -41,7 +41,7 @@ export const useScores = () => {
 
 export const returnScores = async (userID) => {
   if (userID) {
-    const response = await fetch("https://siasky.dev/leaderboard/users?userPK=" + userID);
+    const response = await fetch("https://dev1.siasky.dev/leaderboard/users?userPK=" + userID);
     const json = await response.json();
     if (json) {
       return json[0];

@@ -25,7 +25,7 @@ export const useUserContent = () => {
 
 export const returnUserContent = async (userID) => {
   if (userID) {
-    const response = await fetch("https://siasky.dev/leaderboard/usercontent?userPK=" + userID);
+    const response = await fetch("https://dev1.siasky.dev/leaderboard/usercontent?userPK=" + userID);
     const json = await response.json();
     if (json) {
       return json;

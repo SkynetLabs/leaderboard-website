@@ -1,7 +1,7 @@
 import { useSWRInfinite } from "swr";
 import ky from "ky";
 
-const api = process.env.REACT_APP_API_URL || "https://siasky.dev/leaderboard";
+const api = process.env.REACT_APP_API_URL || "https://dev1.siasky.dev/leaderboard";
 export const pageSize = 20;
 const createQueryString = (attributes) => {
   return attributes.reduce((acc, [key, value = null]) => {
